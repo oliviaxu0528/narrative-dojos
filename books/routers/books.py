@@ -12,6 +12,11 @@ router = APIRouter()
 
 @router.put("/books/{book_id}")
 
-@router.delete("/books/{book_id}")
+@router.delete("/books/{book_id}", response_model=bool)
+# def delete_book():
+#     book_id: int,
+#     repo: BooksRepository = Depends(),
+# ) -> bool:
+#     return repo.delete(books_id)
 
 @router.get("/books/{book_id}")
