@@ -2,11 +2,11 @@ steps = [
     [
         ## Create the table
         """
-        CREATE TABLE books (
+        CREATE TABLE accounts (
             id serial not null primary key,
-            author varchar(1000) not null,
-            image_url text not null,
-            create_on date not null
+            username varchar(100) not null,
+            password varchar(100) not null,
+            password_confirmation varchar(100) not null
         )
         """,
         ## Drop the table

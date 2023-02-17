@@ -15,6 +15,7 @@ class BookIn(BaseModel):
     created_on: str
 
 class BookOut(BaseModel):
+    id:str
     title: str
     author: str
     image_url: str
