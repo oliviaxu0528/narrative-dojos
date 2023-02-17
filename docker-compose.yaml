@@ -47,14 +47,14 @@ services:
       - POSTGRES_PASSWORD=test-databases
     ports:
         - 15432:5432
-  fastapi:
-    build:
-      context: books
-      dockerfile: Dockerfile.dev
-    ports:
-      - 8000:8000
-    volumes:
-      - ./books:/app
+  # fastapi:
+  #   build:
+  #     context: books
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - 8000:8000
+  #   volumes:
+  #     - ./books:/app
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
