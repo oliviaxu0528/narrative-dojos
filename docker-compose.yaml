@@ -23,7 +23,7 @@ services:
     volumes:
       - ./books:/app
     environment:
-      DATABASE_URL: postgresql://lynn:password@postgres/books
+      DATABASE_URL: postgresql://books:password@postgres/books
       WAIT_HOSTS: postgres:5432
   accounts:
     build:
@@ -34,7 +34,7 @@ services:
     volumes:
       - ./accounts:/app
     environment:
-      DATABASE_URL: postgresql://floyd:password@postgres/accounts
+      DATABASE_URL: postgresql://accounts:password@postgres/accounts
       WAIT_HOSTS: postgres:5432
   postgres:
     build:
@@ -49,12 +49,12 @@ services:
         - 15432:5432
   fastapi:
     build:
-      context: sample_service
+      context: books
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./sample_service:/app
+      - ./books:/app
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
