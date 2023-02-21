@@ -5,6 +5,7 @@ from typing import List
 class DuplicateAccountError(ValueError):
     pass
 
+
 class AccountIn(BaseModel):
     username: str
     password: str
@@ -18,6 +19,7 @@ class AccountOut(BaseModel):
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
 
+
 class AccountRepository:
     def get(self, username: str) -> AccountOutWithPassword:
         with pool.connection() as conn:
@@ -28,7 +30,7 @@ class AccountRepository:
                     FROM accounts
                     WHERE username = %s
                     """,
-                    [username],
+                    [username]
                 )
                 record = cur.fetchone()
 
@@ -36,7 +38,7 @@ class AccountRepository:
                     return AccountOutWithPassword(
                         id = record[0],
                         username=record[1],
-                        hashed_password=record[2],
+                        hashed_password=record[2]
                     )
                 else:
                     print("Invalid Username")
@@ -50,15 +52,14 @@ class AccountRepository:
                     FROM accounts
                     WHERE id = %s
                     """,
-                        [id],
+                    [id]
                 )
                 record = cur.fetchone()
-
                 if record is not None:
                     return AccountOut(
                         id=record[0],
                         username=record[1],
-                        hashed_password=record[2],
+                        hashed_password=record[2]
                     )
                 else:
                     print("Unable to locate ID")
@@ -70,17 +71,15 @@ class AccountRepository:
                     """
                     INSERT INTO accounts (
                         username,
-                        hashed_password,
+                        hashed_password
                     )
                     VALUES (%s, %s)
                     RETURNING id
                     """,
-                    [account.username, hashed_password],
+                    [account.username, hashed_password]
                 )
                 id = result.fetchone()[0]
-                print(id)
                 old_data = account.dict()
-                print("OLD DATA", old_data)
                 return AccountOut(id=id, **old_data)
 
     def get_all(self) -> List[AccountOut]:
@@ -94,7 +93,6 @@ class AccountRepository:
                     """
                 )
                 results = []
-
                 for record in cur:
                     account = AccountOut(
                         id=record[0], username=record[1]

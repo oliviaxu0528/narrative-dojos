@@ -4,7 +4,7 @@ from fastapi import (
     status,
     Response,
     APIRouter,
-    Request,
+    Request
 )
 from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
@@ -30,11 +30,10 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
-@router.get("/protected", reponse_model=bool)
+@router.get("/protected", response_model=bool)
 async def get_protected(
-    account_data: dict = Depends(authenticator.get_current_account_data),
-
-):
+    account_data: dict = Depends(authenticator.get_current_account_data)
+    ):
     return True
 
 
@@ -56,7 +55,7 @@ async def create_account(
     info: AccountIn,
     request: Request,
     response: Response,
-    accounts: AccountRepository = Depends(),
+    accounts: AccountRepository = Depends()
 ):
     hashed_password = authenticator.hash_password(info.password)
     try:
@@ -64,8 +63,8 @@ async def create_account(
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Cannot create an account with those credentials",
+            detail="Cannot create an account with those credentials"
         )
-    form = AccountForm(username=info.email, password=info.password)
+    form = AccountForm(username=info.username, password=info.password)
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())

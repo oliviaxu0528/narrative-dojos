@@ -1,6 +1,6 @@
 FROM python:3.10-bullseye
 RUN python -m pip install --upgrade pip
-WORKDIR /app
+WORKDIR /books
 
 # Copy the top-level files in your service's directory
 # Modify these instructions to do that
@@ -11,7 +11,6 @@ COPY main.py main.py
 # Modify these instructions to do that
 # COPY queries queries
 # COPY routers routers
-
 
 # If you're using a relational database with migrations,
 # uncomment the following line
