@@ -3,16 +3,15 @@ steps = [
         ## Create the table
         """
         CREATE TABLE accounts (
-            id serial not null primary key,
-            username varchar(100) not null,
-            password varchar(100) not null,
-            password_confirmation varchar(100) not null
-        )
+            id SERIAL NOT NULL PRIMARY KEY,
+            username VARCHAR(100) NOT NULL,
+            password VARCHAR(100) NOT NULL,
+            password_confirmation VARCHAR(100) NOT NULL
+        );
         """,
+        """
+        DROP TABLE accounts;
+        """
         ## Drop the table
-
-        """
-        DROP TABLE books;
-        """
     ]
 ]
