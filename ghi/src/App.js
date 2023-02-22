@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainPage from './MainPage';
 import Construct from './Construct.js'
 import ErrorNotification from './ErrorNotification';
 import './App.css';
+import Nav from './Nav';
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);  
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getData() {
@@ -28,10 +31,14 @@ function App() {
 
 
   return (
-    <div>
-      <ErrorNotification error={error} />
-      <Construct info={launch_info} />
-    </div>
+    <BrowserRouter>
+      <Nav />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
