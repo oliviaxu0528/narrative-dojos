@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
+import SignUpForm from './Signup';
 import Construct from './Construct.js'
 import ErrorNotification from './ErrorNotification';
 import './App.css';
@@ -12,7 +13,7 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      let url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/launch-details`;
+      let url = `${process.env.REACT_APP_ND_API_HOST}/api/launch-details`;
       console.log('fastapi url: ', url);
       let response = await fetch(url);
       console.log("------- hello? -------");
@@ -36,6 +37,9 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+        </Routes>
+        <Routes>
+          <Route path="/accounts" element={<SignUpForm />} />
         </Routes>
       </div>
     </BrowserRouter>
