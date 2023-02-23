@@ -6,5 +6,3 @@ app = FastAPI()
 app.include_router(books.router)
 app.include_router(authenticator.router)
 app.include_router(accounts.router)
-
-

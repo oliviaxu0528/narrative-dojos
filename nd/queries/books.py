@@ -14,12 +14,14 @@ class BookIn(BaseModel):
 class Error(BaseModel):
     message: str
 
+
 class BookOut(BaseModel):
     id: int
     title: str
     author: str
     image_url: str
     created_on: date
+
 
 class BookRepository:
     def create(self, book: BookIn) -> BookOut:
@@ -146,3 +148,6 @@ class BookRepository:
             image_url=record[3],
             created_on=record[4]
         )
+# class PageIn(BaseModel):
+#     text: str
+#     image_url: str
