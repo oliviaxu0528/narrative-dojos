@@ -2,10 +2,17 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import SignUpForm from './Signup';
+import { AuthProvider, useToken } from './Authentication.js'
 import Construct from './Construct.js'
 import ErrorNotification from './ErrorNotification';
 import './App.css';
 import Nav from './Nav';
+
+function GetToken() {
+  useToken();
+  return null;
+}
+
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
