@@ -1,35 +1,24 @@
 import React, { useState } from 'react';
+import { useToken } from "./Authentication";
+import { Navigate } from "react-router-dom";
 
-function SignUpForm() {
+
+function Signup(props) {
+  const { token, signup } = useToken();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  console.log(props);
+
+  if (token) {
+    return <Navigate to="/" />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const data = {username, password};
-
-    try {
-        const response = await fetch('/accounts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-        if (response.ok) {
-            console.log("SUCESS");
-        } else {
-            console.error("Failed to sign up:", response.status);
-        }
-    } catch (error) {
-        console.error('Failed to sign up', error);
-    }
-
-    console.log('Form submitted:', { username, password });
+    await signup(username, password);
   };
 
-  return (
+return (
     <form onSubmit={handleSubmit}>
       <label>
         username:
@@ -46,4 +35,5 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+
+export default Signup;

@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
-import SignUpForm from './Signup';
 import { AuthProvider, useToken } from './Authentication.js'
-import Construct from './Construct.js'
-import ErrorNotification from './ErrorNotification';
 import './App.css';
 import Nav from './Nav';
+import Signup from './Signup';
 
 function GetToken() {
   useToken();
@@ -20,7 +18,7 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      let url = `${process.env.REACT_APP_ND_API_HOST}/api/launch-details`;
+      let url = `${process.env.REACT_APP_ND_API_HOST}/books`;
       console.log('fastapi url: ', url);
       let response = await fetch(url);
       console.log("------- hello? -------");
@@ -39,17 +37,19 @@ function App() {
 
 
   return (
+    <div className="App">
     <BrowserRouter>
+      <AuthProvider>
+      <GetToken />
       <Nav />
-      <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/accounts" element={<Signup />} />
         </Routes>
-        <Routes>
-          <Route path="/accounts" element={<SignUpForm />} />
-        </Routes>
+        </AuthProvider>
+        </BrowserRouter>
       </div>
-    </BrowserRouter>
+
   );
 }
 
