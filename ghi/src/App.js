@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import Construct from './Construct.js'
-import ErrorNotification from './ErrorNotification';
 import './App.css';
 
 function App() {
@@ -9,7 +7,7 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      let url = `${process.env.REACT_APP_ND_API_HOST}/api/launch-details`;
+      let url = `${process.env.REACT_APP_ND_API_HOST}/books`;
       console.log('fastapi url: ', url);
       let response = await fetch(url);
       console.log("------- hello? -------");
@@ -29,8 +27,6 @@ function App() {
 
   return (
     <div>
-      <ErrorNotification error={error} />
-      <Construct info={launch_info} />
     </div>
   );
 }
