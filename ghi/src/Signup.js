@@ -4,13 +4,26 @@ function SignUpForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {username, password};
 
     try {
-        const response = await fetchh
+        const response = await fetch('/accounts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        if (response.ok) {
+            console.log("SUCESS");
+        } else {
+            console.error("Failed to sign up:", response.status);
+        }
+    } catch (error) {
+        console.error('Failed to sign up', error);
     }
 
     console.log('Form submitted:', { username, password });
