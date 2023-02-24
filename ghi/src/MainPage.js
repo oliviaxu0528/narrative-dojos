@@ -10,15 +10,14 @@ function BookColumn(props) {
             <img src={book.image_url} width="200px" height="300px" className="card-img-top"/>
             <div className="card-body">
               <h5 className="card-title">{book.title}</h5>
-              <h6 className="card-subtitle mb-2 text-muted">
-                {book.title}
-              </h6>
               <p className="card-text">by {book.author}</p>
             </div>
             <div className="card-footer">
               <a href="/" className="card-link">Read {book.title}</a>
               <p></p>
+              <p>
               <a href="/" className="card-link">More books by {book.author}</a>
+              </p>
             </div>
           </div>
         );
