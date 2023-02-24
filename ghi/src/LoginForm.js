@@ -23,10 +23,10 @@ function LoginForm() {
     event.preventDefault();
     navigate("/");
   };
-  
-    if (token) {
-    return <Navigate to="/" />;
-  }
+
+  //   if (token) {
+  //   return <Navigate to="/" />;
+  // }
 
 
   return (

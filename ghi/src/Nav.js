@@ -5,7 +5,7 @@ function Nav() {
 
     const handleLogout = () => {
     Logout();
-    alert('You have logged out')
+    console.log('You have logged out')
 
   }
 
