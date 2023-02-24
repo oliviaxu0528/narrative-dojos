@@ -27,7 +27,7 @@ function BookColumn(props) {
   );
 }
 const MainPage = (props) =>  {
-  const [bookColumns, setBookColumns] = useState([[], [], []]);
+  const [bookColumns, setBookColumns] = useState([[], [], [], [], []]);
 
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
@@ -43,14 +43,14 @@ const MainPage = (props) =>  {
           requests.push(fetch(detailUrl));
         }
         const responses = await Promise.all(requests);
-        const columns = [[], [], [], []];
+        const columns = [[], [], [], [], []];
         let i = 0;
         for (const bookResponse of responses) {
           if (bookResponse.ok) {
             const details = await bookResponse.json();
             columns[i].push(details);
             i = i + 1;
-            if (i > 3) {
+            if (i > 4) {
               i = 0;
             }
           } else {
