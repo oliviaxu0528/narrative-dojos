@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import './App.css';
-// import BookList from './MainPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
+import { AuthProvider, useToken } from './Authentication.js'
+import './App.css';
 import Nav from './Nav';
+import Signup from './Signup';
+import LoginForm from './LoginForm';
+
+function GetToken() {
+  useToken();
+  return null;
+}
 
 function App(props) {
   const [books, setBooks] = useState([])
@@ -22,17 +29,36 @@ function App(props) {
   },[])
 
   return (
-      <BrowserRouter>
-      <Nav />
+    // <div className="App">
+    // <BrowserRouter>
+    //   <AuthProvider>
+    //   <GetToken />
+    //   <Nav />
+    //     <Routes>
+    //       <Route path="/" element={<MainPage />} />
+    //       <Route path="/accounts" element={<Signup />} />
+    //       <Route path="/token" element={<LoginForm />} />
+    //     </Routes>
+    //     </AuthProvider>
+    //     </BrowserRouter>
+    //   </div>
       <div className="my-5 container">
+      <BrowserRouter>
+        <AuthProvider>
+        <GetToken />
+        <Nav />
         <Routes>
           <Route index element={<MainPage />} />
           <Route path="books">
             {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
           </Route>
+          <Route path="/accounts" element={<Signup />} />
+          <Route path="/token" element={<LoginForm />} />
         </Routes>
-      </div>
+        </AuthProvider>
       </BrowserRouter>
+      </div>
+
   );
 }
 

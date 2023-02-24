@@ -1,6 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useToken } from './Authentication';
+
+
 
 function Nav() {
+  const {token, login, logout} = useToken();
+
+  const handleLogout = () => {
+  logout();
+  console.log('You have logged out')
+  }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -11,6 +22,22 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
+              <NavLink className="nav-link" to="/accounts">Create an Account</NavLink>
+          </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/token">Login</NavLink>
+          </li>
+            <li className="nav-item">
+                  <NavLink
+                      className="nav-link"
+                      aria-current="page"
+                      // to="/token"
+                      onClick={handleLogout}
+                    >
+                    Logout
+                    </NavLink>
+              </li>
+            <li>
               <NavLink id="newlocation" className="nav-link" aria-current="page" to="/locations/new">My Books</NavLink>
             </li>
             <li className="nav-item">
@@ -23,7 +50,8 @@ function Nav() {
         </div>
       </div>
     </nav>
-    );
-}
+  )
+    }
+
 
 export default Nav;
