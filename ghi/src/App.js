@@ -1,36 +1,34 @@
 import { useEffect, useState } from 'react';
-import Construct from './Construct.js'
-import ErrorNotification from './ErrorNotification';
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import './App.css';
+import BookList from './BookList';
 
-function App() {
-  const [launch_info, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function getData() {
-      let url = `${process.env.REACT_APP_ND_API_HOST}/api/launch-details`;
-      console.log('fastapi url: ', url);
-      let response = await fetch(url);
-      console.log("------- hello? -------");
-      let data = await response.json();
+function App(props) {
+  const [books, setBooks] = useState([])
 
-      if (response.ok) {
-        console.log("got launch data!");
-        setLaunchInfo(data.launch_details);
-      } else {
-        console.log("drat! something happened");
-        setError(data.message);
-      }
+  const getBooks = async () => {
+    const booksUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
+    const response = await fetch(booksUrl)
+
+    if (response.ok) {
+      const data = await response.json();
+      setBooks(data)
     }
-    getData();
-  }, [])
-
+  }
+  useEffect(() => {
+    getBooks()
+  },[])
 
   return (
     <div>
-      <ErrorNotification error={error} />
-      <Construct info={launch_info} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="books">
+            <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
