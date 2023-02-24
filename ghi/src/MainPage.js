@@ -1,13 +1,13 @@
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 
 function BookColumn(props) {
-    return (
+  return (
     <div className="col">
       {props.books && props.books.map(book => {
         return (
           <div key={book.id} className="card mb-3 shadow">
-            <img src={book.image_url} className="card-img-top"/>
+            <img src={book.image_url} width="200px" height="300px" className="card-img-top"/>
             <div className="card-body">
               <h5 className="card-title">{book.title}</h5>
               <h6 className="card-subtitle mb-2 text-muted">
@@ -71,33 +71,33 @@ const MainPage = (props) =>  {
   return (
     <>
       <div className="px-4 py-5 my-5 mt-0 text-center bg-info">
-        <img
+        {/* <img
           className="bg-white rounded shadow d-block mx-auto mb-4"
-          src="/logo.svg"
+          src=
           alt=""
           width="400px"
           height="200px"
-        />
+        /> */}
         <h1 className="display-5 fw-bold">Narrative Dojo</h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">
             by Narrative Ninjas
           </p>
-          {/* <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <Link
               to="/attendees/new"
               className="btn btn-primary btn-lg px-4 gap-3"
             >
-              Attend a conference
+              Write a book!
             </Link>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="container">
         <h2>List of Books</h2>
         <div className="row">
-          {bookColumns.map((bookList, index) => {
-            return <BookColumn key={index} list={bookList} />;
+          {bookColumns.map((bookList, book_id) => {
+            return <BookColumn key={book_id} books={bookList} />;
           })}
         </div>
       </div>

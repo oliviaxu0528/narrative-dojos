@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import './App.css';
 // import BookList from './MainPage';
 import MainPage from './MainPage';
+import Nav from './Nav';
 
 function App(props) {
   const [books, setBooks] = useState([])
@@ -21,16 +22,17 @@ function App(props) {
   },[])
 
   return (
-    <div>
       <BrowserRouter>
+      <Nav />
+      <div className="my-5 container">
         <Routes>
           <Route index element={<MainPage />} />
           <Route path="books">
             {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
           </Route>
         </Routes>
+      </div>
       </BrowserRouter>
-    </div>
   );
 }
 
