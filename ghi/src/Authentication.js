@@ -81,6 +81,7 @@ export function useToken() {
       internalToken = null;
       setToken(null);
       navigate("/");
+      console.log("Succesful")
     }
   }
 
@@ -140,7 +141,7 @@ export function useToken() {
 //     return false;
 //   }
 
-  return { token, login, logout, signup};
+  return { token, login, logout, signup };
 }
 
 export const useUser = (token) => {

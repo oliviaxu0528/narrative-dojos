@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useToken } from "./Authentication.js";
+
 
 function LoginForm() {
+  const navigate = useNavigate();
+  const {token, login} = useToken();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,8 +19,15 @@ function LoginForm() {
   };
 
   const handleSubmit = (event) => {
+    login(username, password);
     event.preventDefault();
+    navigate("/");
   };
+  
+    if (token) {
+    return <Navigate to="/" />;
+  }
+
 
   return (
     <form onSubmit={handleSubmit}>

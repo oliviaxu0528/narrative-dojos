@@ -1,6 +1,15 @@
 import { NavLink } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import Logout from './Logout';
 function Nav() {
+
+    const handleLogout = () => {
+    Logout();
+    alert('You have logged out')
+
+  }
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container-fluid">
@@ -12,6 +21,22 @@ function Nav() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link active" to="/accounts">Create an Account</NavLink>
+          </li>
+            <li className="nav-item">
+              <NavLink className="nav-link active" to="/token">Login</NavLink>
+          </li>
+            <li className="nav-item">
+
+                  <Link
+                      className="dropdown-item link"
+                      aria-current="page"
+                      to="/"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Link>
+
+
           </li>
 
           </ul>
