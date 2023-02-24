@@ -12,44 +12,51 @@ function GetToken() {
   return null;
 }
 
+function App(props) {
+  const [books, setBooks] = useState([])
 
-function App() {
-  const [launch_info, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);
+  const getBooks = async () => {
+    const booksUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
+    const response = await fetch(booksUrl)
 
-  useEffect(() => {
-    async function getData() {
-      let url = `${process.env.REACT_APP_ND_API_HOST}/books`;
-      console.log('fastapi url: ', url);
-      let response = await fetch(url);
-      console.log("------- hello? -------");
-      let data = await response.json();
-
-      if (response.ok) {
-        console.log("got launch data!");
-        setLaunchInfo(data.launch_details);
-      } else {
-        console.log("drat! something happened");
-        setError(data.message);
-      }
+    if (response.ok) {
+      const data = await response.json();
+      setBooks(data)
     }
-    getData();
-  }, [])
-
+  }
+  useEffect(() => {
+    getBooks()
+  },[])
 
   return (
-    <div className="App">
-    <BrowserRouter>
-      <AuthProvider>
-      <GetToken />
-      <Nav />
+    // <div className="App">
+    // <BrowserRouter>
+    //   <AuthProvider>
+    //   <GetToken />
+    //   <Nav />
+    //     <Routes>
+    //       <Route path="/" element={<MainPage />} />
+    //       <Route path="/accounts" element={<Signup />} />
+    //       <Route path="/token" element={<LoginForm />} />
+    //     </Routes>
+    //     </AuthProvider>
+    //     </BrowserRouter>
+    //   </div>
+      <div className="my-5 container">
+      <BrowserRouter>
+        <AuthProvider>
+        <GetToken />
+        <Nav />
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route index element={<MainPage />} />
+          <Route path="books">
+            {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
+          </Route>
           <Route path="/accounts" element={<Signup />} />
           <Route path="/token" element={<LoginForm />} />
         </Routes>
         </AuthProvider>
-        </BrowserRouter>
+      </BrowserRouter>
       </div>
 
   );
