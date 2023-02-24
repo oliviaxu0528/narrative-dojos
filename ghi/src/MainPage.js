@@ -16,9 +16,9 @@ function BookColumn(props) {
               <p className="card-text">by {book.author}</p>
             </div>
             <div className="card-footer">
-              <a href="#" className="card-link">Read {book.title}</a>
+              <a href="/" className="card-link">Read {book.title}</a>
               <p></p>
-              <a href="#" className="card-link">More books by {book.author}</a>
+              <a href="/" className="card-link">More books by {book.author}</a>
             </div>
           </div>
         );
@@ -84,9 +84,7 @@ const MainPage = (props) =>  {
             by Narrative Ninjas
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Link
-              to="/attendees/new"
-              className="btn btn-primary btn-lg px-4 gap-3">
+            <Link to="/" className="btn btn-primary btn-lg px-4 gap-3">
               Write a book!
             </Link>
           </div>
@@ -101,24 +99,6 @@ const MainPage = (props) =>  {
         </div>
       </div>
     </>
-    // <div className="card" style={{width: '18rem'}}>
-    //     {props.books.map(book => {
-    //         return (
-    //             <div>
-    //             <img src={book.image_url} className="card-img-top" alt="" width="200px" height="200px"/>
-    //             <div className="card-body">
-    //                 <h5 className="card-title">{book.title}</h5>
-    //                 <p className="card-text">by {book.author}</p>
-    //                 <p className="card-text">written on {book.created_on}</p>
-    //             </div>
-    //             <div>
-    //                 <a href="#" className="card-link">Read {book.title}</a>
-    //                 <p></p>
-    //                 <a href="#" className="card-link">More books by {book.author}</a>
-    //             </div>
-    //         </div>
-    //             )})}
-    // </div>
-  );
+  )
 }
 export default MainPage

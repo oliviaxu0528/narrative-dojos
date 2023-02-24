@@ -33,18 +33,16 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
-        <input type="text" value={username} onChange={handleUsernameChange} />
+        username<input type="text" value={username} onChange={handleUsernameChange} />
       </label>
       <br />
       <label>
-        Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
+        password<input type="password" value={password} onChange={handlePasswordChange} />
       </label>
       <br />
       <button type="submit">Log In</button>
     </form>
-  );
+  )
 }
 
 export default LoginForm;

@@ -19,21 +19,19 @@ function Signup(props) {
     console.log(token)
   };
 
-return (
+  return (
     <form onSubmit={handleSubmit}>
       <label>
-        username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        username<input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
       </label>
       <br />
       <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        password<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </label>
       <br />
       <button type="submit">Sign Up</button>
     </form>
-  );
+  )
 }
 
 
