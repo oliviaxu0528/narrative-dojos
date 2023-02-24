@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import Logout from './Logout';
+import { useToken } from './Authentication';
 function Nav() {
+  const {token, login, logout} = useToken();
 
-    const handleLogout = () => {
-    Logout();
-    console.log('You have logged out')
-
+  const handleLogout = () => {
+  logout();
+  console.log('You have logged out')
   }
+
+
 
 
   return (
@@ -30,7 +32,7 @@ function Nav() {
                   <Link
                       className="dropdown-item link"
                       aria-current="page"
-                      to="/"
+                      // to="/token"
                       onClick={handleLogout}
                     >
                       Logout

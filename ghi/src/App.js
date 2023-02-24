@@ -4,7 +4,6 @@ import MainPage from './MainPage';
 import { AuthProvider, useToken } from './Authentication.js'
 import './App.css';
 import Nav from './Nav';
-import Logout from './Logout';
 import Signup from './Signup';
 import LoginForm from './LoginForm';
 
@@ -48,7 +47,6 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/accounts" element={<Signup />} />
           <Route path="/token" element={<LoginForm />} />
-          {/* <Route path="/token" element={<Logout Logout={Logout} />} /> */}
         </Routes>
         </AuthProvider>
         </BrowserRouter>

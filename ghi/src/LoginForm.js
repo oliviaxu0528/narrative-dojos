@@ -22,11 +22,12 @@ function LoginForm() {
     login(username, password);
     event.preventDefault();
     navigate("/");
+    console.log(token)
   };
 
-  //   if (token) {
-  //   return <Navigate to="/" />;
-  // }
+    if (token) {
+    return <Navigate to="/" />;
+  }
 
 
   return (

@@ -16,6 +16,7 @@ function Signup(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(username, password);
+    console.log(token)
   };
 
 return (
