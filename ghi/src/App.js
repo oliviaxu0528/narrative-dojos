@@ -29,19 +29,6 @@ function App(props) {
   },[])
 
   return (
-    // <div className="App">
-    // <BrowserRouter>
-    //   <AuthProvider>
-    //   <GetToken />
-    //   <Nav />
-    //     <Routes>
-    //       <Route path="/" element={<MainPage />} />
-    //       <Route path="/accounts" element={<Signup />} />
-    //       <Route path="/token" element={<LoginForm />} />
-    //     </Routes>
-    //     </AuthProvider>
-    //     </BrowserRouter>
-    //   </div>
       <div className="my-5 container">
       <BrowserRouter>
         <AuthProvider>
@@ -58,7 +45,6 @@ function App(props) {
         </AuthProvider>
       </BrowserRouter>
       </div>
-
   );
 }
 

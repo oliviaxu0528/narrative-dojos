@@ -20,22 +20,22 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className="nav-link active" to="/accounts">Create an Account</NavLink>
+              <NavLink className="nav-link" to="/accounts">Create an Account</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" to="/token">Login</NavLink>
+              <NavLink className="nav-link" to="/token">Login</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" onClick={handleLogout}>Logout</NavLink>
+              <NavLink className="nav-link" onClick={handleLogout}>Logout</NavLink>
             </li>
             <li>
-              <NavLink className="nav-link active" aria-current="page" to="/">My Books</NavLink>
+              <NavLink className="nav-link" aria-current="page" to="/">My Books</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/">Write a book</NavLink>
+              <NavLink className="nav-link" aria-current="page" to="/">Write a book</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/">Read a book</NavLink>
+              <NavLink className="nav-link" aria-current="page" to="/">Read a book</NavLink>
             </li>
           </ul>
         </div>
