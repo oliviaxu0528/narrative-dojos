@@ -7,7 +7,7 @@ steps = [
             title VARCHAR(100) NOT NULL,
             author VARCHAR(100) NOT NULL,
             image_url TEXT NOT NULL,
-            created_on DATE NOT NULL
+            created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """,
         """
