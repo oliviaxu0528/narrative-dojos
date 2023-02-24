@@ -15,9 +15,7 @@ function BookColumn(props) {
             <div className="card-footer">
               <a href="/" className="card-link">Read {book.title}</a>
               <p></p>
-              <p>
               <a href="/" className="card-link">More books by {book.author}</a>
-              </p>
             </div>
           </div>
         );
