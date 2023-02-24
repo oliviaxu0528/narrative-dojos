@@ -40,26 +40,37 @@
 // export default App;
 
 
-import { useState, useRef } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState, createRef } from 'react'
 import './App.css'
 
+let currentLocation = 1
 function App() {
-  let currentLocation = 1;
-  let numOfPapers = 3;
-  let maxLocation = numOfPapers + 1;
-  const preButton = useRef(null)
-  const nextButton = useRef(null)
-  const book = useRef(null)
-  const paper1 = useRef(null)
-  const paper2 = useRef(null)
-  const paper3 = useRef(null)
+  let [numOfPapers, setNumOfPapers] = useState([
+    {
+      frontText: 'Front 1',
+      backFont: 'back 1'
+    },
+    {
+      frontText: 'Front 2',
+      backFont: 'back 2'
+    },
+    {
+      frontText: 'Front 3',
+      backFont: 'back 3'
+    }
+  ])
+  let papers = numOfPapers.map((item, index) => {
+    return createRef()
+  })
+  let maxLocation = numOfPapers.length + 1;
+  const preButton = createRef()
+  const nextButton = createRef()
+  const book = createRef()
   const openBook = function() {
     book.current.style.transform = "translateX(50%)";
     preButton.current.style.transform = "translateX(-180px)";
     nextButton.current.style.transform = "translateX(180px)";
   }
-
   const closeBook = function (isAtBeginning) {
     if(isAtBeginning) {
       book.current.style.transform = "translateX(0%)";
@@ -71,23 +82,13 @@ function App() {
   }
   function goNextPage() {
     if(currentLocation < maxLocation) {
-      switch(currentLocation) {
-        case 1:
-          openBook();
-          paper1.current.classList.add("flipped");
-          paper1.current.style.zIndex = 1;
-          break;
-        case 2:
-          paper2.current.classList.add("flipped");
-          paper2.current.style.zIndex = 2;
-          break;
-        case 3:
-          paper3.current.classList.add("flipped");
-          paper3.current.style.zIndex = 3;
-          closeBook(false);
-          break;
-        default:
-          throw new Error("unkown state");
+      if (currentLocation === 1) {
+        openBook()
+      }
+      papers[currentLocation - 1].current.classList.add("flipped");
+      papers[currentLocation - 1].current.style.zIndex = currentLocation;
+      if (currentLocation === numOfPapers.length) {
+        closeBook(false);
       }
       currentLocation++;
     }
@@ -95,77 +96,73 @@ function App() {
 
   function goPrevPage() {
     if (currentLocation > 1) {
-      switch (currentLocation) {
-        case 2:
-          closeBook(true);
-          paper1.current.classList.remove("flipped");
-          paper1.current.style.zIndex = 3;
-          break;
-        case 3:
-          paper2.current.classList.remove("flipped");
-          paper2.current.style.zIndex = 2;
-          break;
-        case 4:
-          openBook();
-          paper3.current.classList.remove("flipped");
-          paper3.current.style.zIndex = 1;
-          break;
-        default:
-          throw new Error("unkown state");
+      if (currentLocation === 2) {
+        closeBook(true);
       }
+      if (currentLocation === numOfPapers.length + 1) {
+        openBook();
+      }
+      papers[currentLocation - 2].current.classList.remove("flipped");
+      papers[currentLocation - 2].current.style.zIndex = numOfPapers.length - currentLocation + 2;
       currentLocation--;
     }
   }
+  // 添加页
+  function addPage() {
+    const arr = [...numOfPapers]
+   arr.push({
+      frontText: `Front ${numOfPapers.length + 1}`,
+      backFont: `back  ${numOfPapers.length + 1}`
+    })
+    papers = arr.map((item, index) => {
+      return createRef()
+    })
+    setNumOfPapers(arr)
+  }
+  // 减少页
+  function decreasePage() {
+    const arr = [...numOfPapers]
+    arr.pop()
+    papers = arr.map((item, index) => {
+      return createRef()
+    })
+    setNumOfPapers(arr)
+  }
   return (
     <div className="App">
-      <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
-        <h1>{'<'}</h1>
-
-        <i className="fas fa-arrow-circle-left"></i>
-      </button>
-      <div id="book" className="book" ref={book}>
-        <div id="p1" className="paper" ref={paper1}>
-          <div className="front">
-            <div id="f1" className="front-content">
-              <h1>Front1</h1>
-            </div>
-          </div>
-          <div className="back">
-            <div id="b1" className="back-content">
-              <h1>Back 1</h1>
-            </div>
-          </div>
-        </div>
-        <div id="p2" className="paper" ref={paper2}>
-          <div className="front">
-            <div id="f2" className="front-content">
-              <h1>Front 2</h1>
-            </div>
-          </div>
-          <div className="back">
-            <div id="b2" className="back-content">
-              <h1>Back 2</h1>
-            </div>
-          </div>
-        </div>
-        <div id="p3" className="paper" ref={paper3}>
-          <div className="front">
-            <div id="f3" className="front-content">
-              <h1>Front 3</h1>
-            </div>
-          </div>
-          <div className="back">
-            <div id="b3" className="back-content">
-              <h1>Back 3</h1>
-            </div>
-          </div>
-        </div>
+      <div className='setting-container'>
+        <button onClick={addPage} className="add">Add a Page</button>
+        <button onClick={decreasePage} className="add">Delete a Page</button>
       </div>
-      <button id="next-btn" ref={nextButton} onClick={goNextPage}>
-        <h1>{'>'}</h1>
+      <div className='book-container'>
+        <button id="prev-btn" ref={preButton} onClick={goPrevPage} className="arrow">
+          <h1>{'<'}</h1>
 
-        <i className="fas fa-arrow-circle-right"></i>
-      </button>
+          <i className="fas fa-arrow-circle-left"></i>
+        </button>
+        <div id="book" className="book" ref={book}>
+          {numOfPapers.map((item, index) => {
+            return (
+              <div style={{zIndex: numOfPapers.length - index}} className="paper" key={index} ref={papers[index]}>
+                <div className="front">
+                  <div id={'f'+ (index + 1)} className="front-content">
+                    <h1>{item.frontText}</h1>
+                  </div>
+                </div>
+                <div className="back">
+                  <div id={'b'+ (index + 1)} className="back-content">
+                    <h1>{item.backFont}</h1>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        <button id="next-btn" ref={nextButton} onClick={goNextPage} className="arrow">
+          <h1>{'>'}</h1>
+          <i className="fas fa-arrow-circle-right"></i>
+        </button>
+      </div>
     </div>
   )
 }
