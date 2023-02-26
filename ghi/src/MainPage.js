@@ -7,7 +7,7 @@ function BookColumn(props) {
       {props.books.map(book => {
         return (
           <div key={book.id} className="card mb-3 shadow">
-            <img src={book.image_url} width="200px" height="300px" className="card-img-top"/>
+            <img src={book.image_url} width="200px" height="300px" className="card-img-top" />
             <div className="card-body">
               <h5 className="card-title">{book.title}</h5>
               <p className="card-text">by {book.author}</p>
@@ -23,7 +23,7 @@ function BookColumn(props) {
     </div>
   );
 }
-const MainPage = (props) =>  {
+const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([[], [], [], [], []]);
 
   const fetchData = async () => {
@@ -60,11 +60,38 @@ const MainPage = (props) =>  {
     } catch (e) {
       console.error(e);
     }
+
+  }
+
+  const sort = () => {
+    let sortType = document.getElementById("mySelect").value;
+    if (sortType === "alphabetic") {
+      const titleAlp = [...bookColumns].sort((a, b) =>
+        a.title > b.title ? 1 : -1,
+      );
+      setBookColumns(titleAlp);
+    } else if (sortType === "author") {
+      const authorSort = [...bookColumns].sort((a, b) =>
+        a.author > b.author ? 1 : -1,
+      );
+      setBookColumns(authorSort);
+    } else if (sortType === "newest") {
+      const newest = [...bookColumns].sort((a, b) =>
+        a.created_on > b.created_on ? 1 : -1,
+      );
+      setBookColumns(newest);
+    } else {
+      const oldest = [...bookColumns].sort((a, b) =>
+        a.created_on < b.created_on ? 1 : -1,
+      );
+      setBookColumns(oldest);
+    }
   }
 
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <>
       <div className="px-4 py-4 my-5 mt-0 text-center bg-white">
@@ -89,6 +116,12 @@ const MainPage = (props) =>  {
       </div>
       <div className="container">
         <h2>New books</h2>
+        <select id="mySelect" onChange={() => sort()}>
+          <option value="alphabetic">Alphabetic</option>
+          <option value="author">Author</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
         <div className="row">
           {bookColumns.map((bookList, index) => {
             return <BookColumn key={index} books={bookList} />;
@@ -99,3 +132,4 @@ const MainPage = (props) =>  {
   )
 }
 export default MainPage
+
