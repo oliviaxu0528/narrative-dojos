@@ -10,7 +10,7 @@ body {
   /*justify-content: center;*/
   /*align-items: center;*/
   font-family: sans-serif;
-  background-color: hwb(225 6% 91% / 0.921);
+  background-color: powderblue;
 }
 
 /* Book */
@@ -41,18 +41,6 @@ body {
   left: 0;
   transform-origin: left;
   transition: transform 0.5s;
-}
-.add {
-  background-color: rgb(245, 245, 245);
-  width: 10%;
-  height: 5%;
-  /* padding: 50px 20px; */
-
-
-}
-.arrow {
-  background-color: aliceblue;
-
 }
 
 .front {
@@ -107,14 +95,14 @@ i {
 }
 
 /* Paper stack order */
-#p1 {
-  z-index: 3;
-}
+/*#p1 {*/
+/*  z-index: 3;*/
+/*}*/
 
-#p2 {
-  z-index: 2;
-}
+/*#p2 {*/
+/*  z-index: 2;*/
+/*}*/
 
-#p3 {
-  z-index: 1;
-}
+/*#p3 {*/
+/*  z-index: 1;*/
+/*}*/
