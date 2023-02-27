@@ -6,6 +6,7 @@ import './App.css';
 import Nav from './Nav';
 import Signup from './Signup';
 import LoginForm from './LoginForm';
+import MyBooksList from './MyBooksList';
 
 function GetToken() {
   useToken();
@@ -42,8 +43,9 @@ function App(props) {
             <Route path="books">
               {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
             </Route>
-            <Route path="/accounts" element={<Signup />} />
-            <Route path="/token" element={<LoginForm />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/mybooks" element={<MyBooksList />} />
           </Routes>
         </AuthProvider>
       </div>
