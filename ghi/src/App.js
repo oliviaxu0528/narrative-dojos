@@ -31,9 +31,12 @@ function App(props) {
   return (
     <div className="my-5 container">
       <BrowserRouter>
+      <div>
         <AuthProvider>
           <GetToken />
+          <div>
           <Nav />
+          </div>
           <Routes>
             <Route index element={<MainPage />} />
             <Route path="books">
@@ -43,6 +46,7 @@ function App(props) {
             <Route path="/token" element={<LoginForm />} />
           </Routes>
         </AuthProvider>
+      </div>
       </BrowserRouter>
     </div>
   );

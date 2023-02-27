@@ -65,16 +65,11 @@ const MainPage = (props) => {
 
   const sort = () => {
     let sortType = document.getElementById("mySelect").value;
-    if (sortType === "alphabetic") {
+    if (sortType === "alphabetical") {
       const titleAlp = [...bookColumns].sort((a, b) =>
         a.title > b.title ? 1 : -1,
       );
       setBookColumns(titleAlp);
-    } else if (sortType === "author") {
-      const authorSort = [...bookColumns].sort((a, b) =>
-        a.author > b.author ? 1 : -1,
-      );
-      setBookColumns(authorSort);
     } else if (sortType === "newest") {
       const newest = [...bookColumns].sort((a, b) =>
         a.created_on > b.created_on ? 1 : -1,
@@ -117,8 +112,7 @@ const MainPage = (props) => {
       <div className="container">
         <h2>New books</h2>
         <select id="mySelect" onChange={() => sort()}>
-          <option value="alphabetic">Alphabetic</option>
-          <option value="author">Author</option>
+          <option value="alphabetical">Alphabetical</option>
           <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
         </select>
@@ -132,4 +126,3 @@ const MainPage = (props) => {
   )
 }
 export default MainPage
-
