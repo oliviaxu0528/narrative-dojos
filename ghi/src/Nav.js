@@ -3,7 +3,7 @@ import { useToken } from './Authentication';
 
 
 function Nav() {
-  const { logout } = useToken();
+  const { token,logout } = useToken();
 
   const handleLogout = () => {
   logout();
@@ -19,15 +19,27 @@ function Nav() {
           </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/accounts">Create an Account</NavLink>
-          </li>
-            <li className="nav-item">
-              <NavLink className="nav-link active" to="/token">Login</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link active" onClick={handleLogout}>Logout</NavLink>
-            </li>
+            {!token && (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/accounts">
+                    Create an Account
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link active" to="/token">
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link active" onClick={handleLogout}>
+                  Logout
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink id="newlocation" className="nav-link" aria-current="page" to="/locations/new">My Books</NavLink>
             </li>

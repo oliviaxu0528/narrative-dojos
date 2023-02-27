@@ -25,7 +25,6 @@ function Signup(props) {
       setError("The passwords do not match");
       window.alert("The passwords do not match")
     }
-
   };
 
   return (
