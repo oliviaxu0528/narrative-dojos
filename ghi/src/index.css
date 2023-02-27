@@ -14,6 +14,6 @@ code {
 
 .container {
   display: flex; /* or inline-flex */
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap:wrap;
 }
