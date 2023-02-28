@@ -1,19 +1,224 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  height: 100vh;
+
+  font-family: sans-serif;
+  /* background-color: rgb(49, 54, 49); */
+    background-image: url("https://images.unsplash.com/photo-1499198116522-4a6235013d63?auto=format&fit=crop&w=1233&q=80");
 }
 
-.container {
-  display: flex; /* or inline-flex */
-  flex-direction: row;
-  flex-wrap:wrap;
+
+
+.book {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  transition: transform 0.5s;
 }
+
+.paper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  perspective: 1500px;
+
+}
+
+.front,
+.back {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+
+.front {
+  z-index: 1;
+  backface-visibility: hidden;
+  border-left: 3px solid powderblue;
+}
+
+.back {
+  z-index: 0;
+}
+.add {
+  background-color: black;
+
+}
+
+.front-content,
+.back-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-content {
+  transform: rotateY(180deg)
+}
+
+/* Paper flip effect */
+.flipped .front,
+.flipped .back {
+  transform: rotateY(-180deg);
+}
+
+/* Controller Buttons */
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.5s;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover i {
+  color: #636363;
+}
+
+i {
+  font-size: 50px;
+  color: gray;
+}
+
+.pt {
+
+font-size: 13pt;
+
+}
+.cm {
+
+font-size: 12pt;
+
+}
+
+ .card-item {
+	width: 90%;
+	font-size:28upx;
+	word-break: break-word;
+  }
+
+
+  .headerMenuEntryImg {
+    height: 200px;
+    width: 250px;
+    background-size: 100%;
+    background-repeat:no-repeat;
+    /* background-position: center; */
+    top: 50%;
+    /* border:1px solid red; */
+
+    margin:30px;
+
+    text-align:center;
+  }
+
+.button-2 {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* width: 100%; */
+	/* font-size:28upx; */
+	/* word-break: break-word;
+   */
+  width: 320px;
+  height: 200px;
+  margin:10px;
+
+  text-align:center;
+  word-wrap: break-word;
+  table-layout: fixed;
+	word-wrap: break-all;
+	word-break: normal;
+
+  overflow: hidden;
+}
+
+
+
+.btn {
+  display: inline-block;
+  margin: 10px 30px 0;
+  padding: 0.3em 1.1em;
+  font-size: 15px;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #FE4365;
+  border-radius: 3px;
+  box-shadow: 0 0 0 -2px #CFF09E, 0 0 0 -1px #FE4365;
+  border: none;
+  transition: box-shadow 0.3s;
+}
+.btn:hover, .btn:focus {
+  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #ff0464;
+  transition-timing-function: cubic-bezier(0.6, 4, 0.3, 0.8);
+  -webkit-animation: gelatine 0.5s 1;
+  animation: gelatine 0.5s 1;
+}
+
+.btn-secondary {
+  background: #C8C8A9;
+  box-shadow: 0 0 0 -2px #CFF09E, 0 0 0 -1px #C8C8A9;
+}
+.btn-secondary:hover {
+  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #bebe99;
+}
+
+.btn:active,
+.btn-secondary:active {
+  background: #4ECDC4;
+  transition-duration: 0;
+  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #3ac7bd;
+}
+
+
+
+
+
+
+/* Paper stack order */
+/*#p1 {*/
+/*  z-index: 3;*/
+/*}*/
+
+/*#p2 {*/
+/*  z-index: 2;*/
+/*}*/
+
+/*#p3 {*/
+/*  z-index: 1;*/
+/*}*/
