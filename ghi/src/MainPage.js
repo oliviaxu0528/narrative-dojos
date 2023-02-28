@@ -28,6 +28,7 @@ const MainPage = (props) => {
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
     const response = await fetch(bookUrl);
+    // console.log("response", response)
     const data = await response.json();
     console.log("data", data)
 
@@ -37,24 +38,19 @@ const MainPage = (props) => {
 
   const sort = () => {
     let sortType = document.getElementById("mySelect").value;
-    if (sortType === "alphabetic") {
+    if (sortType === "alphabetical") {
       const titleAlp = [...bookColumns].sort((a, b) =>
         a.title > b.title ? 1 : -1,
       );
       setBookColumns(titleAlp);
-    } else if (sortType === "author") {
-      const authorSort = [...bookColumns].sort((a, b) =>
-        a.author > b.author ? 1 : -1,
-      );
-      setBookColumns(authorSort);
     } else if (sortType === "newest") {
       const newest = [...bookColumns].sort((a, b) =>
-        a.created_on > b.created_on ? 1 : -1,
+        a.created_on < b.created_on ? 1 : -1
       );
       setBookColumns(newest);
-    } else {
+    } else if (sortType === "oldest") {
       const oldest = [...bookColumns].sort((a, b) =>
-        a.created_on < b.created_on ? 1 : -1,
+        b.created_on < a.created_on ? 1 : -1
       );
       setBookColumns(oldest);
     }
@@ -66,13 +62,13 @@ const MainPage = (props) => {
 
   return (
     <>
-      <div >
+      <div>
         <img
           className="bg-white rounded shadow d-block mx-auto mb-4"
-          src="/Ninja.png"
+          src="/pucca.png"
           alt=""
-          width="400"
-          height="300"
+          width="450"
+          height="350"
         />
         <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
         <div className="col-lg-6 mx-auto">
