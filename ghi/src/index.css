@@ -10,10 +10,21 @@ body {
   /*justify-content: center;*/
   /*align-items: center;*/
   font-family: sans-serif;
-  background-color: powderblue;
+  /* background-color: rgb(49, 54, 49); */
+    background-image: url("https://images.unsplash.com/photo-1499198116522-4a6235013d63?auto=format&fit=crop&w=1233&q=80");
+
+  /* background-color:black;
+background-image:
+radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+background-position: 0 0, 40px 60px, 130px 270px, 70px 100px; */
 }
 
-/* Book */
+
+
 .book {
   position: relative;
   width: 350px;
@@ -54,7 +65,7 @@ body {
 }
 .add {
   background-color: black;
-  
+
 }
 
 .front-content,
@@ -97,6 +108,118 @@ i {
   font-size: 50px;
   color: gray;
 }
+
+.pt {
+
+font-size: 13pt;
+
+}
+.cm {
+
+font-size: 12pt;
+
+}
+
+ .card-item {
+	width: 90%;
+	font-size:28upx;
+	word-break: break-word;
+  }
+
+
+  .headerMenuEntryImg {
+    height: 200px;
+    width: 250px;
+    background-size: 100%;
+    background-repeat:no-repeat;
+    /* background-position: center; */
+    top: 50%;
+    /* border:1px solid red; */
+
+    margin:30px;
+
+    text-align:center;
+  }
+
+.button-2 {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* width: 100%; */
+	/* font-size:28upx; */
+	/* word-break: break-word;
+   */
+  width: 320px;
+  height: 200px;
+  margin:10px;
+
+  text-align:center;
+  word-wrap: break-word;
+  table-layout: fixed;
+	word-wrap: break-all;
+	word-break: normal;
+
+  overflow: hidden;
+}
+
+
+
+.btn {
+  display: inline-block;
+  margin: 10px 30px 0;
+  padding: 0.3em 1.1em;
+  font-size: 15px;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #FE4365;
+  border-radius: 3px;
+  box-shadow: 0 0 0 -2px #CFF09E, 0 0 0 -1px #FE4365;
+  border: none;
+  transition: box-shadow 0.3s;
+}
+.btn:hover, .btn:focus {
+  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #ff0464;
+  transition-timing-function: cubic-bezier(0.6, 4, 0.3, 0.8);
+  -webkit-animation: gelatine 0.5s 1;
+  animation: gelatine 0.5s 1;
+}
+
+.btn-secondary {
+  background: #C8C8A9;
+  box-shadow: 0 0 0 -2px #CFF09E, 0 0 0 -1px #C8C8A9;
+}
+.btn-secondary:hover {
+  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #bebe99;
+}
+
+.btn:active,
+.btn-secondary:active {
+  background: #4ECDC4;
+  transition-duration: 0;
+  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #3ac7bd;
+}
+
+
+
+
+
 
 /* Paper stack order */
 /*#p1 {*/
