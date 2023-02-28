@@ -18,7 +18,8 @@
 .setting-container {
   display: flex;
   justify-content: center;
-  position: relative;
+  justify-content: center;
+
   top: 400px;
 }
 .book-container {
@@ -27,4 +28,3 @@
   align-items: center;
   height: 100vh
 }
-

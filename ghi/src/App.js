@@ -168,6 +168,140 @@
 // }
 
 // export default App
+// import { useState, createRef,useEffect} from 'react'
+// import {message, Button, Modal, Form, Input} from 'antd'
+
+// import './App.css'
+
+// let currentLocation = 1
+// function App() {
+//   let [numOfPapers, setNumOfPapers] = useState([
+//     {
+//       title: 'Front 1',
+//       author: 'back 1',
+//       createTime: ''
+//     },
+//     {
+//      title: 'Front 1',
+//       author: 'back 1',
+//       createTime: ''
+//     },
+//     {
+//       title: 'Front 1',
+//       author: 'back 1',
+//       createTime: ''
+//     }
+//   ])
+
+//   let papers = numOfPapers.map((item, index) => {
+//     return createRef()
+//   })
+//   let maxLocation = numOfPapers.length + 1;
+//   const preButton = createRef()
+//   const nextButton = createRef()
+//   const book = createRef()
+//   const openBook = function() {
+//     book.current.style.transform = "translateX(50%)";
+//     preButton.current.style.transform = "translateX(-180px)";
+//     nextButton.current.style.transform = "translateX(180px)";
+//   }
+//   const closeBook = function (isAtBeginning) {
+//     if(isAtBeginning) {
+//       book.current.style.transform = "translateX(0%)";
+//     } else {
+//       book.current.style.transform = "translateX(100%)";
+//     }
+//     preButton.current.style.transform = "translateX(0px)";
+//     nextButton.current.style.transform = "translateX(0px)";
+//   }
+//   function goNextPage() {
+//     if(currentLocation < maxLocation) {
+//       if (currentLocation === 1) {
+//         openBook()
+//       }
+//       papers[currentLocation - 1].current.classList.add("flipped");
+//       papers[currentLocation - 1].current.style.zIndex = currentLocation;
+//       if (currentLocation === numOfPapers.length) {
+//         closeBook(false);
+//       }
+//       currentLocation++;
+//     }
+//   }
+
+//   function goPrevPage() {
+//     if (currentLocation > 1) {
+//       if (currentLocation === 2) {
+//         closeBook(true);
+//       }
+//       if (currentLocation === numOfPapers.length + 1) {
+//         openBook();
+//       }
+//       papers[currentLocation - 2].current.classList.remove("flipped");
+//       papers[currentLocation - 2].current.style.zIndex = numOfPapers.length - currentLocation + 2;
+//       currentLocation--;
+//     }
+//   }
+//   // 添加页
+  // function addPage() {
+  //   const arr = [...numOfPapers]
+  //  arr.push({
+  //     frontText: `Front ${numOfPapers.length + 1}`,
+  //     backFont: `back  ${numOfPapers.length + 1}`
+  //   })
+  //   papers = arr.map((item, index) => {
+  //     return createRef()
+  //   })
+  //   setNumOfPapers(arr)
+  // }
+  // // 减少页
+  // function decreasePage() {
+  //   const arr = [...numOfPapers]
+  //   arr.pop()
+  //   papers = arr.map((item, index) => {
+  //     return createRef()
+  //   })
+  //   setNumOfPapers(arr)
+  // }
+//   return (
+//     <div className="App">
+      // <div className='setting-container'>
+      //   <button onClick={addPage} className="add">Add a Page</button>
+      //   <button onClick={decreasePage} className="add">Delete a Page</button>
+      // </div>
+//       <div className='book-container'>
+//         <button id="prev-btn" ref={preButton} onClick={goPrevPage} className="arrow">
+//           <h1>{'<'}</h1>
+
+//           <i className="fas fa-arrow-circle-left"></i>
+//         </button>
+//         <div id="book" className="book" ref={book}>
+//           {numOfPapers.map((item, index) => {
+//             return (
+//               <div style={{zIndex: numOfPapers.length - index}} className="paper" key={index} ref={papers[index]}>
+//                 <div className="front">
+//                   <div id={'f'+ (index + 1)} className="front-content">
+//                     <h1>{item.frontText}</h1>
+//                   </div>
+//                 </div>
+//                 <div className="back">
+//                   <div id={'b'+ (index + 1)} className="back-content">
+//                     <h1>{item.backFont}</h1>
+//                   </div>
+//                 </div>
+//               </div>
+//             )
+//           })}
+//         </div>
+//         <button id="next-btn" ref={nextButton} onClick={goNextPage} className="arrow">
+//           <h1>{'>'}</h1>
+//           <i className="fas fa-arrow-circle-right"></i>
+//         </button>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default App
 
 import { useState, createRef, useEffect } from 'react'
 import {message, Button, Modal, Form, Input} from 'antd'
@@ -179,17 +313,21 @@ function App() {
     {
       title: 'Front 1',
       author: 'back 1',
-      createTime: ''
+      image_url: '',
+      created_on: ''
+
     },
     {
       title: 'Front 2',
       author: 'back 2',
-      createTime: ''
+      image_url: '',
+      created_on: ''
     },
     {
       title: 'Front 3',
       author: 'back 3',
-      createTime: ''
+      image_url: '',
+      created_on: ''
     }
   ])
   let [isModalOpen, setIsModelOpen] = useState(false)
@@ -262,8 +400,30 @@ function App() {
     }
   }, [numOfPapers])
   // 添加页
+
+  // function addPage() {
+  //   const arr = [...numOfPapers]
+  //  arr.push({
+  //     frontText: `Front ${numOfPapers.length + 1}`,
+  //     backFont: `back  ${numOfPapers.length + 1}`
+  //   })
+  //   papers = arr.map((item, index) => {
+  //     return createRef()
+  //   })
+  //   setNumOfPapers(arr)
+  // }
+  // // 减少页
+  // function decreasePage() {
+  //   const arr = [...numOfPapers]
+  //   arr.pop()
+  //   papers = arr.map((item, index) => {
+  //     return createRef()
+  //   })
+  //   setNumOfPapers(arr)
+  // }
   function addPage() {
-    setIsModelOpen(true)
+  setIsModelOpen(true)
+
   }
   // 减少页
   function decreasePage() {
@@ -280,7 +440,7 @@ function App() {
     })
     setNumOfPapers(arr)
     message.success({
-      content: '删减成功',
+      content: 'successfully deleted',
       duration: 1
     })
   }
@@ -298,7 +458,7 @@ function App() {
       })
       setNumOfPapers(arr)
       message.success({
-        content: '添加成功',
+        content: 'successfully added',
         duration: 1
       })
     }
@@ -318,14 +478,16 @@ function App() {
   }
   return (
     <div className="App">
+      {/* <div className='setting-container'> */}
       <div className='setting-container'>
+
         <Button type='primary' onClick={() => addPage({title: '123', author: '123'})}>Adding</Button>
-        <Button type='primary' onClick={decreasePage}>Deleting</Button>
+        <Button type='primary' onClick={decreasePage}>Deleteing</Button>
       </div>
+      {/* </div> */}
       <div className='book-container'>
         <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
           <h1>{'<'}</h1>
-
           <i className="fas fa-arrow-circle-left"></i>
         </button>
         <div id="book" className="book" ref={book}>
@@ -340,6 +502,8 @@ function App() {
                   {/*</div>*/}
                   <div>title:{item.title}</div>
                   <div>author:{item.author}</div>
+                  <div>image_url:{item.image_url}</div>
+
                   <div>createTime:{item.createTime}</div>
                 </div>
                 <div className="back">
@@ -374,7 +538,7 @@ function App() {
             rules={[
               {
                 required: true,
-                message: 'title不能为空',
+                message: ' the title cannot be empty',
               },
             ]}
           >
@@ -386,12 +550,24 @@ function App() {
             rules={[
               {
                 required: true,
-                message: 'author不能为空',
+                message: 'the author cannot be empty',
               },
             ]}
           >
             <Input />
           </Form.Item>
+           <Form.Item
+          label="image_url"
+          name="image_url"
+          rules={[
+            {
+              required: true,
+              message: 'the image_url cannot be empty',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Submit
