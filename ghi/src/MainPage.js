@@ -66,7 +66,7 @@ const MainPage = (props) => {
 
   return (
     <>
-      <div className="px-4 py-4 my-5 mt-0 text-center bg-white">
+      <div >
         <img
           className="bg-white rounded shadow d-block mx-auto mb-4"
           src="/Ninja.png"
@@ -74,9 +74,9 @@ const MainPage = (props) => {
           width="400"
           height="300"
         />
-        <h1 className="display-5 fw-bold">Narrative Dojo</h1>
+        <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
         <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4">
+          <p className="lead mb-4" style={{ textAlign: "center" }}>
             by Narrative Ninjas
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
