@@ -106,7 +106,7 @@ export function useToken() {
   }
 
   async function signup(username, password) {
-    const url = `${process.env.REACT_APP_ND_API_HOST}/accounts`;
+    const url = `${process.env.REACT_APP_ND_API_HOST}/account`;
     const response = await fetch(url, {
       method: "post",
       body: JSON.stringify({
@@ -123,24 +123,6 @@ export function useToken() {
     }
     return false;
   }
-
-//   async function update(username, password) {
-//     const url = `${process.env.REACT_APP_ND_API_HOST}/accounts`;
-//     const response = await fetch(url, {
-//       method: "patch",
-//       body: JSON.stringify({
-//         username,
-//         password,
-//       }),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     if (response.ok) {
-//       await login(username, password);
-//     }
-//     return false;
-//   }
 
   return { token, login, logout, signup };
 }

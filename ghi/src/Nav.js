@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useToken } from './Authentication';
 
-
 function Nav() {
   const { token,logout } = useToken();
 
@@ -10,8 +9,8 @@ function Nav() {
   console.log('You have logged out')
   }
 
-    return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  return (
+    <nav style={{ position: 'absolute', top: 0, left: 0, right: 0 }} className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
       <img src="https://www.clipartmax.com/png/middle/322-3224953_large-dojo-icon-dojo-agile.png" alt="logo" width="30" height="30" />
         <a className="navbar-brand" href="/">Narrative Dojo</a>
@@ -23,12 +22,12 @@ function Nav() {
             {!token && (
               <>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/accounts">
+                  <NavLink className="nav-link" to="/signup">
                     Create an Account
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link active" to="/token">
+                  <NavLink className="nav-link active" to="/login">
                     Login
                   </NavLink>
                 </li>
@@ -51,13 +50,7 @@ function Nav() {
           </button>
           </li>
             <li>
-              <NavLink id="newlocation" className="nav-link" aria-current="page" to="/locations/new">My Books</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/">Write a book</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/">Read a book</NavLink>
+              <NavLink id="account" className="nav-link" aria-current="page" to="/account">My Books</NavLink>
             </li>
             </>
             )}
@@ -67,6 +60,5 @@ function Nav() {
     </nav>
   )
 }
-
 
 export default Nav;
