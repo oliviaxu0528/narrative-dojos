@@ -1,27 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { useToken } from './Authentication';
-import SearchBar from './SearchBar';
-import { useState } from "react"
 
 function Nav() {
   const { logout } = useToken();
-  const [searchResults, setSearchResults] = useState([]);
 
   const handleLogout = () => {
   logout();
   console.log('You have logged out')
-  }
-
-  const handleSearch = async (searchTerm) => {
-    const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`
-    const response = await fetch(bookUrl);
-    if (response.ok) {
-      const books = await response.json();
-      const filteredBooks = books.filter(book =>
-        book.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setSearchResults(filteredBooks);
-    }
   }
 
   return (
@@ -50,9 +35,6 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">Read a book</NavLink>
-            </li>
-            <li className="nav-item" style={{position: 'absolute', right: 0}}>
-              <SearchBar onSearch={handleSearch}/>
             </li>
           </ul>
         </div>
