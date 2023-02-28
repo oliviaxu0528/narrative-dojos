@@ -80,7 +80,7 @@ const MainPage = (props) => {
             by Narrative Ninjas
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Link to="/" className="btn btn-primary btn-lg px-4 gap-3">
+            <Link to="/create" className="btn btn-primary btn-lg px-4 gap-3">
               Write a book!
             </Link>
           </div>

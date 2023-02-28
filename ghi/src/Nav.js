@@ -52,6 +52,9 @@ function Nav() {
             <li>
               <NavLink id="account" className="nav-link" aria-current="page" to="/account">My Books</NavLink>
             </li>
+            <li>
+              <NavLink id="account" className="nav-link" aria-current="page" to="/create">Create</NavLink>
+            </li>
             </>
             )}
           </ul>
