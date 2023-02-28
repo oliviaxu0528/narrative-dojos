@@ -26,39 +26,25 @@ function App(props) {
   }
   useEffect(() => {
     getBooks()
-  },[])
+  }, [])
 
   return (
-    // <div className="App">
-    // <BrowserRouter>
-    //   <AuthProvider>
-    //   <GetToken />
-    //   <Nav />
-    //     <Routes>
-    //       <Route path="/" element={<MainPage />} />
-    //       <Route path="/accounts" element={<Signup />} />
-    //       <Route path="/token" element={<LoginForm />} />
-    //     </Routes>
-    //     </AuthProvider>
-    //     </BrowserRouter>
-    //   </div>
-      <div className="my-5 container">
+    <div className="my-5 container">
       <BrowserRouter>
         <AuthProvider>
-        <GetToken />
-        <Nav />
-        <Routes>
-          <Route index element={<MainPage />} />
-          <Route path="books">
-            {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
-          </Route>
-          <Route path="/accounts" element={<Signup />} />
-          <Route path="/token" element={<LoginForm />} />
-        </Routes>
+          <GetToken />
+          <Nav />
+          <Routes>
+            <Route index element={<MainPage />} />
+            <Route path="books">
+              {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
+            </Route>
+            <Route path="/accounts" element={<Signup />} />
+            <Route path="/token" element={<LoginForm />} />
+          </Routes>
         </AuthProvider>
       </BrowserRouter>
-      </div>
-
+    </div>
   );
 }
 
