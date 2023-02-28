@@ -29,8 +29,7 @@ function Signup(props) {
 
   return (
 <>
-<head>
-  <meta charset="utf-8" />
+  <meta charSet="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link
     rel="stylesheet"
@@ -38,56 +37,53 @@ function Signup(props) {
     />
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card mt-4">
-          <div class="card-body">
+  <div className="container">
+    <div className="row">
+      <div className="col-md-6 offset-md-3">
+        <div className="card mt-4">
+          <div className="card-body">
             <h1>Create an Account</h1>
             <form onSubmit={handleSubmit}>
-              <div class="form-group">
-                <label for="username">Username</label>
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
                 <input
                   type="text"
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  class="form-control"
+                  className="form-control"
                 />
               </div>
-              <div class="form-group">
-                <label for="password">Password</label>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  class="form-control"
+                  className="form-control"
                 />
               </div>
-            <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
+            <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               type="password"
               id="confirmPassword"
-              class="form-control"
+              className="form-control"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             </div>
-              <button type="submit" class="btn btn-primary">Sign Up</button>
+              <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
-            <img src="https://img.rankedboost.com/wp-content/uploads/2016/04/Zed.jpg" alt="Logo" width="150" height="100" class="img-fluid" />
-            <img src="Shen.jpg" alt="Logo" width="150" height="100" class="img-fluid" />
-            <img src="kennen.jpg" alt="Logo" width="150" height="100" class="img-fluid" />
+            <img src="https://img.rankedboost.com/wp-content/uploads/2016/04/Zed.jpg" alt="Logo" width="150" height="100" className="img-fluid" />
+            <img src="Shen.jpg" alt="Logo" width="150" height="100" className="img-fluid" />
+            <img src="kennen.jpg" alt="Logo" width="150" height="100" className="img-fluid" />
           </div>
         </div>
       </div>
     </div>
   </div>
-</body>
 </>
   )
 }

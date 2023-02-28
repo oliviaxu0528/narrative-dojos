@@ -72,6 +72,7 @@ function LoginForm() {
               </div>
               <button type ="submit" className ="btn btn-primary">Log In</button>
             </form>
+            <img src="ninja_head.png" alt="Logo" width="500" height="100" className="img-fluid" />
           </div>
         </div>
       </div>

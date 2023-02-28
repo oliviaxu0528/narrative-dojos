@@ -81,7 +81,7 @@ export function useToken() {
       internalToken = null;
       setToken(null);
       navigate("/");
-      console.log("Succesful")
+      console.log("Logout Successful")
     }
   }
 
@@ -98,6 +98,7 @@ export function useToken() {
     if (response.ok) {
       const token = await getTokenInternal();
       setToken(token);
+      console.log("login successful")
       return response;
     }
     let error = await response.json();
