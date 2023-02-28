@@ -40,9 +40,6 @@ function App(props) {
           </div>
           <Routes>
             <Route index element={<MainPage />} />
-            <Route path="books">
-              {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
-            </Route>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/account" element={<MyBooksList />} />
