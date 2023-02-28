@@ -37,19 +37,24 @@ const MainPage = (props) => {
 
   const sort = () => {
     let sortType = document.getElementById("mySelect").value;
-    if (sortType === "alphabetical") {
+    if (sortType === "alphabetic") {
       const titleAlp = [...bookColumns].sort((a, b) =>
         a.title > b.title ? 1 : -1,
       );
       setBookColumns(titleAlp);
+    } else if (sortType === "author") {
+      const authorSort = [...bookColumns].sort((a, b) =>
+        a.author > b.author ? 1 : -1,
+      );
+      setBookColumns(authorSort);
     } else if (sortType === "newest") {
       const newest = [...bookColumns].sort((a, b) =>
-        a.created_on < b.created_on ? 1 : -1
+        a.created_on > b.created_on ? 1 : -1,
       );
       setBookColumns(newest);
-    } else if (sortType === "oldest") {
+    } else {
       const oldest = [...bookColumns].sort((a, b) =>
-        b.created_on < a.created_on ? 1 : -1
+        a.created_on < b.created_on ? 1 : -1,
       );
       setBookColumns(oldest);
     }

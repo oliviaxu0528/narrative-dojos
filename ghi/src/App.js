@@ -45,7 +45,7 @@ function App(props) {
             </Route>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/mybooks" element={<MyBooksList />} />
+            <Route path="/account" element={<MyBooksList />} />
           </Routes>
         </AuthProvider>
       </div>
