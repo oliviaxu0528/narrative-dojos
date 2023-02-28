@@ -1,65 +1,37 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
+import './index.css';
 
-function BookColumn(props) {
+function BookColumn({ book }) {
   return (
-    <div className="col">
-      {props.books.map(book => {
-        return (
-          <div key={book.id} className="card mb-3 shadow">
-            <img src={book.image_url} width="200px" height="300px" className="card-img-top" />
-            <div className="card-body">
-              <h5 className="card-title">{book.title}</h5>
-              <p className="card-text">by {book.author}</p>
-            </div>
-            <div className="card-footer">
-              <a href="/" className="card-link">Read {book.title}</a>
-              <p></p>
-              <a href="/" className="card-link">More books by {book.author}</a>
-            </div>
-          </div>
-        );
-      })}
+    <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
+      <div key={book.id} className="card mb-3 shadow">
+        <img src={book.image_url} width="200px" height="300px" className="card-img-top" />
+        <div className="card-body">
+          <h5 className="card-title">{book.title}</h5>
+          <p className="card-text">by {book.author}</p>
+        </div>
+        <div className="card-footer">
+          <a href="/" className="card-link">Read {book.title}</a>
+          <p></p>
+          <a href="/" className="card-link">More books by {book.author}</a>
+        </div>
+      </div>
+
+
     </div>
   );
 }
 const MainPage = (props) => {
-  const [bookColumns, setBookColumns] = useState([[], [], [], [], []]);
+  const [bookColumns, setBookColumns] = useState([]);
 
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
+    const response = await fetch(bookUrl);
+    const data = await response.json();
+    console.log("data", data)
 
-    try {
-      const response = await fetch(bookUrl);
-      if (response.ok) {
-        const data = await response.json();
-
-        const requests = [];
-        for (let book of data) {
-          const detailUrl = `${process.env.REACT_APP_ND_API_HOST}/books/${book.id}`;
-          requests.push(fetch(detailUrl));
-        }
-        const responses = await Promise.all(requests);
-        const columns = [[], [], [], [], []];
-        let i = 0;
-        for (const bookResponse of responses) {
-          if (bookResponse.ok) {
-            const details = await bookResponse.json();
-            columns[i].push(details);
-            i = i + 1;
-            if (i > 4) {
-              i = 0;
-            }
-          } else {
-            console.error(bookResponse);
-          }
-        }
-
-        setBookColumns(columns);
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    setBookColumns(data);
 
   }
 
@@ -114,17 +86,16 @@ const MainPage = (props) => {
           </div>
         </div>
       </div>
-      <div className="container">
-        <h2>New books</h2>
-        <select id="mySelect" onChange={() => sort()}>
-          <option value="alphabetic">Alphabetic</option>
-          <option value="author">Author</option>
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-        </select>
+      <h2>New books</h2>
+      <select id="mySelect" onChange={() => sort()}>
+        <option value="alphabetical">Alphabetical</option>
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+      </select>
+      <div className=".container">
         <div className="row">
-          {bookColumns.map((bookList, index) => {
-            return <BookColumn key={index} books={bookList} />;
+          {bookColumns.map((book, index) => {
+            return <BookColumn key={index} book={book} />;
           })}
         </div>
       </div>
@@ -132,4 +103,3 @@ const MainPage = (props) => {
   )
 }
 export default MainPage
-

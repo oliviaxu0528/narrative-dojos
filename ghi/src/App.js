@@ -6,6 +6,7 @@ import './App.css';
 import Nav from './Nav';
 import Signup from './Signup';
 import LoginForm from './LoginForm';
+import MyBooksList from './MyBooksList';
 
 function GetToken() {
   useToken();
@@ -31,18 +32,23 @@ function App(props) {
   return (
     <div className="my-5 container">
       <BrowserRouter>
+      <div>
         <AuthProvider>
           <GetToken />
+          <div>
           <Nav />
+          </div>
           <Routes>
             <Route index element={<MainPage />} />
             <Route path="books">
               {/* <Route path="" element={<BookList books={books} getBooks ={getBooks}/>}/> */}
             </Route>
-            <Route path="/accounts" element={<Signup />} />
-            <Route path="/token" element={<LoginForm />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/account" element={<MyBooksList />} />
           </Routes>
         </AuthProvider>
+      </div>
       </BrowserRouter>
     </div>
   );
