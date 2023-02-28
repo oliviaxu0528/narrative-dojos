@@ -46,7 +46,7 @@ function Nav() {
               fontSize: "16px"
             }}
             onClick={handleLogout}
-          >
+            >
             Logout
           </button>
           </li>
