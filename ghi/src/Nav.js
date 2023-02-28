@@ -54,10 +54,10 @@ function Nav() {
               <NavLink id="newlocation" className="nav-link" aria-current="page" to="/locations/new">My Books</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/">Write a book</NavLink>
+              <NavLink className="nav-link" aria-current="page" to="/">Write a book</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/">Read a book</NavLink>
+              <NavLink className="nav-link" aria-current="page" to="/">Read a book</NavLink>
             </li>
             </>
             )}
