@@ -76,6 +76,7 @@ function Signup(props) {
             </div>
               <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
+              <br />
             <img src="https://img.rankedboost.com/wp-content/uploads/2016/04/Zed.jpg" alt="Logo" width="150" height="100" className="img-fluid" />
             <img src="Shen.jpg" alt="Logo" width="150" height="100" className="img-fluid" />
             <img src="kennen.jpg" alt="Logo" width="150" height="100" className="img-fluid" />

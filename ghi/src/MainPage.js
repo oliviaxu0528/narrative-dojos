@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import './index.css';
+import { useToken } from './Authentication';
 
 function BookColumn({ book }) {
   return (
@@ -24,6 +25,7 @@ function BookColumn({ book }) {
 }
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
+  const { token } = useToken();
 
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
@@ -76,9 +78,20 @@ const MainPage = (props) => {
             by Narrative Ninjas
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Link to="/create" className="btn btn-primary btn-lg px-4 gap-3">
-              Write a book!
-            </Link>
+            {token && (
+              <>
+                <Link to="/create" className="btn btn-primary btn-lg px-4 gap-3">
+                  Write a book!
+                </Link>
+              </>
+            )}
+            {!token && (
+              <>
+                <Link to="/signup" className="btn btn-primary btn-lg px-4 gap-3">
+                  Write a book!
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
