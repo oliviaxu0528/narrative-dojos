@@ -4,7 +4,7 @@ from queries.pool import pool
 
 
 class PageIn(BaseModel):
-    image_url: str
+    page_url: str
     page_text: str
 
 
@@ -14,7 +14,7 @@ class Error(BaseModel):
 
 class PageOut(BaseModel):
     pageID: int
-    image_url: str
+    page_url: str
     page_text: str
 
 
@@ -26,13 +26,13 @@ class PageRepository:
                     result = cur.execute(
                         """
                         INSERT INTO pages
-                            (image_url, page_text)
+                            (page_url, page_text)
                         VALUES
                             (%s, %s)
                         RETURNING pageID;
                         """,
                         [
-                            page.image_url,
+                            page.page_url,
                             page.page_text
                         ]
                     )
@@ -47,7 +47,7 @@ class PageRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT pageID,image_url,page_text
+                        SELECT pageID,page_url,page_text
                         FROM pages
                         ORDER BY pageID;
                         """
@@ -56,7 +56,7 @@ class PageRepository:
                     for record in cur:
                         page = PageOut(
                             pageID=record[0],
-                            image_url=record[1],
+                            page_url=record[1],
                             page_text=record[2]
                         )
                         result.append(page)
@@ -71,7 +71,7 @@ class PageRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT pageID,image_url,page_text
+                        SELECT pageID,page_url,page_text
                         FROM pages
                         WHERE pageID = %s
                         """,
@@ -108,12 +108,12 @@ class PageRepository:
                     cur.execute(
                         """
                         UPDATE pages
-                        SET image_url = %s,
+                        SET page_url = %s,
                             page_text = %s,
                         WHERE pageID = %s
                         """,
                         [
-                            page.image_url,
+                            page.page_url,
                             page.page_text,
                             pageID
                         ]
@@ -129,6 +129,6 @@ class PageRepository:
     def record_to_page_out(self, record):
         return PageOut(
             pageID=record[0],
-            image_url=record[1],
+            page_url=record[1],
             page_text=record[2]
         )

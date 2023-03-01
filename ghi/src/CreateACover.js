@@ -51,12 +51,11 @@ export default function CreateACover() {
 
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            navigate('/createpages')
             setTitle('');
             setAuthor('');
             setImage_url('');
             setCreated_on('');
-
+            navigate('/createpages')
         }
     }
 
@@ -65,7 +64,7 @@ export default function CreateACover() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h2 className="text-center">Create a Book Cover</h2>
-                    <form onSubmit={handleSubmit} id="add-createpages-form">
+                    <form onSubmit={handleSubmit} id="add-createabook-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>

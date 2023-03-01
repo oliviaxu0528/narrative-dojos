@@ -7,7 +7,7 @@ from queries.pool import pool
 class BookIn(BaseModel):
     title: str
     author: str
-    image_url: str
+    book_url: str
     created_on: date
 
 
@@ -19,7 +19,7 @@ class BookOut(BaseModel):
     bookID: int
     title: str
     author: str
-    image_url: str
+    book_url: str
     created_on: date
 
 
@@ -31,7 +31,7 @@ class BookRepository:
                     result = cur.execute(
                         """
                         INSERT INTO books
-                            (title, author, image_url, created_on)
+                            (title, author, book_url, created_on)
                         VALUES
                             (%s, %s, %s, %s)
                         RETURNING bookID;
@@ -39,7 +39,7 @@ class BookRepository:
                         [
                             book.title,
                             book.author,
-                            book.image_url,
+                            book.book_url,
                             book.created_on
                         ]
                     )
@@ -54,7 +54,7 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT bookID,title,author,image_url,created_on
+                        SELECT bookID,title,author,book_url,created_on
                         FROM books
                         ORDER BY title;
                         """
@@ -65,7 +65,7 @@ class BookRepository:
                             bookID=record[0],
                             title=record[1],
                             author=record[2],
-                            image_url=record[3],
+                            book_url=record[3],
                             created_on=record[4]
                         )
                         result.append(book)
@@ -80,7 +80,7 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT bookID,title,author,image_url,created_on
+                        SELECT bookID,title,author,book_url,created_on
                         FROM books
                         WHERE bookID = %s
                         """,
@@ -119,14 +119,14 @@ class BookRepository:
                         UPDATE books
                         SET title = %s,
                             author = %s,
-                            image_url = %s,
+                            book_url = %s,
                             created_on = %s
                         WHERE bookID = %s
                         """,
                         [
                             book.title,
                             book.author,
-                            book.image_url,
+                            book.book_url,
                             book.created_on,
                             book_id
                         ]
@@ -135,15 +135,15 @@ class BookRepository:
         except Exception as e:
             return {"message": "Could not update"}
 
-    def book_in_to_out(self, id: int, book: BookIn):
+    def book_in_to_out(self, bookID: int, book: BookIn):
         old_data = book.dict()
-        return BookOut(id=id, **old_data)
+        return BookOut(bookID=bookID, **old_data)
 
     def record_to_book_out(self, record):
         return BookOut(
             bookID=record[0],
             title=record[1],
             author=record[2],
-            image_url=record[3],
+            book_url=record[3],
             created_on=record[4]
         )
