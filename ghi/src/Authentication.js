@@ -81,7 +81,6 @@ export function useToken() {
       internalToken = null;
       setToken(null);
       navigate("/");
-      console.log("Logout Successful")
     }
   }
 

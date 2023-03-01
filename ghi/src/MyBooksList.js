@@ -29,7 +29,6 @@ const MainPage = (props) => {
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
         const response = await fetch(bookUrl);
         const data = await response.json();
-        console.log("data", data)
 
         setBookColumns(data);
 
