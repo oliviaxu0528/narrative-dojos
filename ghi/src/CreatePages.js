@@ -200,7 +200,7 @@ function CreatePages() {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
-          <Form.Item
+          {/* <Form.Item
             label="title"
             name="title"
             rules={[
@@ -223,7 +223,7 @@ function CreatePages() {
             ]}
           >
             <Input />
-          </Form.Item>
+          </Form.Item> */}
            <Form.Item
           label="image_url"
           name="image_url"
