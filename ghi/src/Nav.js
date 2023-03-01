@@ -41,7 +41,7 @@ function Nav() {
               background: "red",
               color: "white",
               border: "none",
-              padding: "10px 20px",
+              padding: "5px 10px",
               fontSize: "16px"
             }}
             onClick={handleLogout}
