@@ -3,7 +3,7 @@ import {message, Button, Modal, Form, Input} from 'antd'
 import './App.css'
 
 let currentLocation = 1
-function CreateABook() {
+function CreatePages() {
   let [numOfPapers, setNumOfPapers] = useState([
     {
       title: '',
@@ -261,4 +261,4 @@ function CreateABook() {
   )
 }
 
-export default CreateABook
+export default CreatePages
