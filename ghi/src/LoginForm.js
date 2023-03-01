@@ -70,6 +70,9 @@ function LoginForm() {
                 <label htmlFor="password">Password</label>
                 <input type="password" id ="password" value={password} onChange={handlePasswordChange} className ="form-control"/>
               </div>
+                  <p>Don't have an account?
+                    <a href="/signup" style={{ marginLeft: "10px" }}>Signup</a>
+                  </p>
               <button type ="submit" className ="btn btn-primary">Log In</button>
             </form>
               <br/>
