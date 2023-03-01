@@ -16,7 +16,7 @@ class Error(BaseModel):
 
 
 class BookOut(BaseModel):
-    id: int
+    bookID: int
     title: str
     author: str
     image_url: str
@@ -34,7 +34,7 @@ class BookRepository:
                             (title, author, image_url, created_on)
                         VALUES
                             (%s, %s, %s, %s)
-                        RETURNING id;
+                        RETURNING bookID;
                         """,
                         [
                             book.title,
@@ -43,8 +43,8 @@ class BookRepository:
                             book.created_on
                         ]
                     )
-                    id = result.fetchone()[0]
-                    return self.book_in_to_out(id,book)
+                    bookID = result.fetchone()[0]
+                    return self.book_in_to_out(bookID,book)
         except Exception:
             return {"message": "Could not create"}
 
@@ -54,7 +54,7 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT id,title,author,image_url,created_on
+                        SELECT bookID,title,author,image_url,created_on
                         FROM books
                         ORDER BY title;
                         """
@@ -62,7 +62,7 @@ class BookRepository:
                     result = []
                     for record in cur:
                         book = BookOut(
-                            id=record[0],
+                            bookID=record[0],
                             title=record[1],
                             author=record[2],
                             image_url=record[3],
@@ -80,9 +80,9 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT id,title,author,image_url,created_on
+                        SELECT bookID,title,author,image_url,created_on
                         FROM books
-                        WHERE ID = %s
+                        WHERE bookID = %s
                         """,
                         [book_id]
                     )
@@ -101,7 +101,7 @@ class BookRepository:
                     cur.execute(
                         """
                         DELETE FROM books
-                        WHERE id = %s
+                        WHERE bookID = %s
                         """,
                         [book_id]
                     )
@@ -121,7 +121,7 @@ class BookRepository:
                             author = %s,
                             image_url = %s,
                             created_on = %s
-                        WHERE id = %s
+                        WHERE bookID = %s
                         """,
                         [
                             book.title,
@@ -133,7 +133,6 @@ class BookRepository:
                     )
                     return self.book_in_to_out(book_id,book)
         except Exception as e:
-            print(e)
             return {"message": "Could not update"}
 
     def book_in_to_out(self, id: int, book: BookIn):
@@ -142,12 +141,9 @@ class BookRepository:
 
     def record_to_book_out(self, record):
         return BookOut(
-            id=record[0],
+            bookID=record[0],
             title=record[1],
             author=record[2],
             image_url=record[3],
             created_on=record[4]
         )
-# class PageIn(BaseModel):
-#     text: str
-#     image_url: str

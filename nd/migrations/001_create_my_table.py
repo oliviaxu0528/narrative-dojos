@@ -3,7 +3,7 @@ steps = [
         ## Create the table
         """
         CREATE TABLE books (
-            id SERIAL NOT NULL PRIMARY KEY,
+            bookID SERIAL NOT NULL PRIMARY KEY,
             title VARCHAR(100) NOT NULL,
             author VARCHAR(100) NOT NULL,
             image_url TEXT NOT NULL,
@@ -30,7 +30,3 @@ steps = [
         ## Drop the table
     ]
 ]
-
-
-
-
