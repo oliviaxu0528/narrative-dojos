@@ -49,7 +49,6 @@ function CreatePages() {
       }
       currentLocation++;
     }
-    console.log(123)
 
   }
 

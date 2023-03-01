@@ -6,7 +6,6 @@ function Nav() {
 
   const handleLogout = () => {
     logout();
-    console.log('You have logged out')
   }
 
   return (
