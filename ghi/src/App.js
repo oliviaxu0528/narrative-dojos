@@ -7,8 +7,8 @@ import Nav from './Nav';
 import Signup from './Signup';
 import LoginForm from './LoginForm';
 import MyBooksList from './MyBooksList';
-import CreateACover from './CreateACover';
 import CreatePages from './CreatePages';
+import CreateACover from './CreateACover';
 
 
 function GetToken() {
@@ -46,9 +46,8 @@ function App(props) {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/account" element={<MyBooksList />} />
-              <Route path="/createacover" element={<CreateACover />} />
-              <Route path="/createpages" element={<CreatePages />} />
-
+            <Route path="/createpages" element={<CreatePages />} />
+            <Route path="/createacover" element={<CreateACover />} />
           </Routes>
         </AuthProvider>
       </div>
