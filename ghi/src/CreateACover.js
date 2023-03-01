@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
-export default function CreateForm() {
+export default function CreateACover() {
+    const navigate = useNavigate()
 
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
@@ -49,8 +51,7 @@ export default function CreateForm() {
 
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            const createABook = await response.json();
-
+            navigate('/createpages')
             setTitle('');
             setAuthor('');
             setImage_url('');
@@ -64,7 +65,7 @@ export default function CreateForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h2 className="text-center">Create a Book Cover</h2>
-                    <form onSubmit={handleSubmit} id="add-createabook-form">
+                    <form onSubmit={handleSubmit} id="add-createpages-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>
@@ -75,24 +76,12 @@ export default function CreateForm() {
                         </div>
                         <div className="form-floating mb-3">
                             <input onChange={handleImageChange} value={image_url} placeholder="Image_url" required type="text" name="image_url" className="form-control" />
-                            <label htmlFor="image_url">Image_url</label>
+                            <label htmlFor="image_url">Image url</label>
                         </div>
                         <div className="form-floating mb-3">
                             <textarea onChange={handleCreateOnChange} value={created_on} placeholder="CreatedOn" required type="datetime-local" name="created_on" className="form-control" />
-                            <label htmlFor="created_on">Created_on</label>
+                            <label htmlFor="created_on">Created on (YYYY-MM-DD)</label>
                         </div>
-                        {/* <div className="mb-3">
-                            <select onChange={handleTechnicianChange} value={technicianName} required id="technician" name="technician_name" className="form-select">
-                                <option>Choose a technician</option>
-                                {technicians.map(technician => {
-                                    return (
-                                        <option key={technician.id} value={technician.technician_name}>
-                                            {technician.technician_name}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                        </div> */}
                         <button className="btn btn-primary">Submit</button>
                     </form>
                 </div>

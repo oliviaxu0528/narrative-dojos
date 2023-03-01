@@ -9,7 +9,6 @@ function Signup(props) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  console.log(props);
 
   if (token) {
     return <Navigate to="/" />;
@@ -20,7 +19,6 @@ function Signup(props) {
     if (password === confirmPassword) {
       setError('');
       await signup(username, password);
-      console.log(token)
     } else {
       setError("The passwords do not match");
       window.alert("The passwords do not match")

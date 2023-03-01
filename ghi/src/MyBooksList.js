@@ -68,7 +68,7 @@ const MainPage = (props) => {
         <>
             <div className="px-4 py-4 my-5 mt-0 text-center bg-gray">
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <Link to="/create" style={{ position: 'absolute', top: 80, left: 1475, right: 200 }} className="btn btn-primary btn-lg px-4 gap-3">
+                    <Link to="/createacover" style={{ position: 'absolute', top: 80, left: 1475, right: 200 }} className="btn btn-primary btn-lg px-4 gap-3">
                         Write a new book!
                     </Link>
                 </div>
