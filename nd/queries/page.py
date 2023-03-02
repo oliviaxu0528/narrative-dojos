@@ -4,8 +4,9 @@ from queries.pool import pool
 
 
 class PageIn(BaseModel):
-    image_url: str
-    page_text: str
+    coverID: int
+    page_image_url: str
+    text: str
 
 
 class Error(BaseModel):
@@ -14,8 +15,9 @@ class Error(BaseModel):
 
 class PageOut(BaseModel):
     pageID: int
-    image_url: str
-    page_text: str
+    coverID: int
+    page_image_url: str
+    text: str
 
 
 class PageRepository:
@@ -25,15 +27,16 @@ class PageRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        INSERT INTO pages
-                            (image_url, page_text)
+                        INSERT INTO page
+                            (coverID, page_image_url, text)
                         VALUES
-                            (%s, %s)
+                            (%s, %s, %s)
                         RETURNING pageID;
                         """,
                         [
-                            page.image_url,
-                            page.page_text
+                            page.coverID,
+                            page.page_image_url,
+                            page.text
                         ]
                     )
                     pageID = result.fetchone()[0]
@@ -47,8 +50,8 @@ class PageRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT pageID,image_url,page_text
-                        FROM pages
+                        SELECT pageID,coverID,page_image_url,text
+                        FROM page
                         ORDER BY pageID;
                         """
                     )
@@ -56,8 +59,9 @@ class PageRepository:
                     for record in cur:
                         page = PageOut(
                             pageID=record[0],
-                            image_url=record[1],
-                            page_text=record[2]
+                            coverID=record[1],
+                            page_image_url=record[2],
+                            text=record[3]
                         )
                         result.append(page)
                     return result
@@ -71,8 +75,8 @@ class PageRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT pageID,image_url,page_text
-                        FROM pages
+                        SELECT pageID,coverID,page_image_url,text
+                        FROM page
                         WHERE pageID = %s
                         """,
                         [pageID]
@@ -91,7 +95,7 @@ class PageRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        DELETE FROM pages
+                        DELETE FROM page
                         WHERE pageID = %s
                         """,
                         [pageID]
@@ -108,13 +112,15 @@ class PageRepository:
                     cur.execute(
                         """
                         UPDATE pages
-                        SET image_url = %s,
-                            page_text = %s,
+                        SET coverID = %s,
+                            page_image_url = %s,
+                            text = %s,
                         WHERE pageID = %s
                         """,
                         [
-                            page.image_url,
-                            page.page_text,
+                            page.coverID,
+                            page.page_image_url,
+                            page.text,
                             pageID
                         ]
                     )
@@ -129,6 +135,7 @@ class PageRepository:
     def record_to_page_out(self, record):
         return PageOut(
             pageID=record[0],
-            image_url=record[1],
-            page_text=record[2]
+            coverID=record[1],
+            page_image_url=record[2],
+            text=record[3]
         )

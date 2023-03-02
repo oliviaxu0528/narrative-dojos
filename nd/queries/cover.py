@@ -4,10 +4,10 @@ from datetime import date
 from queries.pool import pool
 
 
-class BookIn(BaseModel):
+class CoverIn(BaseModel):
     title: str
     author: str
-    image_url: str
+    cover_image_url: str
     created_on: date
 
 
@@ -15,135 +15,135 @@ class Error(BaseModel):
     message: str
 
 
-class BookOut(BaseModel):
-    bookID: int
+class CoverOut(BaseModel):
+    ID: int
     title: str
     author: str
-    image_url: str
+    cover_image_url: str
     created_on: date
 
 
-class BookRepository:
-    def create(self, book: BookIn) -> BookOut:
+class CoverRepository:
+    def create(self, cover: CoverIn) -> CoverOut:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        INSERT INTO books
-                            (title, author, image_url, created_on)
+                        INSERT INTO cover
+                            (title, author, cover_image_url, created_on)
                         VALUES
                             (%s, %s, %s, %s)
-                        RETURNING bookID;
+                        RETURNING ID;
                         """,
                         [
-                            book.title,
-                            book.author,
-                            book.image_url,
-                            book.created_on
+                            cover.title,
+                            cover.author,
+                            cover.cover_image_url,
+                            cover.created_on
                         ]
                     )
-                    bookID = result.fetchone()[0]
-                    return self.book_in_to_out(bookID,book)
+                    ID = result.fetchone()[0]
+                    return self.cover_in_to_out(ID,cover)
         except Exception:
             return {"message": "Could not create"}
 
-    def get_all(self) -> Union[Error, List[BookOut]]:
+    def get_all(self) -> Union[Error, List[CoverOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT bookID,title,author,image_url,created_on
-                        FROM books
+                        SELECT ID,title,author,cover_image_url,created_on
+                        FROM cover
                         ORDER BY title;
                         """
                     )
                     result = []
                     for record in cur:
-                        book = BookOut(
-                            bookID=record[0],
+                        cover = CoverOut(
+                            ID=record[0],
                             title=record[1],
                             author=record[2],
-                            image_url=record[3],
+                            cover_image_url=record[3],
                             created_on=record[4]
                         )
-                        result.append(book)
+                        result.append(cover)
                     return result
         except Exception as e:
             print(e)
-            return {"message": "Could not get all books"}
+            return {"message": "Could not get all covers"}
 
-    def get_one(self,book_id:int) -> Optional[BookOut]:
+    def get_one(self,ID:int) -> Optional[CoverOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT bookID,title,author,image_url,created_on
-                        FROM books
-                        WHERE bookID = %s
+                        SELECT ID,title,author,cover_image_url,created_on
+                        FROM cover
+                        WHERE ID = %s
                         """,
-                        [book_id]
+                        [ID]
                     )
                     record = result.fetchone()
                     if record is None:
                         return None
-                    return self.record_to_book_out(record)
+                    return self.record_cover_out(record)
         except Exception as e:
             print(e)
-            return {"message": "Could not get book"}
+            return {"message": "Could not get cover"}
 
-    def delete(self,book_id:int) -> bool:
+    def delete(self,ID:int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        DELETE FROM books
-                        WHERE bookID = %s
+                        DELETE FROM cover
+                        WHERE ID = %s
                         """,
-                        [book_id]
+                        [ID]
                     )
                     return True
         except Exception as e:
             print(e)
             return False
 
-    def update(self, book_id:int, book:BookIn) -> Union[BookOut,Error]:
+    def update(self, ID:int, cover:CoverIn) -> Union[CoverOut,Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        UPDATE books
+                        UPDATE cover
                         SET title = %s,
                             author = %s,
-                            image_url = %s,
+                            cover_image_url = %s,
                             created_on = %s
-                        WHERE bookID = %s
+                        WHERE ID = %s
                         """,
                         [
-                            book.title,
-                            book.author,
-                            book.image_url,
-                            book.created_on,
-                            book_id
+                            cover.title,
+                            cover.author,
+                            cover.cover_image_url,
+                            cover.created_on,
+                            ID
                         ]
                     )
-                    return self.book_in_to_out(book_id,book)
+                    return self.cover_in_to_out(ID,cover)
         except Exception as e:
             return {"message": "Could not update"}
 
-    def book_in_to_out(self, id: int, book: BookIn):
-        old_data = book.dict()
-        return BookOut(id=id, **old_data)
+    def cover_in_to_out(self, ID: int, cover: CoverIn):
+        old_data = cover.dict()
+        return CoverOut(ID=ID, **old_data)
 
-    def record_to_book_out(self, record):
-        return BookOut(
-            bookID=record[0],
+    def record_to_cover_out(self, record):
+        return CoverOut(
+            ID=record[0],
             title=record[1],
             author=record[2],
-            image_url=record[3],
+            cover_image_url=record[3],
             created_on=record[4]
         )
