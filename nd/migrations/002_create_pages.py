@@ -2,15 +2,15 @@ steps = [
     [
         ## Create the table
         """
-        CREATE TABLE pages (
+        CREATE TABLE page (
             pageID SERIAL PRIMARY KEY NOT NULL,
-            bookID int NOT NULL REFERENCES books ON DELETE CASCADE ON UPDATE CASCADE,
-            page_url VARCHAR(100) NOT NULL,
-            page_text VARCHAR(280) NOT NULL
+            coverID int NOT NULL REFERENCES cover ON DELETE CASCADE ON UPDATE CASCADE,
+            page_image_url VARCHAR(100) NOT NULL,
+            text VARCHAR(280) NOT NULL
         );
         """,
         """
-        DROP TABLE pages;
+        DROP TABLE page;
         """
         ## Drop the table
     ]

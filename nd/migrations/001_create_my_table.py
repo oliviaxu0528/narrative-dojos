@@ -2,16 +2,16 @@ steps = [
     [
         ## Create the table
         """
-        CREATE TABLE books (
-            bookID SERIAL NOT NULL PRIMARY KEY,
+        CREATE TABLE cover (
+            ID SERIAL NOT NULL PRIMARY KEY,
             title VARCHAR(100) NOT NULL,
             author VARCHAR(100) NOT NULL,
-            book_url TEXT NOT NULL,
+            cover_image_url TEXT NOT NULL,
             created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """,
         """
-        DROP TABLE books;
+        DROP TABLE cover;
         """
         ## Drop the table
     ],

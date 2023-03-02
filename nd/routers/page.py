@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Response
 from typing import List, Union
-from queries.pages import PageIn, PageOut, PageRepository, Error
+from queries.page import PageIn, PageOut, PageRepository, Error
 
 router = APIRouter()
 
