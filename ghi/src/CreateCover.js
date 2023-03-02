@@ -55,7 +55,7 @@ export default function CreateCover() {
             setAuthor('');
             setCover_image_url('');
             setCreated_on('');
-            navigate('/createpage')
+            navigate('/createpages')
         }
     }
 
@@ -88,4 +88,3 @@ export default function CreateCover() {
         </div>
     );
 }
-
