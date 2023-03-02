@@ -6,9 +6,10 @@ import './App.css';
 import Nav from './Nav';
 import Signup from './Signup';
 import LoginForm from './LoginForm';
-import MyBooksList from './MyBooksList';
+import MyBooksList2 from './MyBooksList2';
 import CreatePages from './CreatePages';
 import CreateCover from './CreateCover';
+import BookDetail from './BookDetail';
 
 
 function GetToken() {
@@ -45,9 +46,11 @@ function App(props) {
               <Route index element={<MainPage />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<LoginForm />} />
-              <Route path="/account" element={<MyBooksList />} />
+              <Route path="/account" element={<MyBooksList2 />} />
               <Route path="/createpages" element={<CreatePages />} />
               <Route path="/createcover" element={<CreateCover />} />
+              <Route path="/book/:id" element={<BookDetail />} />
+
             </Routes>
           </AuthProvider>
         </div>

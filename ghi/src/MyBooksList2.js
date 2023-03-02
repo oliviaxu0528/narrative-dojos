@@ -1,33 +1,26 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
-import {useNavigate} from 'react-router-dom'
 import './index.css';
 
 function BookColumn({ book }) {
     return (
-        <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }} onClick={() => toBookDetail(book)}>
+        <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
             <div key={book.id} className="card mb-3 shadow">
                 <img src={book.image_url} width="200px" height="300px" className="card-img-top" />
                 <div className="card-body">
                     <h5 className="card-title">{book.title}</h5>
                     <p className="card-text">by {book.author}</p>
                 </div>
-                <div className="card-footer">
+                {/* <div className="card-footer">
                     <a href="/" className="card-link">Read {book.title}</a>
                     <p></p>
                     <a href="/" className="card-link">More books by {book.author}</a>
-                </div>
+                </div> */}
             </div>
+
+
         </div>
     );
-}
-const toBookDetail = (book) => {
-    let navigate = useNavigate()
-    navigate('/bookDetail', {
-        state: {
-            book
-        }
-    })
 }
 const MainPage = (props) => {
     const [bookColumns, setBookColumns] = useState([]);
@@ -36,7 +29,9 @@ const MainPage = (props) => {
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
         const response = await fetch(bookUrl);
         const data = await response.json();
+
         setBookColumns(data);
+
     }
 
     const sort = () => {
