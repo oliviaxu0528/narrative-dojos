@@ -56,7 +56,7 @@ export default function CreateCover() {
                     <form onSubmit={handleSubmit} id="add-createabook-form">
                         <div className="form-floating mb-3">
                             <input onChange={handlepageImageUrlChange} value={page_image_url} placeholder="page_image_url" required type="text" name="page_image_url" className="form-control" />
-                            <label htmlFor="page_image_url">Page Image Url</label>
+                            <label htmlFor="page_image_url">Image Url</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input onChange={handleTextChange} value={text} placeholder="text" required type="text" name="text" className="form-control" />
