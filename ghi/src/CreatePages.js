@@ -55,7 +55,7 @@ function CreatePages() {
 
   // function BookPublisher() {
     const publishBook = () => {
-      fetch('http://localhost:8000/covers ', {
+      fetch(`${process.env.REACT_APP_ND_API_HOST}/pages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

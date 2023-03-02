@@ -74,7 +74,7 @@ const MyBooksList = (props) => {
                 <div className="row">
                     {bookColumns.map((book, index) => {
                         return (
-                            <div className="col" key={book.id} style={{ minWidth: "260px", maxWidth: "260px" }}>
+                            <div className="col" key={book.ID} style={{ minWidth: "260px", maxWidth: "260px" }}>
                                 <div className="card mb-3 shadow">
                                     <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
                                     <div className="card-body">
