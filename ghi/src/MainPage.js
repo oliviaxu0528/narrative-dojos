@@ -13,13 +13,11 @@ function BookColumn({ book }) {
           <p className="card-text">by {book.author}</p>
         </div>
         <div className="card-footer">
-          <a href="/" className="card-link">Read {book.title}</a>
+          <Link to={`/books/${book.id}`} className="card-link">Read {book.title}</Link>
           <p></p>
-          <a href="/" className="card-link">More books by {book.author}</a>
+          <Link to={`/account/${book.author}`} className="card-link">More books by {book.author}</Link>
         </div>
       </div>
-
-
     </div>
   );
 }

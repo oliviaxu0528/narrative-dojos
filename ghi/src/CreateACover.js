@@ -42,7 +42,7 @@ export default function CreateACover() {
 
         const url = `${process.env.REACT_APP_ND_API_HOST}/books`;
         const fetchConfig = {
-            method: "post",
+            method: "POST",
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
@@ -51,11 +51,12 @@ export default function CreateACover() {
 
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            navigate('/createpages')
             setTitle('');
             setAuthor('');
             setImage_url('');
             setCreated_on('');
+            navigate('/createpages')
+            console.log("success")
 
         }
     }
