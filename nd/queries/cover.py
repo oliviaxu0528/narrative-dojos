@@ -89,7 +89,7 @@ class CoverRepository:
                     record = result.fetchone()
                     if record is None:
                         return None
-                    return self.record_cover_out(record)
+                    return self.record_to_cover_out(record)
         except Exception as e:
             print(e)
             return {"message": "Could not get cover"}
