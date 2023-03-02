@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function BookDetail() {
+function BookDetailCover() {
     const { bookId } = useParams();
     const [book, setBook] = useState(null);
 
