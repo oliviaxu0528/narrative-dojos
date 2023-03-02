@@ -12,7 +12,7 @@ class AccountIn(BaseModel):
 
 
 class AccountOut(BaseModel):
-    id: str
+    accountID: str
     username: str
 
 
@@ -27,7 +27,7 @@ class AccountRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT id, username, hashed_password
+                        SELECT accountID, username, hashed_password
                         FROM accounts
                         WHERE username = %s
                         """,
@@ -37,7 +37,7 @@ class AccountRepository:
 
                     if record is not None:
                         return AccountOutWithPassword(
-                            id = record[0],
+                            accountID = record[0],
                             username=record[1],
                             hashed_password=record[2]
                         )
@@ -46,29 +46,29 @@ class AccountRepository:
         except Exception:
             return {"message": "Could not get account"}
 
-    def get_by_id(self, id: int) -> AccountOut:
+    def get_by_accountID(self, accountID: int) -> AccountOut:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT id, username, hashed_password
+                        SELECT accountID, username, hashed_password
                         FROM accounts
-                        WHERE id = %s
+                        WHERE accountID = %s
                         """,
-                        [id]
+                        [accountID]
                     )
                     record = cur.fetchone()
                     if record is not None:
                         return AccountOut(
-                            id=record[0],
+                            accountID=record[0],
                             username=record[1],
                             hashed_password=record[2]
                         )
                     else:
-                        print("Unable to locate ID")
+                        print("Unable to locate accountID")
         except Exception:
-            return {"message": "Could not get by ID"}
+            return {"message": "Could not get by accountID"}
 
     def create(self, account: AccountIn, hashed_password: str) -> AccountOutWithPassword:
         try:
@@ -81,13 +81,13 @@ class AccountRepository:
                             hashed_password
                         )
                         VALUES (%s, %s)
-                        RETURNING id;
+                        RETURNING accountID;
                         """,
                         [account.username, hashed_password]
                     )
-                    id = result.fetchone()[0]
+                    accountID = result.fetchone()[0]
                     old_data = account.dict()
-                    return AccountOutWithPassword(id=id,hashed_password=hashed_password, **old_data)
+                    return AccountOutWithPassword(accountID=accountID,hashed_password=hashed_password, **old_data)
         except Exception:
             return {"message": "Could not create account"}
 
@@ -97,15 +97,15 @@ class AccountRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT id, username
+                        SELECT accountID, username
                         FROM accounts
-                        ORDER BY id
+                        ORDER BY accountID
                         """
                     )
                     results = []
                     for record in cur:
                         account = AccountOut(
-                            id=record[0], username=record[1]
+                            accountID=record[0], username=record[1]
                         )
                         results.append(account)
                     return results

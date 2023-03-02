@@ -257,7 +257,7 @@ function CreatePages() {
             <Input />
           </Form.Item> */}
            <Form.Item
-          label="page_image_url"
+          label="image_url"
             name="page_image_url"
           rules={[
             {
@@ -271,7 +271,7 @@ function CreatePages() {
         </Form.Item>
 
           <Form.Item
-            label="text (0-54 words)"
+            label="text"
             name="text"
             rules={[
               {
