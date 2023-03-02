@@ -9,6 +9,7 @@ import LoginForm from './LoginForm';
 import MyBooksList from './MyBooksList';
 import CreateACover from './CreateACover';
 import CreatePages from './CreatePages';
+import BookDetail from './BookDetail';
 
 
 function GetToken() {
@@ -48,6 +49,7 @@ function App(props) {
             <Route path="/account" element={<MyBooksList />} />
               <Route path="/createacover" element={<CreateACover />} />
               <Route path="/createpages" element={<CreatePages />} />
+              <Route path="/books/{book_id}" element={<BookDetail />} />
 
           </Routes>
         </AuthProvider>

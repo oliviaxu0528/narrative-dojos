@@ -55,6 +55,8 @@ function Nav() {
                 <li>
                   <NavLink id="account" className="nav-link" aria-current="page" to="/createacover" style={{ padding: "20px 8px 8px 8px" }}>Create</NavLink>
                 </li>
+
+              
               </>
             )}
           </ul>

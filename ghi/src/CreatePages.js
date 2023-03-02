@@ -4,6 +4,7 @@ import './App.css'
 
 let currentLocation = 1
 function CreatePages() {
+
   let [numOfPapers, setNumOfPapers] = useState([
     {
       title: '',
@@ -49,7 +50,6 @@ function CreatePages() {
       }
       currentLocation++;
     }
-    console.log(123)
 
   }
 
