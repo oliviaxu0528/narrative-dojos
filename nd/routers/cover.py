@@ -44,3 +44,14 @@ def update_cover(
     repo: CoverRepository = Depends()
 ) -> Union[CoverOut,Error]:
     return repo.update(ID, cover)
+
+@router.get("/accounts/{username}/covers/", response_model=Union[CoverOut, Error])
+def get_covers_by_account(
+    username: str,
+    response: Response,
+    repo: CoverRepository = Depends()
+    ) -> CoverOut:
+    cover = repo.get_covers_by_account(username)
+    if cover is None:
+        response.status_code = 404
+    return cover
