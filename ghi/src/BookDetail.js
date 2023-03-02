@@ -1,5 +1,5 @@
 import { useState, createRef, useEffect } from 'react'
-import {useLocation} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './App.css'
 
 let currentLocation = 1
@@ -9,6 +9,8 @@ function BookDetail(props) {
     let papers = numOfPapers.map((item, index) => {
         return createRef()
     })
+    // const [searchParams, setSearchParams] = useSearchParams()
+    const params = useParams()
     let maxLocation = numOfPapers.length + 1;
     const preButton = createRef()
     const nextButton = createRef()
@@ -55,13 +57,19 @@ function BookDetail(props) {
                 papers[currentLocation - 2].current.style.zIndex = numOfPapers.length - currentLocation + 2;
             }
             currentLocation--;
-
         }
     }
+
+    // 通过id获取书籍信息
+    async function getBookById(id) {
+        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/book?ID=${id}`;
+        const response = await fetch(bookUrl);
+        const data = await response.json();
+        setNumOfPapers(data);
+    }
     useEffect(() => {
-        const location = useLocation()
-        const book = location.state.book
-        setNumOfPapers([book])
+        const bookId = params.id
+        getBookById(bookId)
     }, [])
     return (
         <div className="App">
@@ -77,7 +85,7 @@ function BookDetail(props) {
                             <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index]}>
                                 <div className="front">
                                     <h1></h1>
-                                    <div><img className="headerMenuEntryImg" src={item.image_url} /></div>
+                                    <div><img className="headerMenuEntryImg" src={item.page_image_url} /></div>
                                     <div className='button-2'>{item.text}</div>
                                 </div>
                                 <div className="back">
