@@ -4,11 +4,12 @@ import './App.css'
 
 let currentLocation = 1
 function CreatePages() {
+
   let [numOfPapers, setNumOfPapers] = useState([
     {
       title: '',
       author: '',
-      image_url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC91-VQ6TBtIWHuYNrDmMH6w_50V5EcxI2A&usqp=CAU',
+      page_image_url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC91-VQ6TBtIWHuYNrDmMH6w_50V5EcxI2A&usqp=CAU',
       created_on: '',
       text: 'Add text here'
 
@@ -146,6 +147,8 @@ function CreatePages() {
 {/* () => addPage({title: '123', author: '123'}) */}
         <Button type='primary'href="#" className='btn' onClick={addPage}>Add a page</Button>
         <Button type='primary' className='btn-secondary' onClick={decreasePage}>Delete current page</Button>
+        <Button className="btn btn-primary">Publish</Button>
+
       </div>
       {/* </div> */}
       <div className='book-container'>
@@ -166,7 +169,7 @@ function CreatePages() {
                   {/* <div>author:{item.author}</div> */}
                   {/* <div className='card-item'>image_url:{item.image_url}</div> */}
                   <h1></h1>
-                  <div><img className="headerMenuEntryImg" src={item.image_url}/></div>
+                  <div><img className="headerMenuEntryImg" src={item.page_image_url}/></div>
 
                   {/* <div>createTime:{item.createTime}</div> */}
                   <div className='button-2'>{item.text}</div>
@@ -199,7 +202,7 @@ function CreatePages() {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
-          <Form.Item
+          {/* <Form.Item
             label="title"
             name="title"
             rules={[
@@ -222,14 +225,14 @@ function CreatePages() {
             ]}
           >
             <Input />
-          </Form.Item>
+          </Form.Item> */}
            <Form.Item
-          label="image_url"
-          name="image_url"
+          label="page_image_url"
+            name="page_image_url"
           rules={[
             {
               required: true,
-              message: 'the image_url cannot be empty',
+              message: 'the page_image_url cannot be empty',
             },
           ]}
           className='card-item'

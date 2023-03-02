@@ -1,37 +1,29 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import './index.css';
 
-function BookColumn({ book }) {
-    return (
-        <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
-            <div key={book.id} className="card mb-3 shadow">
-                <img src={book.image_url} width="200px" height="300px" className="card-img-top" />
-                <div className="card-body">
-                    <h5 className="card-title">{book.title}</h5>
-                    <p className="card-text">by {book.author}</p>
-                </div>
-                <div className="card-footer">
-                    <a href="/" className="card-link">Read {book.title}</a>
-                    <p></p>
-                    <a href="/" className="card-link">More books by {book.author}</a>
-                </div>
-            </div>
-
-
-        </div>
-    );
-}
-const MainPage = (props) => {
-    const [bookColumns, setBookColumns] = useState([]);
-
+const MyBooksList = (props) => {
+    const [bookColumns, setBookColumns] = useState([
+        {
+            id: 9,
+            title: '',
+            author: '',
+            image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC91-VQ6TBtIWHuYNrDmMH6w_50V5EcxI2A&usqp=CAU',
+            created_on: '',
+            text: 'Add text here'
+        }
+    ]);
+    let navigate = useNavigate()
+    const toBookDetail = (book) => {
+        console.log(book)
+        navigate(`/book/${book.ID}`)
+    }
     const fetchData = async () => {
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
         const response = await fetch(bookUrl);
         const data = await response.json();
-
         setBookColumns(data);
-
     }
 
     const sort = () => {
@@ -67,7 +59,7 @@ const MainPage = (props) => {
         <>
             <div className="px-4 py-4 my-5 mt-0 text-center bg-gray">
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <Link to="/createacover" style={{ position: 'absolute', top: 80, left: 1475, right: 200 }} className="btn btn-primary btn-lg px-4 gap-3">
+                    <Link to="/createcover" style={{ position: 'absolute', top: 80, left: 1475, right: 200 }} className="btn btn-primary btn-lg px-4 gap-3">
                         Write a new book!
                     </Link>
                 </div>
@@ -81,11 +73,25 @@ const MainPage = (props) => {
             <div className=".container">
                 <div className="row">
                     {bookColumns.map((book, index) => {
-                        return <BookColumn key={index} book={book} />;
+                        return (
+                            <div className="col" key={book.ID} style={{ minWidth: "260px", maxWidth: "260px" }}>
+                                <div className="card mb-3 shadow">
+                                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{book.title}</h5>
+                                        <p className="card-text">by {book.author}</p>
+                                    </div>
+                                    <div className="card-footer">
+                                        <div className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</div>
+                                        <div className="card-link">More books by {book.author}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
                     })}
                 </div>
             </div>
         </>
     )
 }
-export default MainPage
+export default MyBooksList
