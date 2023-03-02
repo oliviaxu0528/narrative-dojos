@@ -30,9 +30,7 @@ const MainPage = (props) => {
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
     const response = await fetch(bookUrl);
-    // console.log("response", response)
     const data = await response.json();
-    console.log("data", data)
 
     setBookColumns(data);
 
@@ -80,7 +78,7 @@ const MainPage = (props) => {
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
               <>
-                <Link to="/create" className="btn btn-primary btn-lg px-4 gap-3">
+                <Link to="/createcover" className="btn btn-primary btn-lg px-4 gap-3">
                   Write a book!
                 </Link>
               </>

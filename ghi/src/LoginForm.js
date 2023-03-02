@@ -25,7 +25,6 @@ function LoginForm() {
       const response = await login(username, password);
       if (response.ok) {
         navigate("/");
-        // console.log(token)
       } else {
         setError("Invalid credentials");
         window.alert("Invalid credentials")

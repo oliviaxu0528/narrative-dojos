@@ -6,7 +6,6 @@ function Nav() {
 
   const handleLogout = () => {
     logout();
-    console.log('You have logged out')
   }
 
   return (
@@ -53,7 +52,7 @@ function Nav() {
                   <NavLink id="account" className="nav-link" aria-current="page" to="/account" style={{ padding: "20px 8px 8px 8px" }}>My Books</NavLink>
                 </li>
                 <li>
-                  <NavLink id="account" className="nav-link" aria-current="page" to="/createacover" style={{ padding: "20px 8px 8px 8px" }}>Create</NavLink>
+                  <NavLink id="account" className="nav-link" aria-current="page" to="/createcover" style={{ padding: "20px 8px 8px 8px" }}>Create</NavLink>
                 </li>
 
               

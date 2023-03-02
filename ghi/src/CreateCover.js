@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-export default function CreateACover() {
+export default function CreateCover() {
     const navigate = useNavigate()
 
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
-    const [image_url, setImage_url] = useState('')
+    const [cover_image_url, setCover_image_url] = useState('')
     const [created_on, setCreated_on] = useState('')
 
     const handleTitleChange = (event) => {
@@ -21,7 +21,7 @@ export default function CreateACover() {
 
     const handleImageChange = (event) => {
         const value = event.target.value
-        setImage_url(value)
+        setCover_image_url(value)
     }
 
     const handleCreateOnChange = (event) => {
@@ -37,10 +37,10 @@ export default function CreateACover() {
         const data = {}
         data.title = title
         data.author = author
-        data.image_url = image_url
+        data.cover_image_url = cover_image_url
         data.created_on = created_on
 
-        const url = `${process.env.REACT_APP_ND_API_HOST}/books`;
+        const url = `${process.env.REACT_APP_ND_API_HOST}/covers`;
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -51,12 +51,11 @@ export default function CreateACover() {
 
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            navigate('/createpages')
             setTitle('');
             setAuthor('');
-            setImage_url('');
+            setCover_image_url('');
             setCreated_on('');
-
+            navigate('/createpage')
         }
     }
 
@@ -65,7 +64,7 @@ export default function CreateACover() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h2 className="text-center">Create a Book Cover</h2>
-                    <form onSubmit={handleSubmit} id="add-createpages-form">
+                    <form onSubmit={handleSubmit} id="add-createabook-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>
@@ -75,8 +74,8 @@ export default function CreateACover() {
                             <label htmlFor="author">Author</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input onChange={handleImageChange} value={image_url} placeholder="Image_url" required type="text" name="image_url" className="form-control" />
-                            <label htmlFor="image_url">Image url</label>
+                            <input onChange={handleImageChange} value={cover_image_url} placeholder="cover_image_url" required type="text" name="cover_image_url" className="form-control" />
+                            <label htmlFor="cover_image_url">Image url</label>
                         </div>
                         <div className="form-floating mb-3">
                             <textarea onChange={handleCreateOnChange} value={created_on} placeholder="CreatedOn" required type="datetime-local" name="created_on" className="form-control" />
