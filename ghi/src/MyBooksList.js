@@ -33,11 +33,6 @@ const MyBooksList = (props) => {
                 a.title > b.title ? 1 : -1,
             );
             setBookColumns(titleAlp);
-        } else if (sortType === "author") {
-            const authorSort = [...bookColumns].sort((a, b) =>
-                a.author > b.author ? 1 : -1,
-            );
-            setBookColumns(authorSort);
         } else if (sortType === "newest") {
             const newest = [...bookColumns].sort((a, b) =>
                 a.created_on > b.created_on ? 1 : -1,
