@@ -78,7 +78,7 @@ const MainPage = (props) => {
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
               <>
-                <Link to="/createacover" className="btn btn-primary btn-lg px-4 gap-3">
+                <Link to="/createcover" className="btn btn-primary btn-lg px-4 gap-3">
                   Write a book!
                 </Link>
               </>

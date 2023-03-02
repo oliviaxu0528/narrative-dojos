@@ -8,7 +8,7 @@ import Signup from './Signup';
 import LoginForm from './LoginForm';
 import MyBooksList from './MyBooksList';
 import CreatePages from './CreatePages';
-import CreateACover from './CreateACover';
+import CreateCover from './CreateCover';
 
 
 function GetToken() {
@@ -17,19 +17,19 @@ function GetToken() {
 }
 
 function App(props) {
-  const [books, setBooks] = useState([])
+  const [covers, setCovers] = useState([])
 
-  const getBooks = async () => {
-    const booksUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
-    const response = await fetch(booksUrl)
+  const getCovers = async () => {
+    const coversUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
+    const response = await fetch(coversUrl)
 
     if (response.ok) {
       const data = await response.json();
-      setBooks(data)
+      setCovers(data)
     }
   }
   useEffect(() => {
-    getBooks()
+    getCovers()
   }, [])
 
   return (
@@ -47,7 +47,7 @@ function App(props) {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/account" element={<MyBooksList />} />
             <Route path="/createpages" element={<CreatePages />} />
-            <Route path="/createacover" element={<CreateACover />} />
+            <Route path="/createcover" element={<CreateCover />} />
           </Routes>
         </AuthProvider>
       </div>
