@@ -5,8 +5,8 @@ from queries.pool import pool
 
 
 class CoverIn(BaseModel):
+    username: str
     title: str
-    author: str
     cover_image_url: str
     created_on: date
 
@@ -17,8 +17,8 @@ class Error(BaseModel):
 
 class CoverOut(BaseModel):
     ID: int
+    username: str
     title: str
-    author: str
     cover_image_url: str
     created_on: date
 
@@ -31,14 +31,14 @@ class CoverRepository:
                     result = cur.execute(
                         """
                         INSERT INTO cover
-                            (title, author, cover_image_url, created_on)
+                            (username, title, cover_image_url, created_on)
                         VALUES
                             (%s, %s, %s, %s)
                         RETURNING ID;
                         """,
                         [
+                            cover.username,
                             cover.title,
-                            cover.author,
                             cover.cover_image_url,
                             cover.created_on
                         ]
@@ -54,7 +54,7 @@ class CoverRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID,title,author,cover_image_url,created_on
+                        SELECT ID,username,title,cover_image_url,created_on
                         FROM cover
                         ORDER BY title;
                         """
@@ -63,8 +63,8 @@ class CoverRepository:
                     for record in cur:
                         cover = CoverOut(
                             ID=record[0],
-                            title=record[1],
-                            author=record[2],
+                            username=record[1],
+                            title=record[2],
                             cover_image_url=record[3],
                             created_on=record[4]
                         )
@@ -80,7 +80,7 @@ class CoverRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID,title,author,cover_image_url,created_on
+                        SELECT ID,username,title,cover_image_url,created_on
                         FROM cover
                         WHERE ID = %s
                         """,
@@ -89,7 +89,7 @@ class CoverRepository:
                     record = result.fetchone()
                     if record is None:
                         return None
-                    return self.record_cover_out(record)
+                    return self.record_to_cover_out(record)
         except Exception as e:
             print(e)
             return {"message": "Could not get cover"}
@@ -117,15 +117,15 @@ class CoverRepository:
                     cur.execute(
                         """
                         UPDATE cover
-                        SET title = %s,
-                            author = %s,
+                        SET username = %s,
+                            title = %s,
                             cover_image_url = %s,
                             created_on = %s
                         WHERE ID = %s
                         """,
                         [
+                            cover.username,
                             cover.title,
-                            cover.author,
                             cover.cover_image_url,
                             cover.created_on,
                             ID
@@ -135,6 +135,28 @@ class CoverRepository:
         except Exception as e:
             return {"message": "Could not update"}
 
+    def get_covers_by_account(self, username:str) -> Optional[CoverOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    result = cur.execute(
+                        """
+                        SELECT ID, username, title, cover_image_url, created_on
+                        FROM cover
+                        WHERE username = %s
+                        ORDER BY title;
+                        """,
+                        [username]
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return self.record_to_cover_out(record)
+
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get all covers"}
+
     def cover_in_to_out(self, ID: int, cover: CoverIn):
         old_data = cover.dict()
         return CoverOut(ID=ID, **old_data)
@@ -142,8 +164,8 @@ class CoverRepository:
     def record_to_cover_out(self, record):
         return CoverOut(
             ID=record[0],
-            title=record[1],
-            author=record[2],
+            username=record[1],
+            title=record[2],
             cover_image_url=record[3],
             created_on=record[4]
         )

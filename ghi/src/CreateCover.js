@@ -5,7 +5,7 @@ export default function CreateCover() {
     const navigate = useNavigate()
 
     const [title, setTitle] = useState('')
-    const [author, setAuthor] = useState('')
+    const [username, setUsername] = useState('')
     const [cover_image_url, setCover_image_url] = useState('')
     const [created_on, setCreated_on] = useState('')
 
@@ -14,9 +14,9 @@ export default function CreateCover() {
         setTitle(value)
     }
 
-    const handleAuthorChange = (event) => {
+    const handleUsernameChange = (event) => {
         const value = event.target.value
-        setAuthor(value)
+        setUsername(value)
     }
 
     const handleImageChange = (event) => {
@@ -36,7 +36,7 @@ export default function CreateCover() {
 
         const data = {}
         data.title = title
-        data.author = author
+        data.username = username
         data.cover_image_url = cover_image_url
         data.created_on = created_on
 
@@ -52,7 +52,7 @@ export default function CreateCover() {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             setTitle('');
-            setAuthor('');
+            setUsername('');
             setCover_image_url('');
             setCreated_on('');
             navigate('/createpages')
@@ -69,10 +69,10 @@ export default function CreateCover() {
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>
                         </div>
-                        <div className="form-floating mb-3">
-                            <input onChange={handleAuthorChange} value={author} placeholder="Author" required type="text" name="author" className="form-control" />
-                            <label htmlFor="author">Author</label>
-                        </div>
+                        {/* <div className="form-floating mb-3">
+                            <input onChange={handleUsernameChange} value={username} placeholder="Username" required type="text" name="username" className="form-control" />
+                            <label htmlFor="username">Author</label>
+                        </div> */}
                         <div className="form-floating mb-3">
                             <input onChange={handleImageChange} value={cover_image_url} placeholder="cover_image_url" required type="text" name="cover_image_url" className="form-control" />
                             <label htmlFor="cover_image_url">Image url</label>

@@ -8,7 +8,7 @@ const MyBooksList = (props) => {
         {
             id: 9,
             title: '',
-            author: '',
+            // author: '',
             image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC91-VQ6TBtIWHuYNrDmMH6w_50V5EcxI2A&usqp=CAU',
             created_on: '',
             text: 'Add text here'
@@ -20,7 +20,7 @@ const MyBooksList = (props) => {
         navigate(`/book/${book.ID}`)
     }
     const fetchData = async () => {
-        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
+        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
         const response = await fetch(bookUrl);
         const data = await response.json();
         setBookColumns(data);
@@ -74,16 +74,16 @@ const MyBooksList = (props) => {
                 <div className="row">
                     {bookColumns.map((book, index) => {
                         return (
-                            <div className="col" key={book.ID} style={{ minWidth: "260px", maxWidth: "260px" }}>
+                            <div className="col" key={book.id} style={{ minWidth: "260px", maxWidth: "260px" }}>
                                 <div className="card mb-3 shadow">
                                     <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
                                     <div className="card-body">
                                         <h5 className="card-title">{book.title}</h5>
-                                        <p className="card-text">by {book.author}</p>
+                                        <p className="card-text">by {book.username}</p>
                                     </div>
                                     <div className="card-footer">
-                                        <div className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</div>
-                                        <div className="card-link">More books by {book.author}</div>
+                                        <div className="card-link" color="gray" onClick={() => toBookDetail(book)}>Read {book.title}</div>
+                                        <div className="card-link">More books by {book.username}</div>
                                     </div>
                                 </div>
                             </div>

@@ -10,8 +10,8 @@ class Error(BaseModel):
 
 class BookOut(BaseModel):
     ID: int
+    username: str
     title: str
-    author: str
     cover_image_url: str
     created_on: date
     pageID: int
@@ -26,7 +26,7 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID, title, author, cover_image_url, created_on, pageID, page_image_url, text
+                        SELECT ID, username, title, cover_image_url, created_on, pageID, page_image_url, text
                         FROM cover
                         INNER JOIN page
                         ON cover.ID = page.coverID
@@ -43,7 +43,7 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID, title, author, cover_image_url, created_on, pageID, page_image_url, text
+                        SELECT ID, username, title, cover_image_url, created_on, pageID, page_image_url, text
                         FROM cover
                         INNER JOIN page
                         ON cover.ID = page.coverID
@@ -51,7 +51,6 @@ class BookRepository:
                         """,
                         [ID]
                     )
-
                     return [self.record_to_cover_out(record) for record in result]
         except Exception as e:
             print(e)
@@ -76,8 +75,8 @@ class BookRepository:
     def record_to_cover_out(self, record):
         return BookOut(
             ID=record[0],
-            title=record[1],
-            author=record[2],
+            username=record[1],
+            title=record[2],
             cover_image_url=record[3],
             created_on=record[4],
             pageID=record[5],
