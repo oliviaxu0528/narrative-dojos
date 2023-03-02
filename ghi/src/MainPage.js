@@ -9,7 +9,7 @@ function BookColumn({ book }) {
   return (
     <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
       <div key={book.id} className="card mb-3 shadow">
-        <img src={book.image_url} width="200px" height="300px" className="card-img-top" />
+        <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
         <div className="card-body">
           <h5 className="card-title">{book.title}</h5>
           <p className="card-text">by {book.author}</p>
@@ -31,7 +31,7 @@ const MainPage = (props) => {
   const { token } = useToken();
 
   const fetchData = async () => {
-    const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/books`;
+    const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
     const response = await fetch(bookUrl);
     const data = await response.json();
 
