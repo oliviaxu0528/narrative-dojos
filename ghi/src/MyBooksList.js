@@ -1,29 +1,27 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
 import './index.css';
+import { useToken } from './Authentication';
 
-const MyBooksList = (props) => {
-    const [bookColumns, setBookColumns] = useState([
-        {
-            id: 9,
-            title: '',
-            // author: '',
-            image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC91-VQ6TBtIWHuYNrDmMH6w_50V5EcxI2A&usqp=CAU',
-            created_on: '',
-            text: 'Add text here'
-        }
-    ]);
+
+const MainPage = (props) => {
+    const [bookColumns, setBookColumns] = useState([]);
+    const { token } = useToken();
+
     let navigate = useNavigate()
     const toBookDetail = (book) => {
         console.log(book)
         navigate(`/book/${book.ID}`)
     }
+
     const fetchData = async () => {
-        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
+        const currentUser = localStorage.getItem('username')
+        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${currentUser}/covers`;
         const response = await fetch(bookUrl);
         const data = await response.json();
+
         setBookColumns(data);
+
     }
 
     const sort = () => {
@@ -33,19 +31,14 @@ const MyBooksList = (props) => {
                 a.title > b.title ? 1 : -1,
             );
             setBookColumns(titleAlp);
-        } else if (sortType === "author") {
-            const authorSort = [...bookColumns].sort((a, b) =>
-                a.author > b.author ? 1 : -1,
-            );
-            setBookColumns(authorSort);
         } else if (sortType === "newest") {
             const newest = [...bookColumns].sort((a, b) =>
-                a.created_on > b.created_on ? 1 : -1,
+                a.created_on < b.created_on ? 1 : -1
             );
             setBookColumns(newest);
-        } else {
+        } else if (sortType === "oldest") {
             const oldest = [...bookColumns].sort((a, b) =>
-                a.created_on < b.created_on ? 1 : -1,
+                b.created_on < a.created_on ? 1 : -1
             );
             setBookColumns(oldest);
         }
@@ -55,13 +48,55 @@ const MyBooksList = (props) => {
         fetchData();
     }, []);
 
+    function BookColumn({ book }) {
+        return (
+            <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
+                <div key={book.id} className="card mb-3 shadow">
+                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
+                    <div className="card-body">
+                        <h5 className="card-title">{book.title}</h5>
+                    </div>
+                    <div className="card-footer">
+                        <p className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</p>
+                    </div>
+                </div>
+
+
+            </div>
+        );
+    }
+
     return (
         <>
-            <div className="px-4 py-4 my-5 mt-0 text-center bg-gray">
-                <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <Link to="/createcover" style={{ position: 'absolute', top: 80, left: 1475, right: 200 }} className="btn btn-primary btn-lg px-4 gap-3">
-                        Write a new book!
-                    </Link>
+            <div>
+                <img
+                    className="bg-white rounded shadow d-block mx-auto mb-4"
+                    src="/pucca.png"
+                    alt=""
+                    width="450"
+                    height="350"
+                />
+                <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
+                <div className="col-lg-6 mx-auto">
+                    <p className="lead mb-4" style={{ textAlign: "center" }}>
+                        by Narrative Ninjas
+                    </p>
+                    <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        {token && (
+                            <>
+                                <Link to="/createcover" className="btn btn-primary btn-lg px-4 gap-3">
+                                    Write a book!
+                                </Link>
+                            </>
+                        )}
+                        {!token && (
+                            <>
+                                <Link to="/signup" className="btn btn-primary btn-lg px-4 gap-3">
+                                    Write a book!
+                                </Link>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
             <h2>My books</h2>
@@ -73,25 +108,11 @@ const MyBooksList = (props) => {
             <div className=".container">
                 <div className="row">
                     {bookColumns.map((book, index) => {
-                        return (
-                            <div className="col" key={book.ID} style={{ minWidth: "260px", maxWidth: "260px" }}>
-                                <div className="card mb-3 shadow">
-                                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{book.title}</h5>
-                                        <p className="card-text">by {book.username}</p>
-                                    </div>
-                                    <div className="card-footer">
-                                        <div className="card-link" color="gray" onClick={() => toBookDetail(book)}>Read {book.title}</div>
-                                        <div className="card-link">More books by {book.username}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        )
+                        return <BookColumn key={index} book={book} />;
                     })}
                 </div>
             </div>
         </>
     )
 }
-export default MyBooksList
+export default MainPage
