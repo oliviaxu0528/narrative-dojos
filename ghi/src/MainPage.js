@@ -1,34 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import './index.css';
 import { useToken } from './Authentication';
-import MyBooksList from './MyBooksList';
-import toBookDetail from './MyBooksList';
-
-function BookColumn({ book }) {
-  return (
-    <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
-      <div key={book.id} className="card mb-3 shadow">
-        <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
-        <div className="card-body">
-          <h5 className="card-title">{book.title}</h5>
-          <p className="card-text">by {book.username}</p>
-        </div>
-        <div className="card-footer">
-          <p className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-          <p className="card-link">More books by {book.username}</p>
-        </div>
-      </div>
-
-
-    </div>
-  );
-}
 
 
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
   const { token } = useToken();
+
+  let navigate = useNavigate()
+  const toBookDetail = (book) => {
+    console.log(book)
+    navigate(`/book/${book.ID}`)
+  }
 
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
@@ -62,6 +46,26 @@ const MainPage = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  function BookColumn({ book }) {
+    return (
+      <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
+        <div key={book.id} className="card mb-3 shadow">
+          <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
+          <div className="card-body">
+            <h5 className="card-title">{book.title}</h5>
+            <p className="card-text">by {book.username}</p>
+          </div>
+          <div className="card-footer">
+            <p className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</p>
+            <p className="card-link">More books by {book.username}</p>
+          </div>
+        </div>
+
+
+      </div>
+    );
+  }
 
   return (
     <>
@@ -113,12 +117,3 @@ const MainPage = (props) => {
   )
 }
 export default MainPage
-
-
-// function MainPage() {
-//   return (
-//     <MyBooksList />
-//   )
-// }
-
-// export default MainPage

@@ -135,7 +135,7 @@ class CoverRepository:
         except Exception as e:
             return {"message": "Could not update"}
 
-    def get_covers_by_account(self, username:str) -> Optional[CoverOut]:
+    def get_covers_by_account(self, username:str)  -> Union[List[CoverOut],Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -148,10 +148,7 @@ class CoverRepository:
                         """,
                         [username]
                     )
-                    record = result.fetchone()
-                    if record is None:
-                        return None
-                    return self.record_to_cover_out(record)
+                    return [self.record_to_cover_out(record) for record in result]
 
         except Exception as e:
             print(e)
