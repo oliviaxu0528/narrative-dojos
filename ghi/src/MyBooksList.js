@@ -53,11 +53,14 @@ const MainPage = (props) => {
             <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
                 <div key={book.id} className="card mb-3 shadow">
                     <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
-                    <div className="card-body">
+                    {/* <div className="card-body">
                         <h5 className="card-title">{book.title}</h5>
-                    </div>
-                    <div className="card-footer">
-                        <p className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</p>
+                    </div> */}
+                    <div className="card-body">
+                        <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
+                        {/* <Button type='primary' href="#" className='btn' onClick={addPage}>Add a page</Button> */}
+
+
                     </div>
                 </div>
 
@@ -78,9 +81,6 @@ const MainPage = (props) => {
                 />
                 <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
                 <div className="col-lg-6 mx-auto">
-                    <p className="lead mb-4" style={{ textAlign: "center" }}>
-                        by Narrative Ninjas
-                    </p>
                     <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                         {token && (
                             <>

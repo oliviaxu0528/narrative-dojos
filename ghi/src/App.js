@@ -47,7 +47,7 @@ function App(props) {
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/accounts/covers" element={<MyBooksList />} />
-              <Route path="/createpages" element={<CreatePages />} />
+              <Route path="/createpages/:id" element={<CreatePages />} />
               <Route path="/createcover" element={<CreateCover />} />
               <Route path="/book/:id" element={<BookDetail />} />
 

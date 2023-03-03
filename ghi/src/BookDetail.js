@@ -9,9 +9,11 @@ function BookDetail(props) {
     let papers = numOfPapers.map((item, index) => {
         return createRef()
     })
+    let [coverPaper, setCoverPaper] = useState([])
+    papers.unshift(createRef())
     // const [searchParams, setSearchParams] = useSearchParams()
     const params = useParams()
-    let maxLocation = numOfPapers.length + 1;
+    let maxLocation = numOfPapers.length + 2;
     const preButton = createRef()
     const nextButton = createRef()
     const book = createRef()
@@ -60,17 +62,36 @@ function BookDetail(props) {
         }
     }
 
-    // 通过id获取书籍信息
-    async function getBookById(id) {
-        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/book?ID=${id}`;
+    // get the book by id
+    async function getCoverById(id) {
+        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${id}`;
         const response = await fetch(bookUrl);
-        const data = await response.json();
+        const object = await response.json();
+        const data = [object]
+        setCoverPaper(data);
+    }
+    useEffect(() => {
+        const bookId = params.id
+        getCoverById(bookId)
+    }, [])
+
+    async function getPagesById(id) {
+        const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
+        const response = await fetch(pagesUrl);
+        let data = await response.json();
+        // console.log(id,data)
+        data = data.filter((item, index) => {
+            return +item.coverID === +id
+        })
         setNumOfPapers(data);
     }
     useEffect(() => {
         const bookId = params.id
-        getBookById(bookId)
+        getCoverById(bookId)
+        getPagesById(bookId)
+        console.log(numOfPapers)
     }, [])
+
     return (
         <div className="App">
             <div className='book-container'>
@@ -80,9 +101,31 @@ function BookDetail(props) {
                     <i className="fas fa-arrow-circle-left"></i>
                 </button>
                 <div id="book" className="book" ref={book}>
+                    {coverPaper.map((item, index) => {
+                        return (
+                            <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
+                                <div className="front">
+                                    <div className='text'>
+                                        {/* <h3>
+                                            {item.title}
+                                        </h3> */}
+                                    </div>
+                                    <img className='coverImg' src={item.cover_image_url} />
+                                    {/* <div className='gradient-text'>
+                                        <h4>By {item.username}</h4>
+                                    </div>
+                                    <div className='gradient-text'>
+                                        <h4>{item.created_on}</h4>
+                                    </div> */}
+                                </div>
+                                <div className="back">
+                                </div>
+                            </div>
+                        )
+                    })}
                     {numOfPapers.map((item, index) => {
                         return (
-                            <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index]}>
+                            <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index + 1]}>
                                 <div className="front">
                                     <h1></h1>
                                     <div><img className="headerMenuEntryImg" src={item.page_image_url} /></div>

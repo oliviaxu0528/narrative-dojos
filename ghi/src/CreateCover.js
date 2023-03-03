@@ -9,10 +9,10 @@ export default function CreateCover(props) {
     const [title, setTitle] = useState('')
     const [cover_image_url, setCover_image_url] = useState('')
     const [created_on, setCreated_on] = useState('')
-    console.log(`${username}`)
 
     useEffect(() => {
         const username = localStorage.getItem('username')
+        console.log(username)
         setUsername(username)
     }, [])
     const handleTitleChange = (event) => {
@@ -30,10 +30,10 @@ export default function CreateCover(props) {
         setCreated_on(value)
     }
 
-    useEffect(() => {
-        const username = localStorage.getItem('username')
-        setUsername(username)
-    }, [])
+    // useEffect(() => {
+    //     const username = localStorage.getItem('username')
+    //     setUsername(username)
+    // }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -43,6 +43,7 @@ export default function CreateCover(props) {
         data.title = title
         data.cover_image_url = cover_image_url
         data.created_on = created_on
+
 
         const url = `${process.env.REACT_APP_ND_API_HOST}/covers`;
         const fetchConfig = {
@@ -54,12 +55,17 @@ export default function CreateCover(props) {
         };
 
         const response = await fetch(url, fetchConfig);
+        const msg = await response.json()
+        // console.log(msg)
+
+        // console.log(fetchConfig)
         if (response.ok) {
+
             setTitle('');
             setUsername('');
             setCover_image_url('');
             setCreated_on('');
-            navigate('/createpages')
+            navigate(`/createpages/${msg.ID}`)
         }
     }
 
@@ -69,6 +75,7 @@ export default function CreateCover(props) {
                 <div className="shadow p-4 mt-4">
                     <h2 className="text-center">Create a Book Cover</h2>
                     <form onSubmit={handleSubmit} id="add-createabook-form">
+
                         <div className="form-floating mb-3">
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>
