@@ -315,7 +315,8 @@ function CreatePages() {
   let papers = numOfPapers.map((item, index) => {
     return createRef()
   })
-  let maxLocation = numOfPapers.length + 1;
+  papers.unshift(createRef())
+  let maxLocation = numOfPapers.length + 2;
   const preButton = createRef()
   const params = useParams()
   const navigate = useNavigate()
@@ -400,7 +401,7 @@ function CreatePages() {
         nextButton.current.style.transform = "translateX(180px)";
       }
     }
-  }, [numOfPapers])
+  }, [])
   // adding
   function addPage() {
     setIsModelOpen(true)
@@ -443,8 +444,8 @@ function CreatePages() {
       //   duration: 1
       // })
       const data = {}
-      data.page_image_url = page_image_url
-      data.text = text
+      data.page_image_url = values.page_image_url
+      data.text = values.text
       data.coverID = params.id
       const url = `${process.env.REACT_APP_ND_API_HOST}/pages`;
       const fetchConfig = {
@@ -458,7 +459,7 @@ function CreatePages() {
       if (response.ok) {
         // setPage_image_url('');
         // setText('');
-        navigate('/account')
+        // navigate('/accounts/covers')
         getPagesById(params.id)
       }
     }
@@ -498,7 +499,7 @@ function CreatePages() {
                   <div>{item.created_on}</div>
                 </div>
                 <div className="back">
-                  <div>cover-back</div>
+                  {/* <div>cover-back</div> */}
                 </div>
               </div>
             )
@@ -539,12 +540,12 @@ function CreatePages() {
           autoComplete="off"
         >
           <Form.Item
-            label="image_url"
-            name="image_url"
+            label="page_image_url"
+            name="page_image_url"
             rules={[
               {
                 required: true,
-                message: 'the image_url cannot be empty',
+                message: 'the page_image_url cannot be empty',
               },
             ]}
             className='card-item'

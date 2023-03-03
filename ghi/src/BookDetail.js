@@ -199,7 +199,7 @@ function BookDetail(props) {
     useEffect(() => {
         const bookId = params.id
         getCoverById(bookId)
-        // getPagesById(bookId)
+        getPagesById(bookId)
         console.log(numOfPapers)
     }, [])
 
