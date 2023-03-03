@@ -85,7 +85,7 @@ class AccountRepository:
                         """,
                         [account.username, hashed_password]
                     )
-                    accountID = result.fetchone()[0]
+                    accountID = cur.fetchone()[0]
                     old_data = account.dict()
                     return AccountOutWithPassword(accountID=accountID,hashed_password=hashed_password, **old_data)
         except Exception:

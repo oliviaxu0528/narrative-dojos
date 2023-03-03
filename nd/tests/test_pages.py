@@ -2,7 +2,7 @@
 
 from fastapi.testclient import TestClient
 from main import app
-from queries.pages import PageRepository
+from queries.page import PageRepository
 
 
 client = TestClient(app)
