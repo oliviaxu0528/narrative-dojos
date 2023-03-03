@@ -8,7 +8,7 @@ function CreatePages() {
   let [numOfPapers, setNumOfPapers] = useState([
     {
       title: '',
-      author: '',
+      username: '',
       page_image_url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC91-VQ6TBtIWHuYNrDmMH6w_50V5EcxI2A&usqp=CAU',
       created_on: '',
       text: 'Add text here'

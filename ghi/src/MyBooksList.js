@@ -33,9 +33,9 @@ const MyBooksList = (props) => {
                 a.title > b.title ? 1 : -1,
             );
             setBookColumns(titleAlp);
-        } else if (sortType === "author") {
+        } else if (sortType === "username") {
             const authorSort = [...bookColumns].sort((a, b) =>
-                a.author > b.author ? 1 : -1,
+                a.username > b.username ? 1 : -1,
             );
             setBookColumns(authorSort);
         } else if (sortType === "newest") {
