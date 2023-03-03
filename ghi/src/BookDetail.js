@@ -106,18 +106,17 @@ function BookDetail(props) {
                             <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                                 <div className="front">
                                     <div className='text'>
-                                        <h3>
+                                        {/* <h3>
                                             {item.title}
-                                        </h3>
+                                        </h3> */}
                                     </div>
-
                                     <img className='coverImg' src={item.cover_image_url} />
-                                    <div className='gradient-text'>
+                                    {/* <div className='gradient-text'>
                                         <h4>By {item.username}</h4>
                                     </div>
                                     <div className='gradient-text'>
                                         <h4>{item.created_on}</h4>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="back">
                                 </div>

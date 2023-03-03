@@ -53,12 +53,12 @@ const MainPage = (props) => {
         <div key={book.id} className="card mb-3 shadow">
           <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
           <div className="card-body">
-            <h5 className="card-title">{book.title}</h5>
+            <h5 className="card-title" onClick={() => toBookDetail(book)}>{book.title}</h5>
             <p className="card-text">by {book.username}</p>
           </div>
           <div className="card-footer">
-            <p className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-            <p className="card-link">More books by {book.username}</p>
+            <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
+            {/* <p className="card-link">More books by {book.username}</p> */}
           </div>
         </div>
 
@@ -70,8 +70,6 @@ const MainPage = (props) => {
   return (
     <>
       <div>
-
-
         <img
           className="bg-white rounded shadow d-block mx-auto mb-4"
           src="/pucca.png"
@@ -97,9 +95,6 @@ const MainPage = (props) => {
         </div>
         <div className="col-lg-6 mx-auto">
           {/* lead mb-4 */}
-          <p className="lead mb-4 " style={{ textAlign: "center" }}>
-            by Narrative Ninjas
-          </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
               <>

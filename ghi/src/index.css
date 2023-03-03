@@ -118,7 +118,7 @@ font-size: 12pt;
 
   .headerMenuEntryImg {
     height: 200px;
-    width: 250px;
+    width: 275px;
     background-size: 100%;
     background-repeat:no-repeat;
     /* background-position: center; */
@@ -130,15 +130,15 @@ font-size: 12pt;
     text-align:center;
   }
     .coverImg{
-    height: 180px;
-    width: 270px;
+    height: 500px;
+    width: 350px;
     background-size: 100%;
     background-repeat:no-repeat;
     /* background-position: center; */
     top: 50%;
     /* border:1px solid red; */
 
-    margin:35px;
+    /* margin:35px; */
 
     text-align:center;
   }
