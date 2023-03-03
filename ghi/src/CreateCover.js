@@ -29,8 +29,7 @@ export default function CreateCover() {
         setCreated_on(value)
     }
 
-
-
+    
     const handleSubmit = async (event) => {
         event.preventDefault()
 

@@ -19,6 +19,7 @@ function Signup(props) {
     if (password === confirmPassword) {
       setError('');
       await signup(username, password);
+      localStorage.setItem('username', username);
     } else {
       setError("The passwords do not match");
       window.alert("The passwords do not match")

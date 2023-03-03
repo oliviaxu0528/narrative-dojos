@@ -24,6 +24,7 @@ function LoginForm() {
     try {
       const response = await login(username, password);
       if (response.ok) {
+        localStorage.setItem('username', username);
         navigate("/");
       } else {
         setError("Invalid credentials");

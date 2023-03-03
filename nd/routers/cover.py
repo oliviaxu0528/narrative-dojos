@@ -45,7 +45,7 @@ def update_cover(
 ) -> Union[CoverOut,Error]:
     return repo.update(ID, cover)
 
-@router.get("/accounts/{username}/covers/", response_model=Union[CoverOut, Error])
+@router.get("/accounts/{username}/covers/", response_model=Union[List[CoverOut], Error])
 def get_covers_by_account(
     username: str,
     response: Response,
