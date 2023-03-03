@@ -195,9 +195,9 @@ function CreatePages() {
             return (
               <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                 <div className="front">
-                  <img src={item.cover_image_url} />
-                  <div>{item.username}</div>
+                  <img src={item.cover_image_url} width="350px" height="500px"/>
                   <div>{item.title}</div>
+                  <div>{item.username}</div>
                   <div>{item.created_on}</div>
                 </div>
                 <div className="back">
@@ -217,6 +217,7 @@ function CreatePages() {
                 <div className="back">
                   <div id={'b' + (index + 1)} className="back-content">
                     <h1>{`page${index + 1}`}</h1>
+                    {/* <h1><img className="headerMenuEntryImg" src={item.page_image_url} /></h1> */}
                   </div>
                 </div>
               </div>
