@@ -19,6 +19,7 @@ function Signup(props) {
     if (password === confirmPassword) {
       setError('');
       await signup(username, password);
+      localStorage.setItem('username', username);
     } else {
       setError("The passwords do not match");
       window.alert("The passwords do not match")
@@ -72,6 +73,9 @@ function Signup(props) {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             </div>
+                <p>Already have an account?
+                  <a href="/login" style={{ marginLeft: "10px" }}>Login</a>
+                </p>
               <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
               <br />
