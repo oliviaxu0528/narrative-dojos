@@ -12,11 +12,11 @@ function BookColumn({ book }) {
         <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
         <div className="card-body">
           <h5 className="card-title">{book.title}</h5>
-          <p className="card-text">by {book.author}</p>
+          <p className="card-text">by {book.username}</p>
         </div>
         <div className="card-footer">
           <p className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-          <p className="card-link">More books by {book.author}</p>
+          <p className="card-link">More books by {book.username}</p>
         </div>
       </div>
 

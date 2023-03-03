@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-export default function CreateCover() {
+
+export default function CreateCover(props) {
     const navigate = useNavigate()
 
-    const [title, setTitle] = useState('')
     const [username, setUsername] = useState('')
+    const [title, setTitle] = useState('')
     const [cover_image_url, setCover_image_url] = useState('')
     const [created_on, setCreated_on] = useState('')
+    console.log(`${username}`)
 
+    useEffect(() => {
+        const username = localStorage.getItem('username')
+        setUsername(username)
+    }, [])
     const handleTitleChange = (event) => {
         const value = event.target.value
         setTitle(value)
-    }
-
-    const handleUsernameChange = (event) => {
-        const value = event.target.value
-        setUsername(value)
     }
 
     const handleImageChange = (event) => {
@@ -29,14 +30,17 @@ export default function CreateCover() {
         setCreated_on(value)
     }
 
-
+    useEffect(() => {
+        const username = localStorage.getItem('username')
+        setUsername(username)
+    }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault()
 
         const data = {}
-        data.title = title
         data.username = username
+        data.title = title
         data.cover_image_url = cover_image_url
         data.created_on = created_on
 
