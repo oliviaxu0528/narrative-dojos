@@ -54,12 +54,14 @@ export default function CreateCover(props) {
         };
 
         const response = await fetch(url, fetchConfig);
+        console.log(response)
         if (response.ok) {
+
             setTitle('');
             setUsername('');
             setCover_image_url('');
             setCreated_on('');
-            navigate('/createpages')
+            // navigate(`/createpages/${response.ID}`)
         }
     }
 
@@ -69,6 +71,7 @@ export default function CreateCover(props) {
                 <div className="shadow p-4 mt-4">
                     <h2 className="text-center">Create a Book Cover</h2>
                     <form onSubmit={handleSubmit} id="add-createabook-form">
+                        
                         <div className="form-floating mb-3">
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>

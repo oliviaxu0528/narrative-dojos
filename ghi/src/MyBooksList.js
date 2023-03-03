@@ -56,8 +56,12 @@ const MainPage = (props) => {
                     <div className="card-body">
                         <h5 className="card-title">{book.title}</h5>
                     </div>
+
                     <div className="card-footer">
-                        <p className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</p>
+                        <h5 className="card-link" onClick={() => toBookDetail(book)}>Read {book.title}</h5>
+                        {/* <Button type='primary' href="#" className='btn' onClick={addPage}>Add a page</Button> */}
+
+
                     </div>
                 </div>
 

@@ -70,6 +70,8 @@ const MainPage = (props) => {
   return (
     <>
       <div>
+
+
         <img
           className="bg-white rounded shadow d-block mx-auto mb-4"
           src="/pucca.png"
@@ -77,9 +79,25 @@ const MainPage = (props) => {
           width="450"
           height="350"
         />
-        <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
+        {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1> */}
+        <div className="wrapper">
+          <span>N</span>
+          <span>a</span>
+          <span>r</span>
+          <span>r</span>
+          <span>a</span>
+          <span>t</span>
+          <span>i</span>
+          <span>v</span>
+          <span>e</span>
+          <span>D</span>
+          <span>o</span>
+          <span>j</span>
+          <span>o</span>
+        </div>
         <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4" style={{ textAlign: "center" }}>
+          {/* lead mb-4 */}
+          <p className="movedown" style={{ textAlign: "center" }}>
             by Narrative Ninjas
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
