@@ -24,7 +24,7 @@ function BookDetailCover() {
                 <img src={book.image_url} width="200px" height="300px" className="card-img-top" />
                 <div className="card-body">
                     <h5 className="card-title">{book.title}</h5>
-                    <p className="card-text">by {book.author}</p>
+                    <p className="card-text">by {book.username}</p>
                     <p className="card-text">{book.description}</p>
                 </div>
                 <div className="card-footer">
