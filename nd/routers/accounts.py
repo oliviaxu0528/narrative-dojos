@@ -30,6 +30,10 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
+def get_authenticator():
+    return authenticator
+
+
 @router.get("/protected", response_model=bool)
 async def get_protected(
     account_data: dict = Depends(authenticator.get_current_account_data)

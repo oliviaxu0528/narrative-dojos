@@ -53,6 +53,36 @@ function CreatePages() {
 
   }
 
+  // function BookPublisher() {
+    const publishBook = () => {
+      fetch(`${process.env.REACT_APP_ND_API_HOST}/pages`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(numOfPapers)
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to publish book');
+          }
+          message.success({
+            content: 'Successfully published',
+            duration: 1
+          });
+        })
+        .catch(error => {
+          console.error(error);
+          message.error({
+            content: 'Failed to publish',
+            duration: 1
+          });
+        });
+    }
+
+
+
+
   function goPrevPage() {
     if (currentLocation > 1) {
       if (currentLocation === 2) {
@@ -147,7 +177,7 @@ function CreatePages() {
 {/* () => addPage({title: '123', author: '123'}) */}
         <Button type='primary'href="#" className='btn' onClick={addPage}>Add a page</Button>
         <Button type='primary' className='btn-secondary' onClick={decreasePage}>Delete current page</Button>
-        <Button className="btn btn-primary">Publish</Button>
+        <Button className="btn btn-primary" onClick={publishBook}>Publish</Button>
 
       </div>
       {/* </div> */}
@@ -262,5 +292,5 @@ function CreatePages() {
     </div>
   )
 }
-
+// }
 export default CreatePages

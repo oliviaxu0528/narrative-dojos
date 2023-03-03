@@ -73,6 +73,9 @@ function Signup(props) {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             </div>
+                <p>Already have an account?
+                  <a href="/login" style={{ marginLeft: "10px" }}>Login</a>
+                </p>
               <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
               <br />
