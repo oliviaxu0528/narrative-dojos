@@ -6,12 +6,19 @@ import { useToken } from './Authentication';
 
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
   const { token } = useToken();
 
   let navigate = useNavigate()
   const toBookDetail = (book) => {
     console.log(book)
     navigate(`/book/${book.ID}`)
+  }
+
+  const handleSelectUser = (username) => {
+    if (selectedUser !== username) {
+      setSelectedUser(username);
+    }
   }
 
   const fetchData = async () => {
@@ -45,7 +52,7 @@ const MainPage = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [selectedUser]);
 
   function BookColumn({ book }) {
     return (
@@ -54,7 +61,9 @@ const MainPage = (props) => {
           <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
           <div className="card-body">
             <h5 className="card-title" onClick={() => toBookDetail(book)}>{book.title}</h5>
-            <p className="card-text">by {book.username}</p>
+            <Link to={`/accounts/${book.username}/covers`} onClick={() => handleSelectUser(book.username)}>
+            Read more by: {book.username}
+            </Link>
           </div>
           <div className="card-footer">
             <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>

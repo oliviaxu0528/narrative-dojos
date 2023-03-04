@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import MainPage from './MainPage';
 import { AuthProvider, useToken } from './Authentication.js'
 import './App.css';
@@ -10,6 +10,8 @@ import MyBooksList from './MyBooksList';
 import CreatePages from './CreatePages';
 import CreateCover from './CreateCover';
 import BookDetail from './BookDetail';
+import AuthorBookList from './AuthorBookList';
+
 
 
 function GetToken() {
@@ -19,6 +21,7 @@ function GetToken() {
 
 function App(props) {
   const [covers, setCovers] = useState([])
+  const selectedUsername = props.username;
 
   const getCovers = async () => {
     const coversUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
@@ -50,7 +53,7 @@ function App(props) {
               <Route path="/createpages/:id" element={<CreatePages />} />
               <Route path="/createcover" element={<CreateCover />} />
               <Route path="/book/:id" element={<BookDetail />} />
-
+              <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
             </Routes>
           </AuthProvider>
         </div>
@@ -58,4 +61,5 @@ function App(props) {
     </div>
   );
 }
+
 export default App;
