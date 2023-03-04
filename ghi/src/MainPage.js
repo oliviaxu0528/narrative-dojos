@@ -61,8 +61,6 @@ const MainPage = (props) => {
             {/* <p className="card-link">More books by {book.username}</p> */}
           </div>
         </div>
-
-
       </div>
     );
   }

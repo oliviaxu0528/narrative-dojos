@@ -4,7 +4,6 @@ import './App.css'
 
 let currentLocation = 1
 function BookDetail(props) {
-
     let [numOfPapers, setNumOfPapers] = useState([])
     let papers = numOfPapers.map((item, index) => {
         return createRef()
@@ -95,11 +94,13 @@ function BookDetail(props) {
     return (
         <div className="App">
             <div className='book-container'>
+                <div className="buttons">
                 <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
                     <h1 className='pt'>{'previous'}</h1>
                     <h1 className='cm'>{'<'}</h1>
                     <i className="fas fa-arrow-circle-left"></i>
                 </button>
+                </div>
                 <div id="book" className="book" ref={book}>
                     {coverPaper.map((item, index) => {
                         return (
@@ -140,11 +141,13 @@ function BookDetail(props) {
                         )
                     })}
                 </div>
+                <div className="buttons">
                 <button id="next-btn" ref={nextButton} onClick={goNextPage}>
                     <h1 className='pt'>{'next'}</h1>
                     <h1 className='cm'>{'>'}</h1>
                     <i className="fas fa-arrow-circle-right"></i>
                 </button>
+                </div>
             </div>
         </div>
     )
