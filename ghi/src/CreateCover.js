@@ -86,7 +86,7 @@ export default function CreateCover(props) {
                         </div> */}
                         <div className="form-floating mb-3">
                             <input onChange={handleImageChange} value={cover_image_url} placeholder="cover_image_url" required type="text" name="cover_image_url" className="form-control" />
-                            <label htmlFor="cover_image_url">Image url</label>
+                            <label htmlFor="cover_image_url">Image url (1.6 to 1 ratio recommended)</label>
                         </div>
                         <div className="form-floating mb-3">
                             <textarea onChange={handleCreateOnChange} value={created_on} placeholder="CreatedOn" required type="datetime-local" name="created_on" className="form-control" />
