@@ -142,17 +142,10 @@ import { useToken } from './Authentication';
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
   const [bookDeskColumns, setBookDeskColumns] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
   const { token } = useToken();
   let navigate = useNavigate()
   const toBookDetail = (book) => {
     navigate(`/book/${book.ID}`)
-  }
-
-  const handleSelectUser = (username) => {
-    if (selectedUser !== username) {
-      setSelectedUser(username);
-    }
   }
 
   const fetchData = async () => {
@@ -200,7 +193,7 @@ const MainPage = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, [selectedUser]);
+  }, []);
 
   return (
     <>
