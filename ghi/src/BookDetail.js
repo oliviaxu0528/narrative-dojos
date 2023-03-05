@@ -38,7 +38,7 @@ function BookDetail(props) {
             }
             papers[currentLocation - 1].current.classList.add("flipped");
             papers[currentLocation - 1].current.style.zIndex = currentLocation;
-            if (currentLocation === numOfPapers.length) {
+            if (currentLocation === numOfPapers.length + 1) {
                 closeBook(false);
             }
             currentLocation++;
@@ -51,7 +51,7 @@ function BookDetail(props) {
             if (currentLocation === 2) {
                 closeBook(true);
             }
-            if (currentLocation === numOfPapers.length + 1) {
+            if (currentLocation === numOfPapers.length + 2) {
                 openBook();
             }
             if (papers[currentLocation - 2] && papers[currentLocation - 2].current) {

@@ -126,6 +126,8 @@ const MainPage = (props) => {
           })}
         </div>
       </div>
+
+     
     </>
   )
 }
