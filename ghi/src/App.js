@@ -11,6 +11,7 @@ import CreatePages from './CreatePages';
 import CreateCover from './CreateCover';
 import BookDetail from './BookDetail';
 import AuthorBookList from './AuthorBookList';
+import Footer from "./Footer"
 
 
 
@@ -38,27 +39,32 @@ function App(props) {
   }, [])
 
   return (
-    <div className="my-5 container">
-      <BrowserRouter>
-        <div>
-          <AuthProvider>
-            <GetToken />
+    <div>
+      <div className="my-5 container page-container">
+        <div className="content-wrap">
+          <BrowserRouter>
             <div>
-              <Nav />
+              <AuthProvider>
+                <GetToken />
+                <div>
+                  <Nav />
+                </div>
+                <Routes>
+                  <Route index element={<MainPage />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<LoginForm />} />
+                  <Route path="/accounts/covers" element={<MyBooksList />} />
+                  <Route path="/createpages/:id" element={<CreatePages />} />
+                  <Route path="/createcover" element={<CreateCover />} />
+                  <Route path="/book/:id" element={<BookDetail />} />
+                  <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
+                </Routes>
+              </AuthProvider>
             </div>
-            <Routes>
-              <Route index element={<MainPage />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/accounts/covers" element={<MyBooksList />} />
-              <Route path="/createpages/:id" element={<CreatePages />} />
-              <Route path="/createcover" element={<CreateCover />} />
-              <Route path="/book/:id" element={<BookDetail />} />
-              <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
-            </Routes>
-          </AuthProvider>
+          </BrowserRouter>
         </div>
-      </BrowserRouter>
+      </div>
+      <Footer />
     </div>
   );
 }
