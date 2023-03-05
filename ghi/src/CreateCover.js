@@ -8,7 +8,18 @@ export default function CreateCover(props) {
     const [username, setUsername] = useState('')
     const [title, setTitle] = useState('')
     const [cover_image_url, setCover_image_url] = useState('')
+    const [useApi, setUseApi] = useState(false);
     const [created_on, setCreated_on] = useState('')
+
+
+    const [apiPrompt, setApiPrompt] = useState('')
+    const [apiGuidance, setApiGuidance] = useState('')
+    const [apiSteps, setApiSteps] = useState('')
+    const [apiSampler, setApiSampler] = useState('')
+    const [apiUpscale, setApiUpscale] = useState('')
+    const [apiNegativePrompt, setApiNegativePrompt] = useState('')
+    const [apiModel, setApiModel] = useState('')
+    const [previewImageUrl, setPreviewImageUrl] = useState("");
 
     useEffect(() => {
         const username = localStorage.getItem('username')
@@ -19,6 +30,47 @@ export default function CreateCover(props) {
         const value = event.target.value
         setTitle(value)
     }
+
+    const handleApiCheckboxChange = (event) => {
+        const value = event.target.checked;
+        setUseApi(value);
+    };
+
+    const handleApiPromptChange = (event) => {
+        const value = event.target.value
+        setApiPrompt(value)
+    }
+
+    const handleApiGuidanceChange = (event) => {
+        const value = event.target.value
+        setApiGuidance(value)
+    }
+
+    const handleApiStepsChange = (event) => {
+        const value = event.target.value
+        setApiSteps(value)
+    }
+
+    const handleApiSamplerChange = (event) => {
+        const value = event.target.value
+        setApiSampler(value)
+    }
+
+    const handleApiUpscaleChange = (event) => {
+        const value = event.target.value
+        setApiUpscale(value)
+    }
+
+    const handleApiNegativePromptChange = (event) => {
+        const value = event.target.value
+        setApiNegativePrompt(value)
+    }
+
+    const handleApiModelChange = (event) => {
+        const value = event.target.value
+        setApiModel(value)
+    }
+
 
     const handleImageChange = (event) => {
         const value = event.target.value
@@ -34,7 +86,16 @@ export default function CreateCover(props) {
     //     const username = localStorage.getItem('username')
     //     setUsername(username)
     // }, [])
-
+    const handleApiPromptSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`https://api.unsplash.com/photos/random?query=${apiPrompt}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`);
+            const data = await response.json();
+            setPreviewImageUrl(data.urls.regular);
+        } catch (error) {
+            console.error(error);
+        }
+    };
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -43,6 +104,39 @@ export default function CreateCover(props) {
         data.title = title
         data.cover_image_url = cover_image_url
         data.created_on = created_on
+
+        if (useApi) {
+            const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://dezgo.p.rapidapi.com/text2image",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/json",
+                    "x-rapidapi-key": "3882bcd6dbmsh144af657249d02cp1bcbc7jsn04651cb74a72",
+                    "x-rapidapi-host": "dezgo.p.rapidapi.com"
+                },
+                "body": JSON.stringify({
+                    "prompt": apiPrompt,
+                    "guidance": "7",
+                    "steps": "30",
+                    "sampler": "euler_a",
+                    "upscale": "1",
+                    "negative_prompt": "ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, draft",
+                    "model": "epic_diffusion_1_1"
+                })
+            };
+
+            try {
+                const apiResponse = await fetch(settings.url, settings);
+                const imageResponse = await apiResponse.json();
+                const imageUrl = URL.createObjectURL(imageResponse);
+                // Handle the image response here
+            } catch (error) {
+                console.error('Error while fetching image from API:', error);
+                // Handle the error here
+            }
+        }
 
 
         const url = `${process.env.REACT_APP_ND_API_HOST}/covers`;
@@ -75,27 +169,62 @@ export default function CreateCover(props) {
                 <div className="shadow p-4 mt-4">
                     <h2 className="text-center">Create a Book Cover</h2>
                     <form onSubmit={handleSubmit} id="add-createabook-form">
-
+                        <div className="form-check mb-3">
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                id="useApiCheckbox"
+                                checked={useApi}
+                                onChange={handleApiCheckboxChange}
+                            />
+                            <label className="form-check-label" htmlFor="useApiCheckbox">
+                                Use API instead of Image URL
+                            </label>
+                        </div>
                         <div className="form-floating mb-3">
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>
                         </div>
-                        {/* <div className="form-floating mb-3">
-                            <input onChange={handleUsernameChange} value={username} placeholder="Username" required type="text" name="username" className="form-control" />
-                            <label htmlFor="username">Author</label>
-                        </div> */}
-                        <div className="form-floating mb-3">
-                            <input onChange={handleImageChange} value={cover_image_url} placeholder="cover_image_url" required type="text" name="cover_image_url" className="form-control" />
-                            <label htmlFor="cover_image_url">Image url</label>
-                        </div>
+                        {useApi && (
+                            <div className="form-floating mb-3">
+                                <input
+                                    onChange={handleApiPromptChange}
+                                    value={apiPrompt}
+                                    placeholder="Image prompt"
+                                    required
+                                    type="text"
+                                    name="apiPrompt"
+                                    className="form-control"
+                                />
+                                <label htmlFor="apiPrompt">Image prompt</label>
+                                <button className="btn btn-primary mt-2">Submit Image Prompt</button>
+                            </div>
+                        )}
+                        {/* Only render the cover_image_url input if the user is not using the API */}
+                        {!useApi && (
+                            <div className="form-floating mb-3">
+                                <input
+                                    onChange={handleImageChange}
+                                    value={cover_image_url}
+                                    placeholder="cover_image_url"
+                                    required
+                                    type="text"
+                                    name="cover_image_url"
+                                    className="form-control"
+                                />
+                                <label htmlFor="cover_image_url">Image url</label>
+                            </div>
+                        )}
                         <div className="form-floating mb-3">
                             <textarea onChange={handleCreateOnChange} value={created_on} placeholder="CreatedOn" required type="datetime-local" name="created_on" className="form-control" />
                             <label htmlFor="created_on">Created on (YYYY-MM-DD)</label>
                         </div>
                         <button className="btn btn-primary">Submit</button>
                     </form>
+                    {previewImageUrl && <img src={previewImageUrl} alt="Preview" className="mt-3" />}
                 </div>
             </div>
         </div>
     );
 }
+// }
