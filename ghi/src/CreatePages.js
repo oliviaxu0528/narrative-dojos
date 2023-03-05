@@ -1,7 +1,7 @@
 import { useState, createRef, useEffect } from 'react'
 import { message, Button, Modal, Form, Input } from 'antd'
 import './App.css'
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 let currentLocation = 1
 function CreatePages() {
@@ -184,6 +184,11 @@ function CreatePages() {
         <Button type='primary' href="#" className='btn' onClick={addPage}>Add a page</Button>
         <Button type='primary' className='btn-secondary' onClick={decreasePage}>Delete current page</Button>
       </div>
+      <div className="d-grid gap-2 d-sm-flex justify-content-sm-center" type="primary">
+            <Link to="/accounts/covers" className="btn btn-primary btn-lg px-4 gap-3" >
+              Publish
+            </Link>
+      </div>
       <div className='book-container'>
         <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
           <h1 className='pt'>{'previous'}</h1>
@@ -195,10 +200,10 @@ function CreatePages() {
             return (
               <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                 <div className="front">
-                  <img src={item.cover_image_url} width="350px" height="500px"/>
-                  <div>{item.title}</div>
-                  <div>{item.username}</div>
-                  <div>{item.created_on}</div>
+                  <img src={item.cover_image_url} width="425px" height="680px"/>
+                  {/* <div>{item.title}</div>
+                  <div>by {item.username}</div>
+                  <div>written on: {item.created_on}</div> */}
                 </div>
                 <div className="back">
                   {/* <div>cover-back</div> */}
@@ -257,7 +262,7 @@ function CreatePages() {
           </Form.Item>
 
           <Form.Item
-            label="text (0-54 words)"
+            label="text"
             name="text"
             rules={[
               {
@@ -270,7 +275,7 @@ function CreatePages() {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
-              Publish
+              Add page
             </Button>
           </Form.Item>
         </Form>

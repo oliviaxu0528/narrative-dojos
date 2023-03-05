@@ -196,6 +196,42 @@ const MainPage = (props) => {
         fetchData();
     }, []);
 
+    function BookColumn({ book }) {
+        const { token } = useToken();
+
+        const deleteBook = async () => {
+            var result = window.confirm("Are you sure to delete?"); // show confirmation prompt
+            if (result) {
+            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${book.ID}`;
+            const response = await fetch(bookUrl, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            fetchData();
+        }
+}
+        return (
+            <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
+                <div key={book.id} className="card mb-3 shadow">
+                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
+                    {/* <div className="card-body">
+                        <h5 className="card-title">{book.title}</h5>
+                    </div> */}
+                    <div className="card-body">
+                        <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
+                        {token && (
+                            <button className="btn btn-danger" onClick={deleteBook}>Delete</button>
+                        )}
+                        {/* <Button type='primary' href="#" className='btn' onClick={addPage}>Add a page</Button> */}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <>
             <div>
