@@ -134,46 +134,49 @@
 // export default MainPage
 
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import './index.css';
-import './myBookList.css';
-import { useToken } from './Authentication';
-
+import "./index.css";
+import { useToken } from "./Authentication";
 
 const MainPage = (props) => {
     const [bookColumns, setBookColumns] = useState([]);
     const { token } = useToken();
-    const bookDeskColumns = []
-    let navigate = useNavigate()
+    const [bookDeskColumns, setBookDeskColumns] = useState([]);
+    let navigate = useNavigate();
     const toBookDetail = (book) => {
-        navigate(`/book/${book.ID}`)
-    }
+        navigate(`/book/${book.ID}`);
+    };
 
     const fetchData = async () => {
-        const currentUser = localStorage.getItem('username');
+        const currentUser = localStorage.getItem("username");
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${currentUser}/covers`;
         const response = await fetch(bookUrl);
         const data = await response.json();
-        setBookColumns(data);
-        let arr = []
+        let arr = [];
+        let columns = []
         const fn = (data) => {
             data.forEach((item, index) => {
-                arr.push(item)
-                if ((index !== 0 && (index + 1) % 3 === 0) || index === data.length - 1) {
-                    bookDeskColumns.push(arr)
-                    arr = []
+                arr.push(item);
+                if (
+                    (index !== 0 && (index + 1) % 3 === 0) ||
+                    index === data.length - 1
+                ) {
+                    columns.push(arr);
+                    arr = [];
                 }
-            })
-        }
-        fn(data)
-    }
+            });
+        };
+        fn(data);
+        setBookDeskColumns(columns)
+        setBookColumns(data);
+    };
 
     const sort = () => {
         let sortType = document.getElementById("mySelect").value;
         if (sortType === "alphabetical") {
             const titleAlp = [...bookColumns].sort((a, b) =>
-                a.title > b.title ? 1 : -1,
+                a.title > b.title ? 1 : -1
             );
             setBookColumns(titleAlp);
         } else if (sortType === "newest") {
@@ -187,7 +190,7 @@ const MainPage = (props) => {
             );
             setBookColumns(oldest);
         }
-    }
+    };
 
     useEffect(() => {
         fetchData();
@@ -203,7 +206,24 @@ const MainPage = (props) => {
                     width="450"
                     height="350"
                 />
-                <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
+                <div className="wrapper">
+                    <span>N</span>
+                    <span>a</span>
+                    <span>r</span>
+                    <span>r</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>i</span>
+                    <span>v</span>
+                    <span>e</span>
+                    <span>D</span>
+                    <span>o</span>
+                    <span>j</span>
+                    <span>o</span>
+                </div>
+                {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>
+                    Narrative Dojo
+                </h1> */}
                 <div className="col-lg-6 mx-auto">
                     <p className="lead mb-4" style={{ textAlign: "center" }}>
                         by Narrative Ninjas
@@ -211,14 +231,20 @@ const MainPage = (props) => {
                     <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                         {token && (
                             <>
-                                <Link to="/createcover" className="btn btn-primary btn-lg px-4 gap-3">
+                                <Link
+                                    to="/createcover"
+                                    className="btn btn-primary btn-lg px-4 gap-3"
+                                >
                                     Write a book!
                                 </Link>
                             </>
                         )}
                         {!token && (
                             <>
-                                <Link to="/signup" className="btn btn-primary btn-lg px-4 gap-3">
+                                <Link
+                                    to="/signup"
+                                    className="btn btn-primary btn-lg px-4 gap-3"
+                                >
                                     Write a book!
                                 </Link>
                             </>
@@ -239,23 +265,31 @@ const MainPage = (props) => {
                             <div className="bookshelf" key={index}>
                                 <div className="book-grid">
                                     <ul>
-                                        {
-                                            books.map((item) => {
-                                                return (
-                                                    <li>
-                                                        <div key={item.id} className="card mb-3 shadow">
-                                                            <img src={item.cover_image_url} width="200px" height="300px" className="card-img-top" />
-                                                            <div className="card-body">
-                                                                <h5 className="card-title">{item.title}</h5>
-                                                            </div>
-                                                            <div className="card-footer">
-                                                                <h5 className="card-link" onClick={() => toBookDetail(item)}>Read {item.title}</h5>
-                                                            </div>
+                                        {books.map((item) => {
+                                            return (
+                                                <li key={item.id}>
+                                                    <div className="card mb-3 shadow">
+                                                        <img
+                                                            src={item.cover_image_url}
+                                                            width="200px"
+                                                            height="300px"
+                                                            className="card-img-top"
+                                                        />
+                                                        <div className="card-body">
+                                                            <h5 className="card-title">{item.title}</h5>
                                                         </div>
-                                                    </li>
-                                                )
-                                            })
-                                        }
+                                                        <div className="card-footer">
+                                                            <h5
+                                                                className="card-link"
+                                                                onClick={() => toBookDetail(item)}
+                                                            >
+                                                                Read {item.title}
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
                                 </div>
                                 <div className="shelf-shadows"></div>
@@ -266,6 +300,6 @@ const MainPage = (props) => {
                 </div>
             </div>
         </>
-    )
-}
-export default MainPage
+    );
+};
+export default MainPage;
