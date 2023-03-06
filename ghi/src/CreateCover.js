@@ -42,35 +42,35 @@ export default function CreateCover(props) {
         setApiPrompt(value)
     }
 
-    const handleApiGuidanceChange = (event) => {
-        const value = event.target.value
-        setApiGuidance(value)
-    }
+    // const handleApiGuidanceChange = (event) => {
+    //     const value = event.target.value
+    //     setApiGuidance(value)
+    // }
 
-    const handleApiStepsChange = (event) => {
-        const value = event.target.value
-        setApiSteps(value)
-    }
+    // const handleApiStepsChange = (event) => {
+    //     const value = event.target.value
+    //     setApiSteps(value)
+    // }
 
-    const handleApiSamplerChange = (event) => {
-        const value = event.target.value
-        setApiSampler(value)
-    }
+    // const handleApiSamplerChange = (event) => {
+    //     const value = event.target.value
+    //     setApiSampler(value)
+    // }
 
-    const handleApiUpscaleChange = (event) => {
-        const value = event.target.value
-        setApiUpscale(value)
-    }
+    // const handleApiUpscaleChange = (event) => {
+    //     const value = event.target.value
+    //     setApiUpscale(value)
+    // }
 
-    const handleApiNegativePromptChange = (event) => {
-        const value = event.target.value
-        setApiNegativePrompt(value)
-    }
+    // const handleApiNegativePromptChange = (event) => {
+    //     const value = event.target.value
+    //     setApiNegativePrompt(value)
+    // }
 
-    const handleApiModelChange = (event) => {
-        const value = event.target.value
-        setApiModel(value)
-    }
+    // const handleApiModelChange = (event) => {
+    //     const value = event.target.value
+    //     setApiModel(value)
+    // }
 
 
     const handleImageChange = (event) => {
@@ -90,11 +90,32 @@ export default function CreateCover(props) {
     const handleApiPromptSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://api.unsplash.com/photos/random?query=${apiPrompt}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`);
-            const data = await response.json();
-            setPreviewImageUrl(data.urls.regular);
+            const apiResponse = await fetch('https://dezgo.p.rapidapi.com/text2image', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-rapidapi-key': '3882bcd6dbmsh144af657249d02cp1bcbc7jsn04651cb74a72',
+                    'x-rapidapi-host': 'dezgo.p.rapidapi.com'
+                },
+                body: JSON.stringify({
+                    prompt: apiPrompt,
+                    guidance: '7',
+                    steps: '30',
+                    sampler: 'euler_a',
+                    upscale: '1',
+                    negative_prompt: 'ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, draft',
+                    model: 'epic_diffusion_1_1'
+                })
+            });
+            const data = await apiResponse.json();
+            if (data.status === 'success') {
+                setPreviewImageUrl(data.output_url);
+            } else {
+                // Handle case where image URL is not present in response
+                console.error('Image URL not present in Dezgo API response:', data);
+            }
         } catch (error) {
-            console.error(error);
+            console.error('Error fetching image from Dezgo API:', error);
         }
     };
     const handleSubmit = async (event) => {
@@ -107,36 +128,10 @@ export default function CreateCover(props) {
         data.created_on = created_on
 
         if (useApi) {
-            const settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://dezgo.p.rapidapi.com/text2image",
-                "method": "POST",
-                "headers": {
-                    "content-type": "application/json",
-                    "x-rapidapi-key": "3882bcd6dbmsh144af657249d02cp1bcbc7jsn04651cb74a72",
-                    "x-rapidapi-host": "dezgo.p.rapidapi.com"
-                },
-                "body": JSON.stringify({
-                    "prompt": apiPrompt,
-                    "guidance": "7",
-                    "steps": "30",
-                    "sampler": "euler_a",
-                    "upscale": "1",
-                    "negative_prompt": "ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, draft",
-                    "model": "epic_diffusion_1_1"
-                })
-            };
-
-            try {
-                const apiResponse = await fetch(settings.url, settings);
-                const imageResponse = await apiResponse.json();
-                const imageUrl = URL.createObjectURL(imageResponse);
-                // Handle the image response here
-            } catch (error) {
-                console.error('Error while fetching image from API:', error);
-                // Handle the error here
-            }
+            await handleApiPromptSubmit(event);
+            data.cover_image_url = previewImageUrl;
+        } else {
+            data.cover_image_url = cover_image_url;
         }
 
 
@@ -198,7 +193,7 @@ export default function CreateCover(props) {
                                     className="form-control"
                                 />
                                 <label htmlFor="apiPrompt">Image prompt</label>
-                                <button className="btn btn-primary mt-2">Submit Image Prompt</button>
+                                <button className="btn btn-primary mt-2" onClick={handleApiPromptSubmit}>Submit Image Prompt</button>
                             </div>
                         )}
                         {/* Only render the cover_image_url input if the user is not using the API */}
