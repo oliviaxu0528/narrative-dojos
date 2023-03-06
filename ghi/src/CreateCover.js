@@ -14,12 +14,6 @@ export default function CreateCover(props) {
 
 
     const [apiPrompt, setApiPrompt] = useState('')
-    const [apiGuidance, setApiGuidance] = useState('')
-    const [apiSteps, setApiSteps] = useState('')
-    const [apiSampler, setApiSampler] = useState('')
-    const [apiUpscale, setApiUpscale] = useState('')
-    const [apiNegativePrompt, setApiNegativePrompt] = useState('')
-    const [apiModel, setApiModel] = useState('')
     const [previewImageUrl, setPreviewImageUrl] = useState("");
 
     useEffect(() => {
@@ -41,37 +35,6 @@ export default function CreateCover(props) {
         const value = event.target.value
         setApiPrompt(value)
     }
-
-    // const handleApiGuidanceChange = (event) => {
-    //     const value = event.target.value
-    //     setApiGuidance(value)
-    // }
-
-    // const handleApiStepsChange = (event) => {
-    //     const value = event.target.value
-    //     setApiSteps(value)
-    // }
-
-    // const handleApiSamplerChange = (event) => {
-    //     const value = event.target.value
-    //     setApiSampler(value)
-    // }
-
-    // const handleApiUpscaleChange = (event) => {
-    //     const value = event.target.value
-    //     setApiUpscale(value)
-    // }
-
-    // const handleApiNegativePromptChange = (event) => {
-    //     const value = event.target.value
-    //     setApiNegativePrompt(value)
-    // }
-
-    // const handleApiModelChange = (event) => {
-    //     const value = event.target.value
-    //     setApiModel(value)
-    // }
-
 
     const handleImageChange = (event) => {
         const value = event.target.value
