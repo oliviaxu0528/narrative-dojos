@@ -11,7 +11,6 @@ const MainPage = (props) => {
 
   let navigate = useNavigate()
   const toBookDetail = (book) => {
-    console.log(book)
     navigate(`/book/${book.ID}`)
   }
 
@@ -58,7 +57,7 @@ const MainPage = (props) => {
     return (
       <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
         <div key={book.id} className="card mb-3 shadow">
-          <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
+          <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" alt="cover_image_url"/>
           <div className="card-body">
             <h5 className="card-title" onClick={() => toBookDetail(book)}>{book.title}</h5>
             <Link to={`/accounts/${book.username}/covers`} onClick={() => handleSelectUser(book.username)}>
@@ -67,7 +66,6 @@ const MainPage = (props) => {
           </div>
           <div className="card-footer">
             <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-            {/* <p className="card-link">More books by {book.username}</p> */}
           </div>
         </div>
       </div>

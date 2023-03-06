@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Response
 from typing import List, Union
-from queries.book import BookRepository, BookOut, Error
+from queries.book import BookRepository, BookIn, BookOut, Error
 
 router = APIRouter()
 
@@ -28,3 +28,11 @@ def delete_book(
     repo: BookRepository = Depends()
 ) -> bool:
     return repo.delete(ID)
+
+@router.put("/book/{ID}", response_model=Union[BookOut, Error])
+def update_book(
+    ID: int,
+    book: BookIn,
+    repo: BookRepository = Depends()
+) -> Union[BookOut,Error]:
+    return repo.update(ID, book)
