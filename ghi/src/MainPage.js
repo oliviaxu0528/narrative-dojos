@@ -11,7 +11,6 @@ const MainPage = (props) => {
 
   let navigate = useNavigate()
   const toBookDetail = (book) => {
-    console.log(book)
     navigate(`/book/${book.ID}`)
   }
 
@@ -67,7 +66,6 @@ const MainPage = (props) => {
           </div>
           <div className="card-footer">
             <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-            {/* <p className="card-link">More books by {book.username}</p> */}
           </div>
         </div>
       </div>
@@ -84,7 +82,6 @@ const MainPage = (props) => {
           width="450"
           height="350"
         />
-        {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1> */}
         <div className="wrapper">
           <span>N</span>
           <span>a</span>
@@ -101,7 +98,6 @@ const MainPage = (props) => {
           <span>o</span>
         </div>
         <div className="col-lg-6 mx-auto">
-          {/* lead mb-4 */}
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
               <>

@@ -10,7 +10,6 @@ const MainPage = (props) => {
 
     let navigate = useNavigate()
     const toBookDetail = (book) => {
-        console.log(book)
         navigate(`/book/${book.ID}`)
     }
 

@@ -78,7 +78,6 @@ function BookDetail(props) {
         const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
         const response = await fetch(pagesUrl);
         let data = await response.json();
-        // console.log(id,data)
         data = data.filter((item, index) => {
             return +item.coverID === +id
         })
@@ -88,7 +87,6 @@ function BookDetail(props) {
         const bookId = params.id
         getCoverById(bookId)
         getPagesById(bookId)
-        console.log(numOfPapers)
     }, [])
 
     return (

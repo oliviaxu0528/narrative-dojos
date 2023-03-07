@@ -8,7 +8,6 @@ body {
   height: 100vh;
 
   font-family: sans-serif;
-  /* background-color: rgb(49, 54, 49); */
   background-image: url("https://images.unsplash.com/photo-1499198116522-4a6235013d63?auto=format&fit=crop&w=1233&q=80");
 }
 
@@ -66,13 +65,11 @@ body {
   transform: rotateY(180deg);
 }
 
-/* Paper flip effect */
 .flipped .front,
 .flipped .back {
   transform: rotateY(-180deg);
 }
 
-/* Controller Buttons */
 button {
   border: none;
   background-color: transparent;
@@ -119,9 +116,7 @@ i {
   width: 357.5px;
   background-size: 100%;
   background-repeat: no-repeat;
-  /* background-position: center; */
   top: 50%;
-  /* border:1px solid red; */
 
   margin: 30px;
 
@@ -132,11 +127,8 @@ i {
   width: 425px;
   background-size: 100%;
   background-repeat: no-repeat;
-  /* background-position: center; */
   top: 50%;
-  /* border:1px solid red; */
 
-  /* margin:35px; */
 
   text-align: center;
 }
@@ -162,13 +154,9 @@ i {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  /* width: 100%; */
-  /* font-size:28upx; */
-  /* word-break: break-word;
-   */
   width: 420px;
   height: 352px;
-  /* margin: 10px; */
+
 
   text-align: center;
   word-wrap: break-word;
@@ -217,10 +205,8 @@ i {
 }
 
 .gradient {
-  /* Fallback: Set a background color. */
   background-color: #ca4246;
 
-  /* Create the gradient. */
   background-image: linear-gradient(
     45deg,
     #ca4246 16.666%,
@@ -235,36 +221,16 @@ i {
     #a7489b 83.333%
   );
 
-  /* Set the background size and repeat properties. */
   background-size: 100%;
   background-repeat: repeat;
-
-  /* Use the text as a mask for the background. */
-  /* This will show the gradient as a text color rather than element bg. */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* Animate the text when loading the element. */
-  /* This animates it on page load and when hovering out. */
   animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
 }
 
-/* Paper stack order */
-/*#p1 {*/
-/*  z-index: 3;*/
-/*}*/
 
-/*#p2 {*/
-/*  z-index: 2;*/
-/*}*/
-
-/*#p3 {*/
-/*  z-index: 1;*/
-/*}*/
 
 .rainbow-text {
-  /* Create a conic gradient. */
-  /* Double percentages to avoid blur (#000 10%, #fff 10%, #fff 20%, ...). */
   background: #ca4246;
   background-color: #ca4246;
   background: conic-gradient(
@@ -280,17 +246,9 @@ i {
     #a7489b 83.333%
   );
 
-  /* Set thee background size and repeat properties. */
   background-size: 57%;
   background-repeat: repeat;
-
-  /* Use the text as a mask for the background. */
-  /* This will show the gradient as a text color rather than element bg. */
-  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
-
-  /* Animate the text when loading the element. */
-  /* This animates it on page load and when hovering out. */
   animation: rainbow-text-animation-rev 0.5s ease forwards;
 
   cursor: pointer;
@@ -333,9 +291,6 @@ h3 {
 
   font-family: "Archivo Black", sans-serif;
   text-shadow: 1.5px 1.5px;
-
-  /* font-family: "Trattatello", cursive; */
-
   margin-bottom: -0.25em;
 }
 
@@ -384,14 +339,11 @@ h3 {
   margin: -10px;
 
   font-family: "Archivo Black", sans-serif;
-  /* font-family: "Trattatello", cursive; */
 
   margin-bottom: 0.25em;
 
-  /* Fallback: Set a background color. */
   background-color: #f3eaeb;
 
-  /* Create the gradient. */
   background-image: linear-gradient(
     45deg,
     #dcd5d5 16.666%,
@@ -418,20 +370,6 @@ h5 {
 }
 
 .wrapper {
-  /* width:440px;
-    height:70px; */
-  /* position: absolute;
-    left:12.5%;
-    top:50%; */
-  /* margin-right: 0.25em; */
-  /* transform: translate(%, -20%); */
-  /* text-align:center;
-     */
-  /* vertical-align: middle; */
-
-  /* display:flex;
-flex-direction: row;
-justify-content: space-around; */
 
   display: -webkit-box;
   -webkit-box-orient: horizontal;
@@ -472,7 +410,6 @@ justify-content: space-around; */
 }
 .wrapper span:nth-child(6) {
   animation-delay: 900ms;
-  /* margin-left: 20px; */
 }
 .wrapper span:nth-child(7) {
   animation-delay: 1050ms;
