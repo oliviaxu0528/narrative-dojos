@@ -48,6 +48,8 @@ export default function CreateCover(props) {
 
     const handlePreviewImageSelect = (index) => {
         setSelectedPreviewImageIndex(index);
+        setCover_image_url(previewImages[index]);
+        console.log(previewImages[index])
     }
 
     // useEffect(() => {
@@ -95,7 +97,7 @@ export default function CreateCover(props) {
         data.created_on = created_on
 
         if (useApi && selectedPreviewImageIndex !== null) {
-            data.cover_image_url = previewImages[selectedPreviewImageIndex];
+            data.cover_image_url = previewImages[selectedPreviewImageIndex].url;
             console.log(data.cover_image_url)
         } else {
             data.cover_image_url = cover_image_url;
@@ -113,7 +115,8 @@ export default function CreateCover(props) {
 
         const response = await fetch(url, fetchConfig);
         const msg = await response.json()
-        console.log(msg)
+        console.log(fetchConfig)
+        console.log(response)
 
         // console.log(fetchConfig)
         if (response.ok) {
@@ -193,7 +196,7 @@ export default function CreateCover(props) {
                                 {previewImages.map((previewImageUrl, index) => (
                                     <div key={index}>
                                         <img
-                                            src={previewImageUrl}
+                                            src={previewImageUrl.url}
                                             alt={`Preview Image ${index + 1}`}
                                             style={{ width: "100%" }}
                                             onError={(e) => {
