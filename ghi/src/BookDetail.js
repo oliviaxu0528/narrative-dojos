@@ -1,10 +1,20 @@
 import { useState, createRef, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './App.css'
+// import assemblyai from './assemblyai';
+
+// const synth = window.speechSynthesis;
+
+// function speak(text) {
+//     const utterance = new SpeechSynthesisUtterance(text);
+//     synth.speak(utterance);
+// }
+
 
 let currentLocation = 1
 function BookDetail() {
     let [numOfPapers, setNumOfPapers] = useState([])
+    const [isPlaying, setIsPlaying] = useState(false);
     let papers = numOfPapers.map((item, index) => {
         return createRef()
     })
@@ -119,6 +129,22 @@ function BookDetail() {
                                     <br/>
                                     <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
                                     <div className='button-2'>{item.text}</div>
+                                    {/* <div className="button-2">
+                                        {item.text}
+                                        <button
+                                            className="speak-button"
+                                            onClick={() => {
+                                                setIsPlaying(!isPlaying);
+                                                if (!isPlaying) {
+                                                    speak(item.text);
+                                                } else {
+                                                    synth.cancel();
+                                                }
+                                            }}
+                                        >
+                                            {isPlaying ? "Stop" : "Speak"}
+                                        </button>
+                                    </div> */}
                                 </div>
                                 <div className="back">
                                     <div id={'b' + (index + 1)} className="back-content">
