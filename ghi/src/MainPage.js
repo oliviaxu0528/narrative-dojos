@@ -82,7 +82,6 @@ const MainPage = (props) => {
           width="450"
           height="350"
         />
-        {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1> */}
         <div className="wrapper">
           <span>N</span>
           <span>a</span>
@@ -99,7 +98,6 @@ const MainPage = (props) => {
           <span>o</span>
         </div>
         <div className="col-lg-6 mx-auto">
-          {/* lead mb-4 */}
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
               <>

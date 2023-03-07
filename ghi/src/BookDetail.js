@@ -86,7 +86,6 @@ function BookDetail() {
         const bookId = params.id
         getCoverById(bookId)
         getPagesById(bookId)
-        console.log(numOfPapers)
     }, [])
 
     return (
