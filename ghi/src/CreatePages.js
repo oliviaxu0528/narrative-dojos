@@ -5,14 +5,11 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 
 let currentLocation = 1
 function CreatePages() {
-  // book list
   let [numOfPapers, setNumOfPapers] = useState([])
-  // cover
   let [coverPaper, setCoverPaper] = useState([])
-  // box
   let [isModalOpen, setIsModelOpen] = useState(false)
-  const [page_image_url, setPage_image_url] = useState('')
-  const [text, setText] = useState('')
+  // const [page_image_url, setPage_image_url] = useState('')
+  // const [text, setText] = useState('')
   const form = createRef()
   let papers = numOfPapers.map((item, index) => {
     return createRef()
@@ -21,7 +18,7 @@ function CreatePages() {
   let maxLocation = numOfPapers.length + 2;
   const preButton = createRef()
   const params = useParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const nextButton = createRef()
   const book = createRef()
   // open the book
@@ -130,21 +127,7 @@ function CreatePages() {
   // submitting
   const onFinish = async (values) => {
     if (values) {
-      // let currentTime = new Date()
-      // let year = currentTime.getFullYear()
-      // let month = currentTime.getMonth()
-      // let day = currentTime.getDay()
-      // values.createTime = `${year}-${month}-${day}`
-      // const arr = [...numOfPapers]
-      // arr.push(values)
-      // papers = arr.map((item, index) => {
-      //   return createRef()
-      // // })
-      // setNumOfPapers(arr)
-      // message.success({
-      //   content: 'successfully added',
-      //   duration: 1
-      // })
+
       const data = {}
       data.page_image_url = values.page_image_url
       data.text = values.text
@@ -159,9 +142,7 @@ function CreatePages() {
       };
       const response = await fetch(url, fetchConfig);
       if (response.ok) {
-        // setPage_image_url('');
-        // setText('');
-        // navigate('/accounts/covers')
+
         getPagesById(params.id)
       }
     }
@@ -201,12 +182,9 @@ function CreatePages() {
               <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                 <div className="front">
                   <img src={item.cover_image_url} width="425px" height="680px"/>
-                  {/* <div>{item.title}</div>
-                  <div>by {item.username}</div>
-                  <div>written on: {item.created_on}</div> */}
+
                 </div>
                 <div className="back">
-                  {/* <div>cover-back</div> */}
                 </div>
               </div>
             )
@@ -222,7 +200,6 @@ function CreatePages() {
                 <div className="back">
                   <div id={'b' + (index + 1)} className="back-content">
                     <h1>{`page${index + 1}`}</h1>
-                    {/* <h1><img className="headerMenuEntryImg" src={item.page_image_url} /></h1> */}
                   </div>
                 </div>
               </div>
