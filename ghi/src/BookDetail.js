@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import './App.css'
 
 let currentLocation = 1
-function BookDetail(props) {
+function BookDetail() {
     let [numOfPapers, setNumOfPapers] = useState([])
     let papers = numOfPapers.map((item, index) => {
         return createRef()
@@ -61,7 +61,6 @@ function BookDetail(props) {
         }
     }
 
-    // get the book by id
     async function getCoverById(id) {
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${id}`;
         const response = await fetch(bookUrl);
@@ -78,7 +77,6 @@ function BookDetail(props) {
         const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
         const response = await fetch(pagesUrl);
         let data = await response.json();
-        // console.log(id,data)
         data = data.filter((item, index) => {
             return +item.coverID === +id
         })
@@ -107,17 +105,8 @@ function BookDetail(props) {
                             <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                                 <div className="front">
                                     <div className='text'>
-                                        {/* <h3>
-                                            {item.title}
-                                        </h3> */}
                                     </div>
                                     <img className='coverImg' src={item.cover_image_url} />
-                                    {/* <div className='gradient-text'>
-                                        <h4>By {item.username}</h4>
-                                    </div>
-                                    <div className='gradient-text'>
-                                        <h4>{item.created_on}</h4>
-                                    </div> */}
                                 </div>
                                 <div className="back">
                                 </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 
-export default function CreateCover(props) {
+export default function CreateCover() {
     const navigate = useNavigate()
 
     const [username, setUsername] = useState('')
@@ -30,10 +30,6 @@ export default function CreateCover(props) {
         setCreated_on(value)
     }
 
-    // useEffect(() => {
-    //     const username = localStorage.getItem('username')
-    //     setUsername(username)
-    // }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -56,9 +52,7 @@ export default function CreateCover(props) {
 
         const response = await fetch(url, fetchConfig);
         const msg = await response.json()
-        // console.log(msg)
 
-        // console.log(fetchConfig)
         if (response.ok) {
 
             setTitle('');
@@ -80,10 +74,6 @@ export default function CreateCover(props) {
                             <input onChange={handleTitleChange} value={title} placeholder="Title" required type="text" name="title" className="form-control" />
                             <label htmlFor="title">Title</label>
                         </div>
-                        {/* <div className="form-floating mb-3">
-                            <input onChange={handleUsernameChange} value={username} placeholder="Username" required type="text" name="username" className="form-control" />
-                            <label htmlFor="username">Author</label>
-                        </div> */}
                         <div className="form-floating mb-3">
                             <input onChange={handleImageChange} value={cover_image_url} placeholder="cover_image_url" required type="text" name="cover_image_url" className="form-control" />
                             <label htmlFor="cover_image_url">Image url (1.6 to 1 ratio recommended)</label>
