@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 
-
 export default function CreateCover(props) {
     const navigate = useNavigate()
 
@@ -47,6 +46,10 @@ export default function CreateCover(props) {
         setCreated_on(value)
     }
 
+    const handlePreviewImageSelect = (index) => {
+        setSelectedPreviewImageIndex(index);
+    }
+
     // useEffect(() => {
     //     const username = localStorage.getItem('username')
     //     setUsername(username)
@@ -54,7 +57,8 @@ export default function CreateCover(props) {
     const handleApiPromptSubmit = async (e) => {
         e.preventDefault();
         try {
-            const apiKey = 'YOUR_API_KEY_HERE';
+            const apiKey = "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";
+            console.log(apiKey)
             const prompt = apiPrompt;
             const response = await fetch(`https://api.openai.com/v1/images/generations`, {
                 method: 'POST',
@@ -65,12 +69,13 @@ export default function CreateCover(props) {
                 body: JSON.stringify({
                     "model": "image-alpha-001",
                     "prompt": prompt,
-                    "num_images": 3,
-                    "size": "512x512",
+                    "n": 3,
+                    "size": "256x256",
                     "response_format": "url"
                 })
             });
             const data = await response.json();
+            console.log(data)
             if (data.data && data.data.length > 0) {
                 setPreviewImages(data.data);
             } else {
@@ -91,6 +96,7 @@ export default function CreateCover(props) {
 
         if (useApi && selectedPreviewImageIndex !== null) {
             data.cover_image_url = previewImages[selectedPreviewImageIndex];
+            console.log(data.cover_image_url)
         } else {
             data.cover_image_url = cover_image_url;
         }
@@ -107,7 +113,7 @@ export default function CreateCover(props) {
 
         const response = await fetch(url, fetchConfig);
         const msg = await response.json()
-        // console.log(msg)
+        console.log(msg)
 
         // console.log(fetchConfig)
         if (response.ok) {
@@ -116,7 +122,7 @@ export default function CreateCover(props) {
             setUsername('');
             setCover_image_url('');
             setCreated_on('');
-            setSelectedPreviewImageIndex(null);
+            setSelectedPreviewImageIndex("");
             setPreviewImages([]);
             navigate(`/createpages/${msg.ID}`)
         }
@@ -183,11 +189,23 @@ export default function CreateCover(props) {
                     {previewImages.length > 0 && (
                         <div className="mb-3">
                             <h4>Choose one of the following preview images:</h4>
-                            <div className="d-flex justify-content-between align-items-center">
+                            <div className="d-flex justify-content-between align-items-center" style={{ width: "100%" }}>
                                 {previewImages.map((previewImageUrl, index) => (
                                     <div key={index}>
-                                        <img src={previewImageUrl} alt={`Preview Image ${index + 1}`} style={{ width: "30%" }} />
-                                        <button className="btn btn-primary" onClick={() => setSelectedPreviewImageIndex(index)}>Choose</button>
+                                        <img
+                                            src={previewImageUrl}
+                                            alt={`Preview Image ${index + 1}`}
+                                            style={{ width: "100%" }}
+                                            onError={(e) => {
+                                                console.log(`Error loading image at URL: ${previewImageUrl}`);
+                                            }}
+                                        />
+                                        <button
+                                            className="btn btn-primary"
+                                            onClick={() => handlePreviewImageSelect(index)}
+                                        >
+                                            Choose
+                                        </button>
                                     </div>
                                 ))}
                             </div>
