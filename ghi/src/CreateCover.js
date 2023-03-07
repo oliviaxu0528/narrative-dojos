@@ -14,7 +14,8 @@ export default function CreateCover(props) {
 
 
     const [apiPrompt, setApiPrompt] = useState('')
-    const [previewImageUrl, setPreviewImageUrl] = useState("");
+    const [previewImages, setPreviewImages] = useState([]);
+    const [selectedPreviewImageIndex, setSelectedPreviewImageIndex] = useState(null);
 
     useEffect(() => {
         const username = localStorage.getItem('username')
@@ -53,32 +54,30 @@ export default function CreateCover(props) {
     const handleApiPromptSubmit = async (e) => {
         e.preventDefault();
         try {
-            const apiResponse = await fetch('https://dezgo.p.rapidapi.com/text2image', {
+            const apiKey = 'YOUR_API_KEY_HERE';
+            const prompt = apiPrompt;
+            const response = await fetch(`https://api.openai.com/v1/images/generations`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-rapidapi-key': '3882bcd6dbmsh144af657249d02cp1bcbc7jsn04651cb74a72',
-                    'x-rapidapi-host': 'dezgo.p.rapidapi.com'
+                    'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
-                    prompt: apiPrompt,
-                    guidance: '7',
-                    steps: '30',
-                    sampler: 'euler_a',
-                    upscale: '1',
-                    negative_prompt: 'ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, draft',
-                    model: 'epic_diffusion_1_1'
+                    "model": "image-alpha-001",
+                    "prompt": prompt,
+                    "num_images": 3,
+                    "size": "512x512",
+                    "response_format": "url"
                 })
             });
-            const data = await apiResponse.json();
-            if (data.status === 'success') {
-                setPreviewImageUrl(data.output_url);
+            const data = await response.json();
+            if (data.data && data.data.length > 0) {
+                setPreviewImages(data.data);
             } else {
-                // Handle case where image URL is not present in response
-                console.error('Image URL not present in Dezgo API response:', data);
+                console.error('Image URL not present in API response:', data);
             }
         } catch (error) {
-            console.error('Error fetching image from Dezgo API:', error);
+            console.error('Error fetching image from API:', error);
         }
     };
     const handleSubmit = async (event) => {
@@ -90,9 +89,8 @@ export default function CreateCover(props) {
         data.cover_image_url = cover_image_url
         data.created_on = created_on
 
-        if (useApi) {
-            await handleApiPromptSubmit(event);
-            data.cover_image_url = previewImageUrl;
+        if (useApi && selectedPreviewImageIndex !== null) {
+            data.cover_image_url = previewImages[selectedPreviewImageIndex];
         } else {
             data.cover_image_url = cover_image_url;
         }
@@ -118,6 +116,8 @@ export default function CreateCover(props) {
             setUsername('');
             setCover_image_url('');
             setCreated_on('');
+            setSelectedPreviewImageIndex(null);
+            setPreviewImages([]);
             navigate(`/createpages/${msg.ID}`)
         }
     }
@@ -180,7 +180,19 @@ export default function CreateCover(props) {
                         </div>
                         <button className="btn btn-primary">Submit</button>
                     </form>
-                    {previewImageUrl && <img src={previewImageUrl} alt="Preview" className="mt-3" />}
+                    {previewImages.length > 0 && (
+                        <div className="mb-3">
+                            <h4>Choose one of the following preview images:</h4>
+                            <div className="d-flex justify-content-between align-items-center">
+                                {previewImages.map((previewImageUrl, index) => (
+                                    <div key={index}>
+                                        <img src={previewImageUrl} alt={`Preview Image ${index + 1}`} style={{ width: "30%" }} />
+                                        <button className="btn btn-primary" onClick={() => setSelectedPreviewImageIndex(index)}>Choose</button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
