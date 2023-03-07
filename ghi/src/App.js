@@ -23,13 +23,12 @@ function GetToken() {
 }
 
 function App(props) {
-  const [covers, setCovers] = useState([])
+  const [, setCovers] = useState([])
   const selectedUsername = props.username;
 
   const getCovers = async () => {
     const coversUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
     const response = await fetch(coversUrl)
-    console.log(covers)
 
     if (response.ok) {
       const data = await response.json();
