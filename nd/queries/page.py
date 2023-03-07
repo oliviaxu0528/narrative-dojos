@@ -40,7 +40,7 @@ class PageRepository:
                         ]
                     )
                     pageID = result.fetchone()[0]
-                    return self.page_in_to_out(pageID,page)
+                    return self.page_in_to_out(pageID, page)
         except Exception:
             return {"message": "Could not create"}
 
@@ -69,7 +69,7 @@ class PageRepository:
             print(e)
             return {"message": "Could not get all pages"}
 
-    def get_one(self,pageID:int) -> Optional[PageOut]:
+    def get_one(self, pageID: int) -> Optional[PageOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -89,7 +89,7 @@ class PageRepository:
             print(e)
             return {"message": "Could not get page"}
 
-    def delete(self,pageID:int) -> bool:
+    def delete(self, pageID: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -105,7 +105,7 @@ class PageRepository:
             print(e)
             return False
 
-    def update(self, pageID:int, page:PageIn) -> Union[PageOut,Error]:
+    def update(self, pageID: int, page: PageIn) -> Union[PageOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -124,8 +124,8 @@ class PageRepository:
                             pageID
                         ]
                     )
-                    return self.page_in_to_out(pageID,page)
-        except Exception as e:
+                    return self.page_in_to_out(pageID, page)
+        except Exception:
             return {"message": "Could not update"}
 
     def page_in_to_out(self, pageID: int, page: PageIn):

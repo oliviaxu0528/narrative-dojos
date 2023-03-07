@@ -18,17 +18,22 @@ from queries.accounts import (
     DuplicateAccountError,
 )
 
+
 class AccountForm(BaseModel):
     username: str
     password: str
 
+
 class AccountToken(Token):
     account: AccountOut
+
 
 class HttpError(BaseModel):
     detail: str
 
+
 router = APIRouter()
+
 
 def get_authenticator():
     return authenticator
@@ -37,7 +42,7 @@ def get_authenticator():
 @router.get("/protected", response_model=bool)
 async def get_protected(
     account_data: dict = Depends(authenticator.get_current_account_data)
-    ):
+):
     return True
 
 

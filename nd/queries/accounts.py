@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from .pool import pool
 from typing import List
 
+
 class DuplicateAccountError(ValueError):
     pass
 
@@ -37,7 +38,7 @@ class AccountRepository:
 
                     if record is not None:
                         return AccountOutWithPassword(
-                            accountID = record[0],
+                            accountID=record[0],
                             username=record[1],
                             hashed_password=record[2]
                         )
@@ -70,7 +71,10 @@ class AccountRepository:
         except Exception:
             return {"message": "Could not get by accountID"}
 
-    def create(self, account: AccountIn, hashed_password: str) -> AccountOutWithPassword:
+    def create(
+            self,
+            account: AccountIn,
+            hashed_password: str) -> AccountOutWithPassword:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -87,7 +91,11 @@ class AccountRepository:
                     )
                     accountID = result.fetchone()[0]
                     old_data = account.dict()
-                    return AccountOutWithPassword(accountID=accountID,hashed_password=hashed_password, **old_data)
+                    return AccountOutWithPassword(
+                        accountID=accountID,
+                        hashed_password=hashed_password,
+                        **old_data
+                        )
         except Exception:
             return {"message": "Could not create account"}
 
