@@ -77,10 +77,13 @@ build-nd:
     - export CONTAINER_FULL_IMAGE_NAME_WITH_TAG=$IMAGE_NAME_WITH_REGISTRY_PREFIX/nd:$COMMIT_HASH
     - echo "CONTAINER_FULL_IMAGE_NAME_WITH_TAG=$IMAGE_NAME_WITH_REGISTRY_PREFIX/nd:$COMMIT_HASH"
     - docker build -f ./Dockerfile --pull -t nd .
+    - echo "docker build -f ./Dockerfile --pull -t nd ."
     - docker tag nd "$CONTAINER_FULL_IMAGE_NAME_WITH_TAG"
+    - echo "docker tag nd "$CONTAINER_FULL_IMAGE_NAME_WITH_TAG""
     - docker push "$CONTAINER_FULL_IMAGE_NAME_WITH_TAG"
     - echo $CONTAINER_FULL_IMAGE_NAME_WITH_TAG
     - echo "Deploying on CapRover..."
     - docker run caprover/cli-caprover:v2.1.1 caprover deploy --caproverUrl $CAPROVER_URL --caproverPassword $CAPROVER_PASSWORD --caproverApp $CAPROVER_APP --imageName $CONTAINER_FULL_IMAGE_NAME_WITH_TAG
+    - echo "docker run caprover/cli-caprover:v2.1.1 caprover deploy --caproverUrl $CAPROVER_URL --caproverPassword $CAPROVER_PASSWORD --caproverApp $CAPROVER_APP --imageName $CONTAINER_FULL_IMAGE_NAME_WITH_TAG"
   only:
     - main
