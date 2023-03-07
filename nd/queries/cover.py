@@ -44,7 +44,7 @@ class CoverRepository:
                         ]
                     )
                     ID = result.fetchone()[0]
-                    return self.cover_in_to_out(ID,cover)
+                    return self.cover_in_to_out(ID, cover)
         except Exception:
             return {"message": "Could not create"}
 
@@ -74,7 +74,7 @@ class CoverRepository:
             print(e)
             return {"message": "Could not get all covers"}
 
-    def get_one(self,ID:int) -> Optional[CoverOut]:
+    def get_one(self, ID: int) -> Optional[CoverOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -94,7 +94,7 @@ class CoverRepository:
             print(e)
             return {"message": "Could not get cover"}
 
-    def delete(self,ID:int) -> bool:
+    def delete(self, ID: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -110,7 +110,7 @@ class CoverRepository:
             print(e)
             return False
 
-    def update(self, ID:int, cover:CoverIn) -> Union[CoverOut,Error]:
+    def update(self, ID: int, cover: CoverIn) -> Union[CoverOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -131,11 +131,12 @@ class CoverRepository:
                             ID
                         ]
                     )
-                    return self.cover_in_to_out(ID,cover)
+                    return self.cover_in_to_out(ID, cover)
         except Exception as e:
             return {"message": "Could not update"}
 
-    def get_covers_by_account(self, username:str)  -> Union[List[CoverOut],Error]:
+    def get_covers_by_account(
+            self, username: str) -> Union[List[CoverOut], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -148,7 +149,8 @@ class CoverRepository:
                         """,
                         [username]
                     )
-                    return [self.record_to_cover_out(record) for record in result]
+                    return [self.record_to_cover_out(
+                        record) for record in result]
 
         except Exception as e:
             print(e)

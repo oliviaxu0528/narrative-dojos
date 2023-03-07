@@ -1,6 +1,6 @@
 steps = [
     [
-        ## Create the table
+        # Create the table
         """
         CREATE TABLE page (
             pageID SERIAL PRIMARY KEY NOT NULL,
@@ -12,6 +12,6 @@ steps = [
         """
         DROP TABLE page;
         """
-        ## Drop the table
+        # Drop the table
     ]
 ]

@@ -1,6 +1,6 @@
 steps = [
     [
-        ## Create the table
+        # Create the table
         """
         CREATE TABLE accounts (
             accountID SERIAL NOT NULL PRIMARY KEY,
@@ -11,10 +11,10 @@ steps = [
         """
         DROP TABLE accounts;
         """
-        ## Drop the table
+        # Drop the table
     ],
     [
-        ## Create the table
+        # Create the table
         """
         CREATE TABLE cover (
             ID SERIAL NOT NULL PRIMARY KEY,
@@ -27,6 +27,6 @@ steps = [
         """
         DROP TABLE cover;
         """
-        ## Drop the table
+        # Drop the table
     ]
 ]

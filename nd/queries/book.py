@@ -3,6 +3,7 @@ from typing import List, Union
 from datetime import date
 from queries.pool import pool
 
+
 class BookIn(BaseModel):
     username: str
     title: str
@@ -41,12 +42,13 @@ class BookRepository:
                         ON cover.ID = page.coverID
                         """
                     )
-                    return [self.record_to_book_out(record) for record in result]
+                    return [self.record_to_book_out(
+                        record) for record in result]
         except Exception as e:
             print(e)
             return {"message": "Could not get all book"}
 
-    def get_one(self,ID:int) -> Union[List[BookOut], Error]:
+    def get_one(self, ID: int) -> Union[List[BookOut], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -60,12 +62,13 @@ class BookRepository:
                         """,
                         [ID]
                     )
-                    return [self.record_to_book_out(record) for record in result]
+                    return [self.record_to_book_out(
+                        record) for record in result]
         except Exception as e:
             print(e)
             return {"message": "Could not get all book"}
 
-    def delete(self,ID:int) -> bool:
+    def delete(self, ID: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -81,7 +84,7 @@ class BookRepository:
             print(e)
             return False
 
-    def update(self, ID:int, book:BookIn) -> Union[BookOut,Error]:
+    def update(self, ID: int, book: BookIn) -> Union[BookOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -107,7 +110,7 @@ class BookRepository:
                             book.text
                         ]
                     )
-                    return self.book_in_to_out(ID,book)
+                    return self.book_in_to_out(ID, book)
         except Exception as e:
             return {"message": "Could not update"}
 
@@ -122,6 +125,7 @@ class BookRepository:
             page_image_url=record[6],
             text=record[7]
         )
-    def book_in_to_out(self, ID: int, book:BookIn):
+
+    def book_in_to_out(self, ID: int, book: BookIn):
         old_data = book.dict()
         return BookOut(ID=ID, **old_data)

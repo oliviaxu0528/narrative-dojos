@@ -19,16 +19,18 @@ def get_pages(
 ):
     return repo.get_all()
 
+
 @router.get("/pages/{pageID}", response_model=Union[PageOut, Error])
 def get_page(
     pageID: int,
     response: Response,
     repo: PageRepository = Depends()
-    ) -> PageOut:
+) -> PageOut:
     page = repo.get_one(pageID)
     if page is None:
         response.status_code = 404
     return page
+
 
 @router.delete("/pages/{pageID}", response_model=bool)
 def delete_page(
@@ -37,10 +39,11 @@ def delete_page(
 ) -> bool:
     return repo.delete(pageID)
 
+
 @router.put("/pages/{pageID}", response_model=Union[PageOut, Error])
 def update_page(
     pageID: int,
     page: PageIn,
     repo: PageRepository = Depends()
-) -> Union[PageOut,Error]:
+) -> Union[PageOut, Error]:
     return repo.update(pageID, page)

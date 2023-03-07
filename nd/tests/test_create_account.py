@@ -6,6 +6,7 @@ import string
 
 client = TestClient(app)
 
+
 def generate_random_username(length=10):
     return ''.join(random.choices(string.ascii_letters, k=length))
 
@@ -15,7 +16,8 @@ def test_create_account():
     username = generate_random_username()
     repository = AccountRepository()
     account_in = AccountIn(username=username, password="testpassword")
-    account_out = AccountOutWithPassword(accountID=1, username=username, hashed_password="")
+    account_out = AccountOutWithPassword(
+        accountID=1, username=username, hashed_password="")
     hashed_password = "hashed_password"
 
     # Act
@@ -26,6 +28,8 @@ def test_create_account():
     assert created_account.accountID is not None
     assert created_account.hashed_password == hashed_password
 
-#Assert
+# Assert
+
+
 def test_init():
-    assert 1==1
+    assert 1 == 1
