@@ -132,7 +132,7 @@ class CoverRepository:
                         ]
                     )
                     return self.cover_in_to_out(ID, cover)
-        except Exception as e:
+        except Exception:
             return {"message": "Could not update"}
 
     def get_covers_by_account(
@@ -152,8 +152,7 @@ class CoverRepository:
                     return [self.record_to_cover_out(
                         record) for record in result]
 
-        except Exception as e:
-            print(e)
+        except Exception:
             return {"message": "Could not get all covers"}
 
     def cover_in_to_out(self, ID: int, cover: CoverIn):

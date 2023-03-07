@@ -36,7 +36,14 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID, username, title, cover_image_url, created_on, pageID, page_image_url, text
+                        SELECT ID,
+                        username,
+                        title,
+                        cover_image_url,
+                        created_on,
+                        pageID,
+                        page_image_url,
+                        text
                         FROM cover
                         INNER JOIN page
                         ON cover.ID = page.coverID
@@ -54,7 +61,14 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID, username, title, cover_image_url, created_on, pageID, page_image_url, text
+                        SELECT ID,
+                        username,
+                        title,
+                        cover_image_url,
+                        created_on,
+                        pageID,
+                        page_image_url,
+                        text
                         FROM cover
                         INNER JOIN page
                         ON cover.ID = page.coverID
@@ -111,7 +125,7 @@ class BookRepository:
                         ]
                     )
                     return self.book_in_to_out(ID, book)
-        except Exception as e:
+        except Exception:
             return {"message": "Could not update"}
 
     def record_to_book_out(self, record):

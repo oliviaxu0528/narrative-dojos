@@ -92,7 +92,10 @@ class AccountRepository:
                     accountID = result.fetchone()[0]
                     old_data = account.dict()
                     return AccountOutWithPassword(
-                        accountID=accountID, hashed_password=hashed_password, **old_data)
+                        accountID=accountID,
+                        hashed_password=hashed_password,
+                        **old_data
+                        )
         except Exception:
             return {"message": "Could not create account"}
 

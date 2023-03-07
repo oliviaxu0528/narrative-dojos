@@ -125,7 +125,7 @@ class PageRepository:
                         ]
                     )
                     return self.page_in_to_out(pageID, page)
-        except Exception as e:
+        except Exception:
             return {"message": "Could not update"}
 
     def page_in_to_out(self, pageID: int, page: PageIn):
