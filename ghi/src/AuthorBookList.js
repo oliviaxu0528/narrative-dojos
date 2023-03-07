@@ -48,16 +48,16 @@ const AuthorBookList = () => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    });
 
     function BookColumn({ book }) {
         return (
             <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
                 <div key={book.id} className="card mb-3 shadow">
-                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
+                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" alt="cover_image_url"/>
                     <div className="card-body">
                         <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-                        
+
 
 
                     </div>

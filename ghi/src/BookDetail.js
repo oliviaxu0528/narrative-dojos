@@ -71,7 +71,7 @@ function BookDetail() {
     useEffect(() => {
         const bookId = params.id
         getCoverById(bookId)
-    }, [])
+    })
 
     async function getPagesById(id) {
         const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
@@ -86,7 +86,7 @@ function BookDetail() {
         const bookId = params.id
         getCoverById(bookId)
         getPagesById(bookId)
-    }, [])
+    })
 
     return (
         <div className="App">
@@ -105,7 +105,7 @@ function BookDetail() {
                                 <div className="front">
                                     <div className='text'>
                                     </div>
-                                    <img className='coverImg' src={item.cover_image_url} />
+                                    <img className='coverImg' src={item.cover_image_url} alt="cover_image_url"/>
                                 </div>
                                 <div className="back">
                                 </div>
@@ -116,8 +116,8 @@ function BookDetail() {
                         return (
                             <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index + 1]}>
                                 <div className="front">
-                                    <h1></h1>
-                                    <div><img className="headerMenuEntryImg" src={item.page_image_url} /></div>
+                                    <br/>
+                                    <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
                                     <div className='button-2'>{item.text}</div>
                                 </div>
                                 <div className="back">

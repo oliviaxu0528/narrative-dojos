@@ -37,7 +37,7 @@ function App(props) {
   }
   useEffect(() => {
     getCovers()
-  }, [])
+  })
 
   return (
     <div>

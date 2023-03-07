@@ -1,15 +1,13 @@
 import { useState, createRef, useEffect } from 'react'
 import { message, Button, Modal, Form, Input } from 'antd'
 import './App.css'
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 let currentLocation = 1
 function CreatePages() {
   let [numOfPapers, setNumOfPapers] = useState([])
   let [coverPaper, setCoverPaper] = useState([])
   let [isModalOpen, setIsModelOpen] = useState(false)
-  // const [page_image_url, setPage_image_url] = useState('')
-  // const [text, setText] = useState('')
   const form = createRef()
   let papers = numOfPapers.map((item, index) => {
     return createRef()
@@ -18,16 +16,13 @@ function CreatePages() {
   let maxLocation = numOfPapers.length + 2;
   const preButton = createRef()
   const params = useParams()
-  // const navigate = useNavigate()
   const nextButton = createRef()
   const book = createRef()
-  // open the book
   const openBook = function () {
     book.current.style.transform = "translateX(50%)";
     preButton.current.style.transform = "translateX(-180px)";
     nextButton.current.style.transform = "translateX(180px)";
   }
-  // close the book
   const closeBook = function (isAtBeginning) {
     if (isAtBeginning) {
       book.current.style.transform = "translateX(0%)";
@@ -37,7 +32,6 @@ function CreatePages() {
     preButton.current.style.transform = "translateX(0px)";
     nextButton.current.style.transform = "translateX(0px)";
   }
-  // next page
   function goNextPage() {
     if (currentLocation < maxLocation) {
       if (currentLocation === 1) {
@@ -51,7 +45,6 @@ function CreatePages() {
       currentLocation++;
     }
   }
-  // 上一页
   function goPrevPage() {
     if (currentLocation > 1) {
       if (currentLocation === 2) {
@@ -100,12 +93,10 @@ function CreatePages() {
         nextButton.current.style.transform = "translateX(180px)";
       }
     }
-  }, [])
-  // adding
+  })
   function addPage() {
     setIsModelOpen(true)
   }
-  // deleting
   function decreasePage() {
     const arr = [...numOfPapers]
     arr.pop()
@@ -124,7 +115,6 @@ function CreatePages() {
       duration: 1
     })
   }
-  // submitting
   const onFinish = async (values) => {
     if (values) {
 
@@ -181,7 +171,7 @@ function CreatePages() {
             return (
               <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                 <div className="front">
-                  <img src={item.cover_image_url} width="425px" height="680px"/>
+                  <img src={item.cover_image_url} width="425px" height="680px" alt="cover_image_url"/>
 
                 </div>
                 <div className="back">
@@ -193,8 +183,8 @@ function CreatePages() {
             return (
               <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index + 1]}>
                 <div className="front">
-                  <h1></h1>
-                  <div><img className="headerMenuEntryImg" src={item.page_image_url} /></div>
+                  <br/>
+                  <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
                   <div className='button-2'>{item.text}</div>
                 </div>
                 <div className="back">
