@@ -8,16 +8,13 @@ body {
   height: 100vh;
 
   font-family: sans-serif;
-  /* background-color: rgb(49, 54, 49); */
-    background-image: url("https://images.unsplash.com/photo-1499198116522-4a6235013d63?auto=format&fit=crop&w=1233&q=80");
+  background-image: url("https://images.unsplash.com/photo-1499198116522-4a6235013d63?auto=format&fit=crop&w=1233&q=80");
 }
-
-
 
 .book {
   position: relative;
-  width: 350px;
-  height: 500px;
+  width: 425px;
+  height: 680px;
   transition: transform 0.5s;
 }
 
@@ -28,7 +25,6 @@ body {
   top: 0;
   left: 0;
   perspective: 1500px;
-
 }
 
 .front,
@@ -40,7 +36,7 @@ body {
   top: 0;
   left: 0;
   transform-origin: left;
-  transition: transform 0.5s;
+  transition: transform .5s;
 }
 
 .front {
@@ -54,7 +50,6 @@ body {
 }
 .add {
   background-color: black;
-
 }
 
 .front-content,
@@ -67,21 +62,26 @@ body {
 }
 
 .back-content {
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
-/* Paper flip effect */
 .flipped .front,
 .flipped .back {
   transform: rotateY(-180deg);
 }
 
-/* Controller Buttons */
 button {
   border: none;
   background-color: transparent;
   cursor: pointer;
   margin: 10px;
+  transition: transform 0.5s;
+}
+.buttons {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 70px;
   transition: transform 0.5s;
 }
 
@@ -99,49 +99,39 @@ i {
 }
 
 .pt {
-
-font-size: 13pt;
-
+  font-size: 25pt;
 }
 .cm {
-
-font-size: 12pt;
-
+  font-size: 25pt;
 }
 
- .card-item {
-	width: 90%;
-	font-size:28upx;
-	word-break: break-word;
-  }
+.card-item {
+  width: 90%;
+  font-size: 28upx;
+  word-break: break-word;
+}
+
+.headerMenuEntryImg {
+  height: 260px;
+  width: 357.5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 50%;
+
+  margin: 30px;
+
+  text-align: center;
+}
+.coverImg {
+  height: 720px;
+  width: 425px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 50%;
 
 
-  .headerMenuEntryImg {
-    height: 200px;
-    width: 275px;
-    background-size: 100%;
-    background-repeat:no-repeat;
-    /* background-position: center; */
-    top: 50%;
-    /* border:1px solid red; */
-
-    margin:30px;
-
-    text-align:center;
-  }
-    .coverImg{
-    height: 500px;
-    width: 350px;
-    background-size: 100%;
-    background-repeat:no-repeat;
-    /* background-position: center; */
-    top: 50%;
-    /* border:1px solid red; */
-
-    /* margin:35px; */
-
-    text-align:center;
-  }
+  text-align: center;
+}
 
 .button-2 {
   background-color: rgba(51, 51, 51, 0.05);
@@ -150,10 +140,11 @@ font-size: 12pt;
   color: #333333;
   cursor: pointer;
   display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 35px;
   list-style: none;
   margin: 0;
   padding: 10px 12px;
@@ -163,24 +154,18 @@ font-size: 12pt;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  /* width: 100%; */
-	/* font-size:28upx; */
-	/* word-break: break-word;
-   */
-  width: 320px;
-  height: 200px;
-  margin:10px;
+  width: 420px;
+  height: 352px;
 
-  text-align:center;
+
+  text-align: center;
   word-wrap: break-word;
   table-layout: fixed;
-	word-wrap: break-all;
-	word-break: normal;
+  word-wrap: break-all;
+  word-break: normal;
 
   overflow: hidden;
 }
-
-
 
 .btn {
   display: inline-block;
@@ -190,147 +175,123 @@ font-size: 12pt;
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #FE4365;
+  background-color: #fe4365;
   border-radius: 3px;
-  box-shadow: 0 0 0 -2px #CFF09E, 0 0 0 -1px #FE4365;
+  box-shadow: 0 0 0 -2px #cff09e, 0 0 0 -1px #fe4365;
   border: none;
   transition: box-shadow 0.3s;
 }
-.btn:hover, .btn:focus {
-  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #ff0464;
+.btn:hover,
+.btn:focus {
+  box-shadow: 0 0 0 2px #cff09e, 0 0 0 4px #ff0464;
   transition-timing-function: cubic-bezier(0.6, 4, 0.3, 0.8);
   -webkit-animation: gelatine 0.5s 1;
   animation: gelatine 0.5s 1;
 }
 
 .btn-secondary {
-  background: #C8C8A9;
-  box-shadow: 0 0 0 -2px #CFF09E, 0 0 0 -1px #C8C8A9;
+  background: #c8c8a9;
+  box-shadow: 0 0 0 -2px #cff09e, 0 0 0 -1px #c8c8a9;
 }
 .btn-secondary:hover {
-  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #bebe99;
+  box-shadow: 0 0 0 2px #cff09e, 0 0 0 4px #bebe99;
 }
 
 .btn:active,
 .btn-secondary:active {
-  background: #4ECDC4;
+  background: #4ecdc4;
   transition-duration: 0;
-  box-shadow: 0 0 0 2px #CFF09E, 0 0 0 4px #3ac7bd;
+  box-shadow: 0 0 0 2px #cff09e, 0 0 0 4px #3ac7bd;
 }
-
 
 .gradient {
-  /* Fallback: Set a background color. */
-  background-color: #CA4246;
+  background-color: #ca4246;
 
-  /* Create the gradient. */
-   background-image: linear-gradient(
-        45deg,
-        #CA4246 16.666%,
-        #E16541 16.666%,
-        #E16541 33.333%,
-        #F18F43 33.333%,
-        #F18F43 50%,
-        #8B9862 50%,
-        #8B9862 66.666%,
-        #476098 66.666%,
-        #476098 83.333%,
-        #A7489B 83.333%);
+  background-image: linear-gradient(
+    45deg,
+    #ca4246 16.666%,
+    #e16541 16.666%,
+    #e16541 33.333%,
+    #f18f43 33.333%,
+    #f18f43 50%,
+    #8b9862 50%,
+    #8b9862 66.666%,
+    #476098 66.666%,
+    #476098 83.333%,
+    #a7489b 83.333%
+  );
 
-  /* Set the background size and repeat properties. */
   background-size: 100%;
   background-repeat: repeat;
-
-  /* Use the text as a mask for the background. */
-  /* This will show the gradient as a text color rather than element bg. */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* Animate the text when loading the element. */
-    /* This animates it on page load and when hovering out. */
-    animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
-
+  animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
 }
 
-
-
-/* Paper stack order */
-/*#p1 {*/
-/*  z-index: 3;*/
-/*}*/
-
-/*#p2 {*/
-/*  z-index: 2;*/
-/*}*/
-
-/*#p3 {*/
-/*  z-index: 1;*/
-/*}*/
 
 
 .rainbow-text {
-  /* Create a conic gradient. */
-  /* Double percentages to avoid blur (#000 10%, #fff 10%, #fff 20%, ...). */
-  background: #CA4246;
-  background-color: #CA4246;
+  background: #ca4246;
+  background-color: #ca4246;
   background: conic-gradient(
-    #CA4246 16.666%,
-    #E16541 16.666%,
-    #E16541 33.333%,
-    #F18F43 33.333%,
-    #F18F43 50%,
-    #8B9862 50%,
-    #8B9862 66.666%,
+    #ca4246 16.666%,
+    #e16541 16.666%,
+    #e16541 33.333%,
+    #f18f43 33.333%,
+    #f18f43 50%,
+    #8b9862 50%,
+    #8b9862 66.666%,
     #476098 66.666%,
     #476098 83.333%,
-    #A7489B 83.333%);
+    #a7489b 83.333%
+  );
 
-  /* Set thee background size and repeat properties. */
   background-size: 57%;
   background-repeat: repeat;
-
-  /* Use the text as a mask for the background. */
-  /* This will show the gradient as a text color rather than element bg. */
-  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
-
-  /* Animate the text when loading the element. */
-  /* This animates it on page load and when hovering out. */
   animation: rainbow-text-animation-rev 0.5s ease forwards;
 
   cursor: pointer;
 }
-
 
 .text {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: italic;
-
-
 }
 h3 {
   font-size: 40px;
   background: #1ca129;
-  background: -moz-linear-gradient(150deg, #cdb380 0%, #036564 16%, #033649 44%, #031634 84%);
-  background: -webkit-linear-gradient(150deg, #cdb380 0%, #036564 16%, #033649 44%, #031634 84%);
-  background: linear-gradient(150deg, #cdb380 0%, #036564 16%, #033649 44%, #031634 84%);
+  background: -moz-linear-gradient(
+    150deg,
+    #cdb380 0%,
+    #036564 16%,
+    #033649 44%,
+    #031634 84%
+  );
+  background: -webkit-linear-gradient(
+    150deg,
+    #cdb380 0%,
+    #036564 16%,
+    #033649 44%,
+    #031634 84%
+  );
+  background: linear-gradient(
+    150deg,
+    #cdb380 0%,
+    #036564 16%,
+    #033649 44%,
+    #031634 84%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cdb380",endColorstr="#031634",GradientType=1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin:20px;
+  margin: 20px;
 
   font-family: "Archivo Black", sans-serif;
-    text-shadow: 1.5px 1.5px;
-
-    /* font-family: "Trattatello", cursive; */
-
-      margin-bottom: -0.25em;
-
-
-
-
+  text-shadow: 1.5px 1.5px;
+  margin-bottom: -0.25em;
 }
 
 .made {
@@ -348,28 +309,41 @@ h3 {
   font-weight: 200;
 }
 
-
 .gradient-text {
   font-size: 120px;
   background: #cdb380;
-  background: -moz-linear-gradient(150deg, #cdb380 0%, #036564 16%, #033649 44%, #031634 84%);
-  background: -webkit-linear-gradient(150deg, #cdb380 0%, #036564 16%, #033649 44%, #031634 84%);
-  background: linear-gradient(150deg, #cdb380 0%, #036564 16%, #033649 44%, #031634 84%);
+  background: -moz-linear-gradient(
+    150deg,
+    #cdb380 0%,
+    #036564 16%,
+    #033649 44%,
+    #031634 84%
+  );
+  background: -webkit-linear-gradient(
+    150deg,
+    #cdb380 0%,
+    #036564 16%,
+    #033649 44%,
+    #031634 84%
+  );
+  background: linear-gradient(
+    150deg,
+    #cdb380 0%,
+    #036564 16%,
+    #033649 44%,
+    #031634 84%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cdb380",endColorstr="#031634",GradientType=1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin:-10px;
+  margin: -10px;
 
   font-family: "Archivo Black", sans-serif;
-    /* font-family: "Trattatello", cursive; */
 
-      margin-bottom: 0.25em;
+  margin-bottom: 0.25em;
 
-
-  /* Fallback: Set a background color. */
   background-color: #f3eaeb;
 
-  /* Create the gradient. */
   background-image: linear-gradient(
     45deg,
     #dcd5d5 16.666%,
@@ -384,100 +358,128 @@ h3 {
     #b6b1b5f9 83.333%
   );
 
-  text-align:center;
-
+  text-align: center;
 
   /* font-family: "Snell Roundhand", cursive; */
-
-
 }
-h5{
+h5 {
   color: rgba(37, 37, 99, 0.834);
   box-shadow: #3fc5c3;
   text-shadow: 1px 0.5px;
   font-size: 16px;
+}
 
+.wrapper {
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+.wrapper span {
+  font-size: 50px;
+  font-weight: bold;
+  color: #4b4b4b;
+  animation: lighting 1000ms alternate infinite ease;
+}
+@keyframes lighting {
+  0%,
+  85% {
+    color: #1d0808;
+    text-shadow: none;
+  }
+  100% {
+    color: #891616;
+    text-shadow: 0 0 5px #fff200, 0 0 3px #ff9f1a;
+  }
+}
+.wrapper span:nth-child(1) {
+  animation-delay: 150ms;
+}
+.wrapper span:nth-child(2) {
+  animation-delay: 300ms;
+}
+.wrapper span:nth-child(3) {
+  animation-delay: 450ms;
+}
+.wrapper span:nth-child(4) {
+  animation-delay: 600ms;
+}
+.wrapper span:nth-child(5) {
+  animation-delay: 750ms;
+}
+.wrapper span:nth-child(6) {
+  animation-delay: 900ms;
+}
+.wrapper span:nth-child(7) {
+  animation-delay: 1050ms;
+}
+.wrapper span:nth-child(8) {
+  animation-delay: 1200ms;
+}
+.wrapper span:nth-child(9) {
+  animation-delay: 1350ms;
+}
+.wrapper span:nth-child(10) {
+  animation-delay: 1500ms;
+  margin-left: 20px;
+}
+.wrapper span:nth-child(11) {
+  animation-delay: 1650ms;
+}
+.wrapper span:nth-child(12) {
+  animation-delay: 1800s;
+}
+.wrapper span:nth-child(13) {
+  animation-delay: 1950ms;
 }
 
 
-.wrapper{
-    /* width:440px;
-    height:70px; */
-    /* position: absolute;
-    left:12.5%;
-    top:50%; */
-      /* margin-right: 0.25em; */
-    /* transform: translate(%, -20%); */
-    /* text-align:center;
-     */
-         /* vertical-align: middle; */
 
-/* display:flex;
-flex-direction: row;
-justify-content: space-around; */
-
-display: -webkit-box;
--webkit-box-orient: horizontal;
--webkit-box-pack: center;
--webkit-box-align: center;
-
-}
-.wrapper span{
-    font-size: 50px;
-    font-weight: bold;
-    color: #4b4b4b;
-    animation: lighting 1000ms alternate infinite ease;
-}
-@keyframes lighting{
-    0%,85%{
-        color: #1d0808;
-        text-shadow: none;
+.footer{
+        height: 150px;
+        text-align: center;
+        font-size: 16px;
+        padding: 0px 100px;
+        position: relative;
     }
-    100%{
-        color:#891616;
-        text-shadow: 0 0 5px #fff200, 0 0 3px #ff9f1a;
+    .footer{
+      cursor: pointer;
     }
-}
-.wrapper span:nth-child(1){
-    animation-delay: 150ms;
-}
-.wrapper span:nth-child(2){
-    animation-delay: 300ms;
-}
-.wrapper span:nth-child(3){
-    animation-delay: 450ms;
-}
-.wrapper span:nth-child(4){
-    animation-delay: 600ms;
-}
-.wrapper span:nth-child(5){
-    animation-delay: 750ms;
-}
-.wrapper span:nth-child(6){
-    animation-delay: 900ms;
-    /* margin-left: 20px; */
-}
-.wrapper span:nth-child(7){
-    animation-delay: 1050ms;
-}
-.wrapper span:nth-child(8){
-    animation-delay: 1200ms;
-}
-.wrapper span:nth-child(9){
-    animation-delay: 1350ms;
-
-}
-.wrapper span:nth-child(10){
-    animation-delay: 1500ms;
-    margin-left: 20px;
-
-}
-.wrapper span:nth-child(11){
-    animation-delay: 1650ms;
-}
-.wrapper span:nth-child(12){
-    animation-delay: 1800s;
-}
-.wrapper span:nth-child(13){
-    animation-delay: 1950ms;
-}
+    .copyright{
+      font-size: 12px;
+    }
+    .info{
+      font-size: 14px;
+      color: #72767b;
+      line-height: 25px;
+    }
+    .footer .scroll{
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border:2px solid #eaeaea;
+      /* background-color: rgba(216, 16, 109,0.6); */
+      position: absolute;
+      left: 5%;
+      top: -25px;
+      z-index: 10;
+      animation: scrollA infinite 20s linear alternate;
+    }
+    @keyframes scrollA {
+      0% {left: 5%;transform: rotate(180deg);};
+      10% {left: 5%;transform: rotate(270deg);}
+      20% {left: 5%;transform: rotate(450deg);}
+      25% {left: 10%;transform: rotate(540deg);}
+      30% {left: 20%;transform: rotate(720deg);}
+      35% {left: 30%;transform: rotate(900deg);}
+      40% {left: 40%;transform: rotate(1080deg);}
+      45% {left: 50%;transform: rotate(1260deg);}
+      50% {left: 60%;transform: rotate(1440deg);}
+      55% {left: 70%;transform: rotate(1620deg);}
+      60% {left: 80%;transform: rotate(1800deg);}
+      80% {left: 90%;transform: rotate(2610deg);}
+      90% {left: 90%;transform: rotate(2340deg);}
+      100% {left: 90%;transform: rotate(2520deg);}
+    }

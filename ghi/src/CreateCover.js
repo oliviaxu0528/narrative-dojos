@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 
-export default function CreateCover(props) {
+export default function CreateCover() {
     const navigate = useNavigate()
 
     const [username, setUsername] = useState('')
@@ -118,7 +118,6 @@ export default function CreateCover(props) {
         console.log(fetchConfig)
         console.log(response)
 
-        // console.log(fetchConfig)
         if (response.ok) {
 
             setTitle('');

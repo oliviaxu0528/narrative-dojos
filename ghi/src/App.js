@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import { AuthProvider, useToken } from './Authentication.js'
 import './App.css';
@@ -10,8 +10,10 @@ import MyBooksList from './MyBooksList';
 import CreatePages from './CreatePages';
 import CreateCover from './CreateCover';
 import BookDetail from './BookDetail';
+import './bookDesk.css';
 import AuthorBookList from './AuthorBookList';
-// import AssemblyAI from './assemblyai'
+import Footer from "./Footer"
+
 
 
 
@@ -21,7 +23,7 @@ function GetToken() {
 }
 
 function App(props) {
-  const [covers, setCovers] = useState([])
+  const [, setCovers] = useState([])
   const selectedUsername = props.username;
 
   const getCovers = async () => {
@@ -35,30 +37,35 @@ function App(props) {
   }
   useEffect(() => {
     getCovers()
-  }, [])
+  })
 
   return (
-    <div className="my-5 container">
-      <BrowserRouter>
-        <div>
-          <AuthProvider>
-            <GetToken />
+    <div>
+      <div className="my-5 container page-container">
+        <div className="content-wrap">
+          <BrowserRouter>
             <div>
-              <Nav />
+              <AuthProvider>
+                <GetToken />
+                <div>
+                  <Nav />
+                </div>
+                <Routes>
+                  <Route index element={<MainPage />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<LoginForm />} />
+                  <Route path="/accounts/covers" element={<MyBooksList />} />
+                  <Route path="/createpages/:id" element={<CreatePages />} />
+                  <Route path="/createcover" element={<CreateCover />} />
+                  <Route path="/book/:id" element={<BookDetail />} />
+                  <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
+                </Routes>
+              </AuthProvider>
             </div>
-            <Routes>
-              <Route index element={<MainPage />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/accounts/covers" element={<MyBooksList />} />
-              <Route path="/createpages/:id" element={<CreatePages />} />
-              <Route path="/createcover" element={<CreateCover />} />
-              <Route path="/book/:id" element={<BookDetail />} />
-              <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
-            </Routes>
-          </AuthProvider>
+          </BrowserRouter>
         </div>
-      </BrowserRouter>
+      </div>
+      <Footer />
     </div>
   );
 }

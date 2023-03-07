@@ -4,6 +4,16 @@ from datetime import date
 from queries.pool import pool
 
 
+class BookIn(BaseModel):
+    username: str
+    title: str
+    cover_image_url: str
+    created_on: date
+    pageID: int
+    page_image_url: str
+    text: str
+
+
 class Error(BaseModel):
     message: str
 
@@ -26,24 +36,39 @@ class BookRepository:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID, username, title, cover_image_url, created_on, pageID, page_image_url, text
+                        SELECT ID,
+                        username,
+                        title,
+                        cover_image_url,
+                        created_on,
+                        pageID,
+                        page_image_url,
+                        text
                         FROM cover
                         INNER JOIN page
                         ON cover.ID = page.coverID
                         """
                     )
-                    return [self.record_to_cover_out(record) for record in result]
+                    return [self.record_to_book_out(
+                        record) for record in result]
         except Exception as e:
             print(e)
             return {"message": "Could not get all book"}
 
-    def get_one(self,ID:int) -> Union[List[BookOut], Error]:
+    def get_one(self, ID: int) -> Union[List[BookOut], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
                     result = cur.execute(
                         """
-                        SELECT ID, username, title, cover_image_url, created_on, pageID, page_image_url, text
+                        SELECT ID,
+                        username,
+                        title,
+                        cover_image_url,
+                        created_on,
+                        pageID,
+                        page_image_url,
+                        text
                         FROM cover
                         INNER JOIN page
                         ON cover.ID = page.coverID
@@ -51,12 +76,13 @@ class BookRepository:
                         """,
                         [ID]
                     )
-                    return [self.record_to_cover_out(record) for record in result]
+                    return [self.record_to_book_out(
+                        record) for record in result]
         except Exception as e:
             print(e)
             return {"message": "Could not get all book"}
 
-    def delete(self,ID:int) -> bool:
+    def delete(self, ID: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -72,7 +98,37 @@ class BookRepository:
             print(e)
             return False
 
-    def record_to_cover_out(self, record):
+    def update(self, ID: int, book: BookIn) -> Union[BookOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        UPDATE book
+                        SET username = %s,
+                            title = %s,
+                            cover_image_url = %s,
+                            created_on = %s,
+                            pageID = %s,
+                            page_image_url = %s,
+                            text = %s
+                        WHERE ID = %s
+                        """,
+                        [
+                            book.username,
+                            book.title,
+                            book.cover_image_url,
+                            book.created_on,
+                            book.pageID,
+                            book.page_image_url,
+                            book.text
+                        ]
+                    )
+                    return self.book_in_to_out(ID, book)
+        except Exception:
+            return {"message": "Could not update"}
+
+    def record_to_book_out(self, record):
         return BookOut(
             ID=record[0],
             username=record[1],
@@ -83,3 +139,7 @@ class BookRepository:
             page_image_url=record[6],
             text=record[7]
         )
+
+    def book_in_to_out(self, ID: int, book: BookIn):
+        old_data = book.dict()
+        return BookOut(ID=ID, **old_data)

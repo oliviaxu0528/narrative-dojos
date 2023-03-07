@@ -13,7 +13,7 @@ function Signup(props) {
   if (token) {
     return <Navigate to="/" />;
   }
-
+  console.log(error)
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {

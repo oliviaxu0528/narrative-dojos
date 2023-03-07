@@ -19,16 +19,18 @@ def get_covers(
 ):
     return repo.get_all()
 
+
 @router.get("/covers/{ID}", response_model=Union[CoverOut, Error])
 def get_cover(
     ID: int,
     response: Response,
     repo: CoverRepository = Depends()
-    ) -> CoverOut:
+) -> CoverOut:
     cover = repo.get_one(ID)
     if cover is None:
         response.status_code = 404
     return cover
+
 
 @router.delete("/covers/{ID}", response_model=bool)
 def delete_cover(
@@ -37,20 +39,23 @@ def delete_cover(
 ) -> bool:
     return repo.delete(ID)
 
+
 @router.put("/covers/{ID}", response_model=Union[CoverOut, Error])
 def update_cover(
     ID: int,
     cover: CoverIn,
     repo: CoverRepository = Depends()
-) -> Union[CoverOut,Error]:
+) -> Union[CoverOut, Error]:
     return repo.update(ID, cover)
 
-@router.get("/accounts/{username}/covers/", response_model=Union[List[CoverOut], Error])
+
+@router.get("/accounts/{username}/covers/",
+            response_model=Union[List[CoverOut], Error])
 def get_covers_by_account(
     username: str,
     response: Response,
     repo: CoverRepository = Depends()
-    ) -> CoverOut:
+) -> CoverOut:
     cover = repo.get_covers_by_account(username)
     if cover is None:
         response.status_code = 404

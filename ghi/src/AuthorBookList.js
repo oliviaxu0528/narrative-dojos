@@ -5,14 +5,13 @@ import { useToken } from './Authentication';
 
 
 
-const AuthorBookList = (props) => {
+const AuthorBookList = () => {
     const [bookColumns, setBookColumns] = useState([]);
     const { token } = useToken();
     const { username } = useParams();
 
     let navigate = useNavigate()
     const toBookDetail = (book) => {
-        console.log(book)
         navigate(`/book/${book.ID}`)
     }
 
@@ -49,19 +48,16 @@ const AuthorBookList = (props) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    });
 
     function BookColumn({ book }) {
         return (
             <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
                 <div key={book.id} className="card mb-3 shadow">
-                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" />
-                    {/* <div className="card-body">
-                        <h5 className="card-title">{book.title}</h5>
-                    </div> */}
+                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" alt="cover_image_url"/>
                     <div className="card-body">
                         <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-                        {/* <Button type='primary' href="#" className='btn' onClick={addPage}>Add a page</Button> */}
+
 
 
                     </div>
