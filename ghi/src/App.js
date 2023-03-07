@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import { AuthProvider, useToken } from './Authentication.js'
 import './App.css';
@@ -28,6 +28,7 @@ function App(props) {
   const getCovers = async () => {
     const coversUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
     const response = await fetch(coversUrl)
+    console.log(covers)
 
     if (response.ok) {
       const data = await response.json();
