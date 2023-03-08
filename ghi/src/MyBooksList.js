@@ -170,7 +170,7 @@ const MyBooksList = (props) => {
                                     <ul>
                                         {books.map((item) => {
                                             return (
-                                                <li key={item.id}>
+                                                <li key={item.ID}>
                                                     <div className="card mb-3 shadow">
                                                         <img
                                                             src={item.cover_image_url}
