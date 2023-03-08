@@ -15,13 +15,6 @@ const AuthorBookList = () => {
         navigate(`/book/${book.ID}`)
     }
 
-    const fetchData = async () => {
-        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${username}/covers/`;
-        const response = await fetch(bookUrl);
-        const data = await response.json();
-        setBookColumns(data);
-    }
-
     const sort = () => {
         let sortType = document.getElementById("mySelect").value;
         if (sortType === "alphabetical") {
@@ -41,16 +34,21 @@ const AuthorBookList = () => {
             setBookColumns(oldest);
         }
     }
-
     useEffect(() => {
+        const fetchData = async () => {
+            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${username}/covers/`;
+            const response = await fetch(bookUrl);
+            const data = await response.json();
+            setBookColumns(data);
+        }
         fetchData();
-    },[]);
+    }, []);
 
     function BookColumn({ book }) {
         return (
             <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
                 <div key={book.id} className="card mb-3 shadow">
-                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" alt="cover_image_url"/>
+                    <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" alt="cover_image_url" />
                     <div className="card-body">
                         <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
                     </div>

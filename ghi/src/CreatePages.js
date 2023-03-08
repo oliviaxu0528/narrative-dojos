@@ -123,7 +123,7 @@ function CreatePages() {
         nextButton.current.style.transform = "translateX(180px)";
       }
     }
-  },[])
+  },[book, nextButton, numOfPapers.length, papers, params.id, preButton])
 
   function addPage() {
     setIsModelOpen(true)
@@ -364,7 +364,7 @@ function CreatePages() {
                         <div key={index}>
                             <img
                                 src={previewImageUrl.url}
-                                alt={`Preview Image ${index + 1}`}
+                                alt={`Preview ${index + 1}`}
                                 style={{ width: "100%" }}
                                 onError={(e) => {
                                     console.log(`Error loading image at URL: ${previewImageUrl}`);

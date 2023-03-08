@@ -153,6 +153,7 @@ const MyBooksList = (props) => {
                                                             width="200px"
                                                             height="300px"
                                                             className="card-img-top"
+                                                            alt="cover"
                                                         />
                                                         <div className="card-body">
                                                             <h5 className="card-title">{item.title}</h5>

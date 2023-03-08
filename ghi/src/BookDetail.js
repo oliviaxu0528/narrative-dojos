@@ -5,8 +5,6 @@ import './App.css'
 let currentLocation = 1
 function BookDetail() {
     let [numOfPapers, setNumOfPapers] = useState([])
-    // const [isPlaying, setIsPlaying] = useState(false);
-
     let papers = numOfPapers.map((item, index) => {
         return createRef()
     })
@@ -76,7 +74,7 @@ function BookDetail() {
     useEffect(() => {
         const bookId = params.id
         getCoverById(bookId)
-    },[])
+    },[params])
 
     async function getPagesById(id) {
         const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
@@ -92,7 +90,7 @@ function BookDetail() {
         const bookId = params.id
         getCoverById(bookId)
         getPagesById(bookId)
-    },[])
+    },[params])
 
     return (
         <div className="App">
