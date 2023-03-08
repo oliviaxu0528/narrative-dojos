@@ -107,23 +107,24 @@ function CreatePages() {
     setNumOfPapers(data);
   }
 
+  if (currentLocation > 1) {
+    for (let i = 1; i < currentLocation; i++) {
+      if (papers[i - 1] && papers[i - 1].current) {
+        papers[i - 1].current.style.zIndex = i;
+      }
+    }
+    if (currentLocation === numOfPapers.length) {
+      book.current.style.transform = "translateX(50%)";
+      preButton.current.style.transform = "translateX(-180px)";
+      nextButton.current.style.transform = "translateX(180px)";
+    }
+  }
+
   useEffect(() => {
     const bookId = params.id
     getCoverById(bookId)
     getPagesById(bookId)
-    if (currentLocation > 1) {
-      for (let i = 1; i < currentLocation; i++) {
-        if (papers[i - 1] && papers[i - 1].current) {
-          papers[i - 1].current.style.zIndex = i;
-        }
-      }
-      if (currentLocation === numOfPapers.length) {
-        book.current.style.transform = "translateX(50%)";
-        preButton.current.style.transform = "translateX(-180px)";
-        nextButton.current.style.transform = "translateX(180px)";
-      }
-    }
-  },[book, nextButton, numOfPapers.length, papers, params.id, preButton])
+  },[params])
 
   function addPage() {
     setIsModelOpen(true)

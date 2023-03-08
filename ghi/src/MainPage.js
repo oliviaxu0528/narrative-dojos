@@ -20,28 +20,28 @@ const MainPage = (props) => {
   }
 
 
-  const fetchData = async () => {
-    const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
-    const response = await fetch(bookUrl);
-    const data = await response.json();
-    let arr = [];
-    let columns = []
-    const fn = (data) => {
-      data.forEach((item, index) => {
-        arr.push(item);
-        if (
-          (index !== 0 && (index + 1) % 3 === 0) ||
-          index === data.length - 1
-        ) {
-          columns.push(arr);
-          arr = [];
-        }
-      });
-    };
-    fn(data);
-    setBookDeskColumns(columns)
-    setBookColumns(data);
-  }
+  // const fetchData = async () => {
+  //   const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
+  //   const response = await fetch(bookUrl);
+  //   const data = await response.json();
+  //   let arr = [];
+  //   let columns = []
+  //   const fn = (data) => {
+  //     data.forEach((item, index) => {
+  //       arr.push(item);
+  //       if (
+  //         (index !== 0 && (index + 1) % 3 === 0) ||
+  //         index === data.length - 1
+  //       ) {
+  //         columns.push(arr);
+  //         arr = [];
+  //       }
+  //     });
+  //   };
+  //   fn(data);
+  //   setBookDeskColumns(columns)
+  //   setBookColumns(data);
+  // }
 
   const sort = () => {
     let sortType = document.getElementById("mySelect").value;
@@ -64,8 +64,30 @@ const MainPage = (props) => {
   }
 
   useEffect(() => {
+    const fetchData = async () => {
+      const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
+      const response = await fetch(bookUrl);
+      const data = await response.json();
+      let arr = [];
+      let columns = []
+      const fn = (data) => {
+        data.forEach((item, index) => {
+          arr.push(item);
+          if (
+            (index !== 0 && (index + 1) % 3 === 0) ||
+            index === data.length - 1
+          ) {
+            columns.push(arr);
+            arr = [];
+          }
+        });
+      };
+      fn(data);
+      setBookDeskColumns(columns)
+      setBookColumns(data);
+    }
     fetchData();
-  }, [selectedUser]);
+  }, []);
 
   return (
     <>

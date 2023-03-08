@@ -42,7 +42,7 @@ const AuthorBookList = () => {
             setBookColumns(data);
         }
         fetchData();
-    }, []);
+    }, [username]);
 
     function BookColumn({ book }) {
         return (
