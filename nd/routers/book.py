@@ -12,7 +12,7 @@ def get_books(
     return repo.get_all()
 
 
-@router.get("/book", response_model=Union[List[BookOut], Error])
+@router.get("/book/{ID}", response_model=Union[BookOut, Error])
 def get_book(
     ID: int,
     response: Response,

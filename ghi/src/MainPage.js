@@ -19,49 +19,44 @@ const MainPage = (props) => {
     }
   }
 
-
-  // const fetchData = async () => {
-  //   const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
-  //   const response = await fetch(bookUrl);
-  //   const data = await response.json();
-  //   let arr = [];
-  //   let columns = []
-  //   const fn = (data) => {
-  //     data.forEach((item, index) => {
-  //       arr.push(item);
-  //       if (
-  //         (index !== 0 && (index + 1) % 3 === 0) ||
-  //         index === data.length - 1
-  //       ) {
-  //         columns.push(arr);
-  //         arr = [];
-  //       }
-  //     });
-  //   };
-  //   fn(data);
-  //   setBookDeskColumns(columns)
-  //   setBookColumns(data);
-  // }
-
   const sort = () => {
     let sortType = document.getElementById("mySelect").value;
+    let bookArr = [...bookColumns]
+    let bookDeskArr = []
+    let columns = []
     if (sortType === "alphabetical") {
-      const titleAlp = [...bookColumns].sort((a, b) =>
+      bookArr = [...bookColumns].sort((a, b) =>
         a.title > b.title ? 1 : -1,
       );
-      setBookColumns(titleAlp);
     } else if (sortType === "newest") {
-      const newest = [...bookColumns].sort((a, b) =>
+      bookArr = [...bookColumns].sort((a, b) =>
         a.created_on < b.created_on ? 1 : -1
       );
-      setBookColumns(newest);
+
     } else if (sortType === "oldest") {
-      const oldest = [...bookColumns].sort((a, b) =>
+      bookArr = [...bookColumns].sort((a, b) =>
         b.created_on < a.created_on ? 1 : -1
       );
-      setBookColumns(oldest);
+
     }
+    const fn = (data) => {
+      data.forEach((item, index) => {
+        bookDeskArr.push(item);
+        if (
+          (index !== 0 && (index + 1) % 3 === 0) ||
+          index === data.length - 1
+        ) {
+          columns.push(bookDeskArr);
+          bookDeskArr = [];
+        }
+      });
+    };
+    fn(bookArr);
+    setBookDeskColumns(columns)
+    setBookColumns([...bookArr]);
   }
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,13 +87,15 @@ const MainPage = (props) => {
   return (
     <>
       <div>
-        <img
-          className="bg-white rounded shadow d-block mx-auto mb-4"
-          src="/pucca.png"
-          alt=""
-          width="450"
-          height="350"
-        />
+        <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
+          <img
+            className="rounded d-block mx-auto mb-4"
+            src="/pucca.png"
+            alt=""
+            width="450"
+            height="350"
+          />
+        </div>
         <div className="wrapper">
           <span>N</span>
           <span>a</span>
