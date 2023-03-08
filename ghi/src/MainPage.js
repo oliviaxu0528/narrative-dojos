@@ -118,7 +118,7 @@ const MainPage = (props) => {
         <option value="newest">Newest</option>
         <option value="oldest">Oldest</option>
       </select>
-      <div className=".container">
+      <div className="container">
         <div className="row">
           {bookDeskColumns.map((books, index) => {
             return (
