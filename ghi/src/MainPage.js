@@ -297,7 +297,6 @@
 // }
 // export default MainPage
 
-
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import './index.css';
@@ -316,7 +315,10 @@ const MainPage = (props) => {
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
     const response = await fetch(bookUrl);
-    const data = await response.json();
+    let data = await response.json();
+    data = data.sort((a, b) =>
+      a.title > b.title ? 1 : -1,
+    );
     let arr = [];
     let columns = []
     const fn = (data) => {
@@ -342,12 +344,24 @@ const MainPage = (props) => {
     let bookDeskArr = []
     let columns = []
     if (sortType === "alphabetical") {
-      bookArr.sort()
+      bookArr = [...bookColumns].sort((a, b) =>
+        a.title > b.title ? 1 : -1,
+      );
+      console.log(bookArr)
     } else if (sortType === "newest") {
-      bookArr.sort((a, b) => b.created_on - a.created_on);
+      bookArr = [...bookColumns].sort((a, b) =>
+        a.created_on < b.created_on ? 1 : -1
+      );
+      console.log(bookArr)
+
     } else if (sortType === "oldest") {
-      bookArr.sort((a, b) => a.created_on - b.created_on);
+      bookArr = [...bookColumns].sort((a, b) =>
+        b.created_on < a.created_on ? 1 : -1
+      );
+      console.log(bookArr)
+
     }
+    console.log(sortType)
     const fn = (data) => {
       data.forEach((item, index) => {
         bookDeskArr.push(item);
