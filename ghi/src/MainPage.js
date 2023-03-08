@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import './index.css';
 import { useToken } from './Authentication';
 
-
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -134,12 +133,13 @@ const MainPage = (props) => {
                               width="200px"
                               height="300px"
                               className="card-img-top"
+                              alt="cover"
                             />
                             <div className="card-body">
                               <h5 className="card-title">{item.title}</h5>
                             </div>
                             <Link to={`/accounts/${item.username}/covers`} onClick={() => handleSelectUser(item.username)}>
-                              Read more by: {item.username}
+                              Read more by {item.username}
                             </Link>
 
                             <div className="card-footer">

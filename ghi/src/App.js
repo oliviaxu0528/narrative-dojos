@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import { AuthProvider, useToken } from './Authentication.js'
 import './App.css';
+import './bookDesk.css';
 import Nav from './Nav';
 import Signup from './Signup';
 import LoginForm from './LoginForm';
@@ -10,7 +11,6 @@ import MyBooksList from './MyBooksList';
 import CreatePages from './CreatePages';
 import CreateCover from './CreateCover';
 import BookDetail from './BookDetail';
-import './bookDesk.css';
 import AuthorBookList from './AuthorBookList';
 import Footer from "./Footer"
 
