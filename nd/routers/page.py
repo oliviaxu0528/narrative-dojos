@@ -20,7 +20,7 @@ def get_pages(
     return repo.get_all()
 
 
-@router.get("/pages/{pageID}", response_model=Union[PageOut, Error])
+@router.get("/page/{pageID}", response_model=Union[PageOut, Error])
 def get_page(
     pageID: int,
     response: Response,
@@ -32,7 +32,7 @@ def get_page(
     return page
 
 
-@router.delete("/pages/{pageID}", response_model=bool)
+@router.delete("/page/{pageID}", response_model=bool)
 def delete_page(
     pageID: int,
     repo: PageRepository = Depends()
@@ -40,7 +40,7 @@ def delete_page(
     return repo.delete(pageID)
 
 
-@router.put("/pages/{pageID}", response_model=Union[PageOut, Error])
+@router.put("/page/{pageID}", response_model=Union[PageOut, Error])
 def update_page(
     pageID: int,
     page: PageIn,

@@ -76,8 +76,10 @@ class BookRepository:
                         """,
                         [ID]
                     )
-                    return [self.record_to_book_out(
-                        record) for record in result]
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return self.record_to_book_out(record)
         except Exception as e:
             print(e)
             return {"message": "Could not get all book"}
