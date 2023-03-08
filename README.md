@@ -96,7 +96,27 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 |Update a page|http://localhost:8000/page/pageID|
 
 
+
 ## Requests
+
+**POST request to /account
+```sh
+[
+	{
+		"username": "string",
+		"password": "string"
+	}
+	{
+		"access_token": "string",
+		"token_type": "Bearer",
+		"account": {
+		"accountID": "string",
+		"username": "string"
+		}
+
+	}
+]
+```
 
 **GET request to /books
 
@@ -122,7 +142,82 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 		"page_image_url": "example_url",
 		"text": "cats text"
 	}
+]
 ```
+
+**POST request to /covers
+```sh
+[
+	{
+
+		"username": "string",
+		"title": "string",
+		"cover_image_url": "string",
+		"created_on": "2023-03-08"
+
+	},
+	{
+		"ID": 54,
+		"username": "string",
+		"title": "string",
+		"cover_image_url": "string",
+		"created_on": "2023-03-08"
+	}
+]
+```
+
+
+**POST request to /pages
+```sh
+[
+	{
+
+		"coverID": 1,
+		"page_image_url": "https://img2.baidu.com/it/u=2399001486,1472426582&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500",
+		"text": "Many cats are playing!"
+
+
+	},
+	{
+		
+		"pageID": 22,
+		"coverID": 1,
+		"page_image_url": "https://img2.baidu.com/it/u=2399001486,1472426582&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500",
+		"text": "Many cats are playing!"
+
+	}
+]
+```
+
+**GET request to /pages
+```sh
+[
+	{
+		"pageID": 1,
+		"coverID": 1,
+		"page_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkW2xSMf_wp3Dk2XQhoRK4lN2xUX7-tYSUQ&usqp=CAU",
+		"text": "Story1"
+	},
+	{
+		"pageID": 2,
+		"coverID": 1,
+		"page_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnQ84uFr6eHjb4mOAaNogg_cS5xeY-s0LT8w&usqp=CAU",
+		"text": "Story2"
+	},
+]
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
