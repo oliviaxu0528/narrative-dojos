@@ -1,17 +1,25 @@
 import { Link, useNavigate } from 'react-router-dom'
-import React, { useState, useEffect,selectedUser } from "react";
+import React, { useState, useEffect } from "react";
 import './index.css';
 import { useToken } from './Authentication';
 
 
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [bookDeskColumns, setBookDeskColumns] = useState([]);
   const { token } = useToken();
   let navigate = useNavigate()
   const toBookDetail = (book) => {
     navigate(`/book/${book.ID}`)
   }
+
+  const handleSelectUser = (username) => {
+    if (selectedUser !== username) {
+      setSelectedUser(username);
+    }
+  }
+
 
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
@@ -110,7 +118,7 @@ const MainPage = (props) => {
         <option value="newest">Newest</option>
         <option value="oldest">Oldest</option>
       </select>
-      <div className=".container">
+      <div className="container">
         <div className="row">
           {bookDeskColumns.map((books, index) => {
             return (
@@ -130,6 +138,10 @@ const MainPage = (props) => {
                             <div className="card-body">
                               <h5 className="card-title">{item.title}</h5>
                             </div>
+                            <Link to={`/accounts/${item.username}/covers`} onClick={() => handleSelectUser(item.username)}>
+                              Read more by: {item.username}
+                            </Link>
+
                             <div className="card-footer">
                               <h5
                                 className="card-link"

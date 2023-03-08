@@ -9,6 +9,12 @@ function CreatePages() {
   let [coverPaper, setCoverPaper] = useState([])
   let [isModalOpen, setIsModelOpen] = useState(false)
 
+  const [page_image_url, setPage_image_url] = useState('')
+  const [useApi, setUseApi] = useState(false);
+  const [apiPrompt, setApiPrompt] = useState('')
+  const [previewImages, setPreviewImages] = useState([]);
+  const [selectedPreviewImageIndex, setSelectedPreviewImageIndex] = useState(null);
+
   const form = createRef()
   let papers = numOfPapers.map((item, index) => {
     return createRef()
@@ -51,6 +57,21 @@ function CreatePages() {
     }
   }
 
+    const handleApiCheckboxChange = (event) => {
+      const value = event.target.checked;
+      setUseApi(value);
+  };
+
+    const handleApiPromptChange = (event) => {
+        const value = event.target.value
+        setApiPrompt(value)
+    }
+
+    const handlePreviewImageSelect = (index) => {
+        setSelectedPreviewImageIndex(index);
+        setPage_image_url(previewImages[index]);
+        console.log(previewImages[index])
+    }
   function goPrevPage() {
     if (currentLocation > 1) {
       if (currentLocation === 2) {
@@ -127,12 +148,51 @@ function CreatePages() {
     })
   }
 
+  const handleApiPromptSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const apiKey = "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";
+        console.log(apiKey)
+        const prompt = apiPrompt;
+        const response = await fetch(`https://api.openai.com/v1/images/generations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                "model": "image-alpha-001",
+                "prompt": prompt,
+                "n": 3,
+                "size": "256x256",
+                "response_format": "url"
+            })
+        });
+        const data = await response.json();
+        console.log(data)
+        if (data.data && data.data.length > 0) {
+            setPreviewImages(data.data);
+        } else {
+            console.error('Image URL not present in API response:', data);
+        }
+    } catch (error) {
+        console.error('Error fetching image from API:', error);
+    }
+};
+
   const onFinish = async (values) => {
     if (values) {
       const data = {}
       data.page_image_url = values.page_image_url
       data.text = values.text
       data.coverID = params.id
+
+      if (useApi && selectedPreviewImageIndex !== null) {
+          data.page_image_url = previewImages[selectedPreviewImageIndex].url;
+          console.log(data.page_image_url)
+      } else {
+          data.page_image_url = page_image_url;
+        }
 
       const url = `${process.env.REACT_APP_ND_API_HOST}/pages`;
       const fetchConfig = {
@@ -222,6 +282,18 @@ function CreatePages() {
         </div>
       </div>
       <Modal title="Adding a Page" open={isModalOpen} onCancel={handleCancel} footer={[]}>
+        <div className="form-check mb-3">
+          <input
+              className="form-check-input"
+              type="checkbox"
+              id="useApiCheckbox"
+              checked={useApi}
+              onChange={handleApiCheckboxChange}
+          />
+          <label className="form-check-label" htmlFor="useApiCheckbox">
+              Use API instead of Image URL
+          </label>
+      </div>
         <Form
           ref={form}
           name="basic"
@@ -233,6 +305,23 @@ function CreatePages() {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
+         {useApi && (
+          <div className="form-floating mb-3">
+              <input
+                  onChange={handleApiPromptChange}
+                  value={apiPrompt}
+                  placeholder="Image prompt"
+                  required
+                  type="text"
+                  name="apiPrompt"
+                  className="form-control"
+              />
+              <label htmlFor="apiPrompt">Image prompt</label>
+              <button className="btn btn-primary mt-2" onClick={handleApiPromptSubmit}>Submit Image Prompt</button>
+          </div>
+      )}
+      {!useApi && (
+        <div className="form-floating mb-3">
           <Form.Item
             label="page_image_url"
             name="page_image_url"
@@ -246,6 +335,8 @@ function CreatePages() {
           >
             <Input />
           </Form.Item>
+        </div>
+        )}
           <Form.Item
             label="text"
             name="text"
@@ -258,12 +349,38 @@ function CreatePages() {
           >
             <Input />
           </Form.Item>
+
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Add page
             </Button>
           </Form.Item>
         </Form>
+        {previewImages.length > 0 && (
+            <div className="mb-3">
+                <h4>Choose one of the following preview images:</h4>
+                <div className="d-flex justify-content-between align-items-center" style={{ width: "100%" }}>
+                    {previewImages.map((previewImageUrl, index) => (
+                        <div key={index}>
+                            <img
+                                src={previewImageUrl.url}
+                                alt={`Preview Image ${index + 1}`}
+                                style={{ width: "100%" }}
+                                onError={(e) => {
+                                    console.log(`Error loading image at URL: ${previewImageUrl}`);
+                                }}
+                            />
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => handlePreviewImageSelect(index)}
+                            >
+                            Choose
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
       </Modal>
     </div>
   )
