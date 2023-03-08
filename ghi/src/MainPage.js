@@ -71,13 +71,15 @@ const MainPage = (props) => {
   return (
     <>
       <div>
-        <img
-          className="bg-white rounded shadow d-block mx-auto mb-4"
-          src="/pucca.png"
-          alt=""
-          width="450"
-          height="350"
-        />
+        <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
+          <img
+            className="rounded d-block mx-auto mb-4"
+            src="/pucca.png"
+            alt=""
+            width="450"
+            height="350"
+          />
+        </div>
         <div className="wrapper">
           <span>N</span>
           <span>a</span>
