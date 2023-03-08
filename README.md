@@ -7,7 +7,7 @@
 * Lynn Lyu
 
 # Homepage
-![Homepage](/images/Homepage.png)
+![Home](/images/Home.png)
 
 # Website Summary
 Narrative Dojo is a website to create children's book leveraging the Dalle-2 AI image generator. Our goal is that customer can easily made creative children's book so the customer can decide what their children would read. Through a short text prompt, for cover and every page, our AI image API would generate pictures so that the customer can chose from there. Once finished and published, the user can manage the books.
