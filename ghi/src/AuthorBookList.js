@@ -89,7 +89,7 @@ const AuthorBookList = () => {
                     </div>
                 </div>
             </div>
-            <h2>My books</h2>
+            <h2>Books by: {username}</h2>
             <select id="mySelect" onChange={() => sort()}>
                 <option value="alphabetical">Alphabetical</option>
                 <option value="newest">Newest</option>
