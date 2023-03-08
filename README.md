@@ -194,95 +194,92 @@ The Service Microservice allows a user to:
 * View a list of appointments and establish when a appointment is cancelled or finished. If the user purchased their vehicle from the dealership, it will also indicate that they have VIP status.
 * Users can view service history for a specific car by searching the VIN of the vehicle.
 
-#### Inventory Microservice:
-The Inventory Microservice is responsible for:
-*Interacting with the Service and Sales microservices to update necessary information
-*The creation of vehicle manufacturers
-*Updating manufacturer information
-*Deletion of manufacturers
-*Listing of vehicle manufacturers
-*Fetching a specific manufacturer
-*The creation of vehicle models
-*Updating vehicle model information
-*Deletion of vehicle models
-*Listing of vehicle models
-*Fetching a specific vehicle model
-*The creation of an automobile
-*Updating automobile information
-*Deletion of specific automobile
-*Listing of all automobiles in inventory
-*Fetching a specific automobile
+
 
 
 #### Back-end Components:
-Accounts model:
-* accountID: Used to interact
-* username:
-* hashed_password:
 
-Cover model:
-* ID: Provides tje id that can be used to reference a specific cover.
-* username: Provides the username that is associated with a specific cover, specified as the author of a cover.
-* title: Provides the title of the cover.
-* cover_image_url: Provides the url to the image that will be used as the cover image.
+## Models
 
-* created_on: Provides the date that the cover was created on.
+**Accounts**
 
-Page model:
-* pageID: Used
-* coverID: Used to interact with the cover model. The ID in the cover model would be matched with the coverID in the page model to combine both models into a book.
-* page_image_url: Provides the url to the image that will be used as the page image.
-* text:
+- accountID: Provides the id that can be used to reference a specific account.
+- username: Provides the username that can be used to log in.
+- hashed_password: Provides the password that can be used to log in.
 
-Purpose of the Services Microservice:
-* As mentioned above, the Service Component handles all functionality associated with maintenance/services side of the CarCar dealership. This includes creating new technicians, viewing upcoming service appointments and a history of all service appointments associated with a specific vehicle.
+**Cover**
 
-Page model:
-* AutomobileVO: Used to interact with the data from inventory-api using a poller. Provides the vin, availability, and import href of the automobile.
-* Salesperson: Provides the name and employee number of the salesperson.
-* Customer: Provides the name, address, and phone number of the customer.
-* SalesRecord: Provides the automobile, salesperson, customer and price of the sale. The automobile,salesperson, and customer takes the three previous models as a foreign key as properties.
+- ID: Provides the id that can be used to reference a specific cover.
+- username: Provides the username that is associated with a specific cover, specified as the author of a cover.
+- title: Provides the title of the cover.
+- cover_image_url: The user will have the option to either provde the url to the image or use the image generated through dall-e-2 that will be used as the cover image.
+- created_on: Provides the date that the cover was created on.
 
-Purpose of the Sales Microservice:
-* The Sales Microservice handles all functionality associated with sales side ofthe CarCar dealership, including creating a salesperson, a sale, and a customer, list of all sales and sales sorted by the salesperson.
+**Page**
 
+- pageID: Provides the id that can be used to reference a specific page.
+- coverID: Used to interact with the cover model. The ID in the cover model would be matched with the coverID in the page model to combine both models into a book.
+- page_image_url: The user will have the option to either provde the url to the image or use the image generated through dall-e-2 that will be used as the page image.
+- text: Provides the text or the story of a page.
+
+**Book**
+
+*Not a typical model like cover or page, rather a SQL SELECT statement to join cover and page on cover.ID = page.coverID*
+
+> SELECT ID, username, title, cover_image_url, created_on, pageID, page_image_url, text FROM cover
+>
+> INNER JOIN page
+>
+> ON cover.ID = page.coverID
 
 | Feature          | URL          |
 |:-----------------|:-------------|
-|List of manufacturers|http://localhost:3000/manufacturers|
-|Create a manufacturer|http://localhost:3000/manufacturers/new|
-|List of vehicle models|http://localhost:3000/model|
-|Create a vehicle model|http://localhost:3000/model/new|
-|List of automobiles|http://localhost:3000/automobile/|
-|Create an automobile|http://localhost:3000/automobile/new|
-|Create a salesperson|http://localhost:3000/salesperson/new|
-|Create a sale|http://localhost:3000/sale/new|
-|List of all sales|http://localhost:3000/sale|
-|List sales history by salesperson|http://localhost:3000/salesperson|
-|Create a customer|http://localhost:3000/customer/new|
-|Create a technician|http://localhost:3000/technicians|
-|Create a service appointment|http://localhost:3000/appointments/new|
-|List of service appointments|http://localhost:3000/appointments/|
-|List of service history based on a car's VIN|http://localhost:3000/history|
+|Create an account|http://localhost:8000/account|
+|Login|http://localhost:8000/token|
+|View a list of books|http://localhost:8000/books|
+|View a specific book|http://localhost:8000/book/ID|
+|Delete a book|http://localhost:8000/book/ID|
+|Update a book|http://localhost:8000/book/ID|
+|List of automobiles|http://localhost:3000/automobile|
+|Create a cover|http://localhost:8000/covers|
+|View a list of covers|http://localhost:8000/covers|
+|View a specific cover|http://localhost:8000/cover/ID|
+|Delete a cover|http://localhost:8000/cover/ID|
+|Update a cover|http://localhost:8000/cover/ID|
+|View covers by username|http://localhost:8000/accounts/username/covers|
+|Create a page|http://localhost:3000/pages|
+|View a list of pages|http://localhost:3000/pages|
+|View a specific page|http://localhost:8000/page/pageID|
+|Delete a page|http://localhost:8000/page/pageID|
+|Update a page|http://localhost:8000/page/pageID|
 
 
-#### GET request to api/manufacturers/
+## Requests
+
+**GET request to /books
 
 ```sh
-{
-    "manufacturers": [
-    	{
-    		"href": "/api/manufacturers/1/",
-    		"id": 1,
-    		"name": "Audi"
-    	},
-    	{
-    		"href": "/api/manufacturers/5/",
-    		"id": 5,
-    		"name": "BMW"
-    	}
-    ]
-}
+[
+	{
+		"ID": 2,
+		"username": "james",
+		"title": "Dogs",
+		"cover_image_url": "example_url",
+		"created_on": "1111-11-11",
+		"pageID": 1,
+		"page_image_url": "example_url",
+		"text": "dogs text"
+	},
+	{
+		"ID": 3,
+		"username": "james",
+		"title": "cats",
+		"cover_image_url": "example_url",
+		"created_on": "2222-11-11",
+		"pageID": 2,
+		"page_image_url": "example_url",
+		"text": "cats text"
+	}
 ```
 #### POST request to api/manufacturers/
 
