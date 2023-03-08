@@ -96,7 +96,7 @@ deployment, but it just consists of these steps:
 * make sure this project is in a group. If it isn't, stop
   now and move it to a GitLab group
 * remove the fork relationship: In GitLab go to:
-  
+
   Settings -> General -> Advanced -> Remove fork relationship
 
 * add these GitLab CI/CD variables:
@@ -145,3 +145,250 @@ in GitLab.
 Merge a change into main to kick off the initial deploy. Once the build pipeline
 finishes you should be able to see an "under construction" page on your GitLab
 pages site.
+
+
+# CarCar
+
+Team:
+
+* James Yi - Sales
+* Chris Lee - Service
+
+# Homepage
+![Homepage](/images/Homepage.png)
+
+# UI
+CarCar is a website used to manage the CarCar Dealership. From CarCar's website Employees can register themselves as a new Salesperson or new Service Technician. Salespeople have the ability to create new sales, view all previous sales. Technicians have the ability to view all appointments coming up as well as view service history of a specific vehicle by its vin. All CarCar employees have the ability to go and create new vehicles and add them to the dealership inventory.
+
+#### Navigating
+* From the navigation bar you will find all of the associated links to navigate you the various components of our website mentioned above.
+
+# Website Functionality
+CarCar is comprised of 3 microservices: Inventory-API, Sales-API and Service-API. The Inventory-API is responsible for managing vehicle information(which includes, manufacturer, model and vehicle description) as well as managing the RESTful-APIs needed to create and update vehicle information.
+
+#### How to run
+* Clone the repo: `https://gitlab.com/chris_lee253/project-beta.git`
+* Open Docker Desktop
+* Within your terminal, run the following:
+* docker volume create beta-data
+* docker-compose build
+* docker-compose up
+
+#### Components
+* Front-end: React
+* Back-end: Django
+* Database: PostgreSQL
+
+#### Sales microservice:
+The Sales Microservice allows a user to:
+* Create a new salesperson by providing the name and employee number of the salesperson.
+* Create a new customer by providing the name, address, and phone number of the customer.
+* Create a new sale by providing selecting the automobile, salesperson, and customer from a drop down menu. Then provide a price for the sale.
+* View a list of sales which provides the name of the salesperson, the salesperson's employee number, customer name, VIN of automobile, and price of the automobile.
+* View a history of sales by salesperson, which provides everything a list of sales would provide sorted by the salesperson.
+
+#### Service Microservice:
+The Service Microservice allows a user to:
+* Create a technician by providing the technicians name and employee number (Which the user will manually input).
+* Create an appointment, which requires a user to provide a VIN number, desired date for service, technician, and reason for service appointment.
+* View a list of appointments and establish when a appointment is cancelled or finished. If the user purchased their vehicle from the dealership, it will also indicate that they have VIP status.
+* Users can view service history for a specific car by searching the VIN of the vehicle.
+
+#### Inventory Microservice:
+The Inventory Microservice is responsible for:
+*Interacting with the Service and Sales microservices to update necessary information
+*The creation of vehicle manufacturers
+*Updating manufacturer information
+*Deletion of manufacturers
+*Listing of vehicle manufacturers
+*Fetching a specific manufacturer
+*The creation of vehicle models
+*Updating vehicle model information
+*Deletion of vehicle models
+*Listing of vehicle models
+*Fetching a specific vehicle model
+*The creation of an automobile
+*Updating automobile information
+*Deletion of specific automobile
+*Listing of all automobiles in inventory
+*Fetching a specific automobile
+
+
+#### Back-end Components:
+Accounts model:
+* accountID: Used to interact
+* username:
+* hashed_password:
+
+Cover model:
+* ID: Provides tje id that can be used to reference a specific cover.
+* username: Provides the username that is associated with a specific cover, specified as the author of a cover.
+* title: Provides the title of the cover.
+* cover_image_url: Provides the url to the image that will be used as the cover image.
+
+* created_on: Provides the date that the cover was created on.
+
+Page model:
+* pageID: Used
+* coverID: Used to interact with the cover model. The ID in the cover model would be matched with the coverID in the page model to combine both models into a book.
+* page_image_url: Provides the url to the image that will be used as the page image.
+* text:
+
+Purpose of the Services Microservice:
+* As mentioned above, the Service Component handles all functionality associated with maintenance/services side of the CarCar dealership. This includes creating new technicians, viewing upcoming service appointments and a history of all service appointments associated with a specific vehicle.
+
+Page model:
+* AutomobileVO: Used to interact with the data from inventory-api using a poller. Provides the vin, availability, and import href of the automobile.
+* Salesperson: Provides the name and employee number of the salesperson.
+* Customer: Provides the name, address, and phone number of the customer.
+* SalesRecord: Provides the automobile, salesperson, customer and price of the sale. The automobile,salesperson, and customer takes the three previous models as a foreign key as properties.
+
+Purpose of the Sales Microservice:
+* The Sales Microservice handles all functionality associated with sales side ofthe CarCar dealership, including creating a salesperson, a sale, and a customer, list of all sales and sales sorted by the salesperson.
+
+
+| Feature          | URL          |
+|:-----------------|:-------------|
+|List of manufacturers|http://localhost:3000/manufacturers|
+|Create a manufacturer|http://localhost:3000/manufacturers/new|
+|List of vehicle models|http://localhost:3000/model|
+|Create a vehicle model|http://localhost:3000/model/new|
+|List of automobiles|http://localhost:3000/automobile/|
+|Create an automobile|http://localhost:3000/automobile/new|
+|Create a salesperson|http://localhost:3000/salesperson/new|
+|Create a sale|http://localhost:3000/sale/new|
+|List of all sales|http://localhost:3000/sale|
+|List sales history by salesperson|http://localhost:3000/salesperson|
+|Create a customer|http://localhost:3000/customer/new|
+|Create a technician|http://localhost:3000/technicians|
+|Create a service appointment|http://localhost:3000/appointments/new|
+|List of service appointments|http://localhost:3000/appointments/|
+|List of service history based on a car's VIN|http://localhost:3000/history|
+
+
+#### GET request to api/manufacturers/
+
+```sh
+{
+    "manufacturers": [
+    	{
+    		"href": "/api/manufacturers/1/",
+    		"id": 1,
+    		"name": "Audi"
+    	},
+    	{
+    		"href": "/api/manufacturers/5/",
+    		"id": 5,
+    		"name": "BMW"
+    	}
+    ]
+}
+```
+#### POST request to api/manufacturers/
+
+Request body:
+```sh
+{
+    "name": "BMW"
+}
+```
+Returns:
+```sh
+{
+    "href": "/api/manufacturers/5/",
+    "id": 5,
+    "name": "BMW"
+}
+```
+#### GET request to api/models/
+
+```sh
+{
+    "models": [
+	    {
+	    	"href": "/api/models/1/",
+	    	"id": 1,
+	    	"name": "A8",
+	    	"picture_url": "https://pictures.dealer.com/b/bernardiaudiaoa/0743/bab41a0972960f05ca972fd6b19d1454x.jpg",
+	    	"manufacturer": {
+        		"href": "/api/manufacturers/1/",
+	    		"id": 1,
+	    		"name": "Audi"
+	    	}
+	    }
+    ]
+}
+```
+#### POST request to api/models/
+
+Request body:
+```sh
+{
+    "name": "M3",
+    "picture_url": "https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb25f43560e1e3d8e88cb10/stills_0640_png/MY2022/15275/15275_st0640_116.png",
+    "manufacturer_id": 5
+}
+```
+Returns:
+```sh
+{
+    "href": "/api/models/2/",
+    "id": 2,
+    "name": "M3",
+    "picture_url": "https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb25f43560e1e3d8e88cb10/stills_0640_png/MY2022/15275/15275_st0640_116.png",
+    "manufacturer": {
+    	"href": "/api/manufacturers/5/",
+    	"id": 5,
+    	"name": "BMW"
+    }
+}
+```
+#### GET request to api/automobiles/
+
+```sh
+{
+    "autos": [
+    	{
+    		"href": "/api/automobiles/2FAFP71W9YX180793/",
+    		"id": 1,
+    		"color": "Black",
+    		"year": 2023,
+    		"vin": "2FAFP71W9YX180793",
+    		"model": {
+    			"href": "/api/models/1/",
+    			"id": 1,
+    			"name": "A8",
+    			"picture_url": "https://pictures.dealer.com/b/bernardiaudiaoa/0743/bab41a0972960f05ca972fd6b19d1454x.jpg",
+    			"manufacturer": {
+    				"href": "/api/manufacturers/1/",
+    				"id": 1,
+    				"name": "Audi"
+    			}
+    		}
+    	},
+    	{
+    		"href": "/api/automobiles/BMW123C3BM231285/",
+    		"id": 2,
+    		"color": "Black",
+    		"year": 2022,
+    		"vin": "BMW123C3BM231285",
+    		"model": {
+    			"href": "/api/models/2/",
+    			"id": 2,
+    			"name": "M3",
+    			"picture_url": "https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb25f43560e1e3d8e88cb10/stills_0640_png/MY2022/15275/15275_st0640_116.png",
+    			"manufacturer": {
+    				"href": "/api/manufacturers/5/",
+    				"id": 5,
+    				"name": "BMW"
+    			}
+    		}
+    	}
+    ]
+}
+```
+
+#### Context Map
+![Context Map](/images/Excalidraw.png)
+
+
