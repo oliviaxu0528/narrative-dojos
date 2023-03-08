@@ -52,10 +52,6 @@ export default function CreateCover() {
         console.log(previewImages[index])
     }
 
-    // useEffect(() => {
-    //     const username = localStorage.getItem('username')
-    //     setUsername(username)
-    // }, [])
     const handleApiPromptSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -218,4 +214,4 @@ export default function CreateCover() {
         </div>
     );
 }
-// }
+
