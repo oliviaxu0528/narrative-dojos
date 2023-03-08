@@ -19,11 +19,7 @@ const AuthorBookList = () => {
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${username}/covers/`;
         const response = await fetch(bookUrl);
         const data = await response.json();
-
-
-
         setBookColumns(data);
-
     }
 
     const sort = () => {
@@ -48,7 +44,7 @@ const AuthorBookList = () => {
 
     useEffect(() => {
         fetchData();
-    });
+    },[]);
 
     function BookColumn({ book }) {
         return (
@@ -57,13 +53,8 @@ const AuthorBookList = () => {
                     <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" alt="cover_image_url"/>
                     <div className="card-body">
                         <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-
-
-
                     </div>
                 </div>
-
-
             </div>
         );
     }

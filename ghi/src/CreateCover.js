@@ -10,8 +10,6 @@ export default function CreateCover() {
     const [cover_image_url, setCover_image_url] = useState('')
     const [useApi, setUseApi] = useState(false);
     const [created_on, setCreated_on] = useState('')
-
-
     const [apiPrompt, setApiPrompt] = useState('')
     const [previewImages, setPreviewImages] = useState([]);
     const [selectedPreviewImageIndex, setSelectedPreviewImageIndex] = useState(null);
@@ -21,6 +19,7 @@ export default function CreateCover() {
         console.log(username)
         setUsername(username)
     }, [])
+
     const handleTitleChange = (event) => {
         const value = event.target.value
         setTitle(value)
@@ -52,10 +51,6 @@ export default function CreateCover() {
         console.log(previewImages[index])
     }
 
-    // useEffect(() => {
-    //     const username = localStorage.getItem('username')
-    //     setUsername(username)
-    // }, [])
     const handleApiPromptSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -87,6 +82,7 @@ export default function CreateCover() {
             console.error('Error fetching image from API:', error);
         }
     };
+
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -103,7 +99,6 @@ export default function CreateCover() {
             data.cover_image_url = cover_image_url;
         }
 
-
         const url = `${process.env.REACT_APP_ND_API_HOST}/covers`;
         const fetchConfig = {
             method: "POST",
@@ -119,7 +114,6 @@ export default function CreateCover() {
         console.log(response)
 
         if (response.ok) {
-
             setTitle('');
             setUsername('');
             setCover_image_url('');
@@ -167,7 +161,6 @@ export default function CreateCover() {
                                 <button className="btn btn-primary mt-2" onClick={handleApiPromptSubmit}>Submit Image Prompt</button>
                             </div>
                         )}
-                        {/* Only render the cover_image_url input if the user is not using the API */}
                         {!useApi && (
                             <div className="form-floating mb-3">
                                 <input
@@ -206,7 +199,7 @@ export default function CreateCover() {
                                             className="btn btn-primary"
                                             onClick={() => handlePreviewImageSelect(index)}
                                         >
-                                            Choose
+                                        Choose
                                         </button>
                                     </div>
                                 ))}
@@ -218,4 +211,3 @@ export default function CreateCover() {
         </div>
     );
 }
-// }

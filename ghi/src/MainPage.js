@@ -12,6 +12,7 @@ const MainPage = (props) => {
   const toBookDetail = (book) => {
     navigate(`/book/${book.ID}`)
   }
+
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
     const response = await fetch(bookUrl);
@@ -58,25 +59,6 @@ const MainPage = (props) => {
   useEffect(() => {
     fetchData();
   }, [selectedUser]);
-
-  // function BookColumn({ book }) {
-  //   return (
-  //     <div className="col" style={{ minWidth: "260px", maxWidth: "260px" }}>
-  //       <div key={book.id} className="card mb-3 shadow">
-  //         <img src={book.cover_image_url} width="200px" height="300px" className="card-img-top" alt="cover_image_url"/>
-  //         <div className="card-body">
-  //           <h5 className="card-title" onClick={() => toBookDetail(book)}>{book.title}</h5>
-  //           <Link to={`/accounts/${book.username}/covers`} onClick={() => handleSelectUser(book.username)}>
-  //           Read more by: {book.username}
-  //           </Link>
-  //         </div>
-  //         <div className="card-footer">
-  //           <p className="card-link btn px-100 gap-500" onClick={() => toBookDetail(book)}>Read {book.title}</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   return (
     <>
@@ -169,8 +151,6 @@ const MainPage = (props) => {
           })}
         </div>
       </div>
-
-
     </>
   )
 }

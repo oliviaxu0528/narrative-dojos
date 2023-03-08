@@ -1,36 +1,30 @@
 import { useState, createRef, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './App.css'
-// import assemblyai from './assemblyai';
-
-// const synth = window.speechSynthesis;
-
-// function speak(text) {
-//     const utterance = new SpeechSynthesisUtterance(text);
-//     synth.speak(utterance);
-// }
-
 
 let currentLocation = 1
 function BookDetail() {
     let [numOfPapers, setNumOfPapers] = useState([])
-    const [isPlaying, setIsPlaying] = useState(false);
+    // const [isPlaying, setIsPlaying] = useState(false);
+
     let papers = numOfPapers.map((item, index) => {
         return createRef()
     })
     let [coverPaper, setCoverPaper] = useState([])
     papers.unshift(createRef())
-    // const [searchParams, setSearchParams] = useSearchParams()
+
     const params = useParams()
     let maxLocation = numOfPapers.length + 2;
     const preButton = createRef()
     const nextButton = createRef()
     const book = createRef()
+
     const openBook = function () {
         book.current.style.transform = "translateX(50%)";
         preButton.current.style.transform = "translateX(-180px)";
         nextButton.current.style.transform = "translateX(180px)";
     }
+
     const closeBook = function (isAtBeginning) {
         if (isAtBeginning) {
             book.current.style.transform = "translateX(0%)";
@@ -40,6 +34,7 @@ function BookDetail() {
         preButton.current.style.transform = "translateX(0px)";
         nextButton.current.style.transform = "translateX(0px)";
     }
+
     function goNextPage() {
         if (currentLocation < maxLocation) {
             if (currentLocation === 1) {
@@ -52,7 +47,6 @@ function BookDetail() {
             }
             currentLocation++;
         }
-
     }
 
     function goPrevPage() {
@@ -78,10 +72,11 @@ function BookDetail() {
         const data = [object]
         setCoverPaper(data);
     }
+
     useEffect(() => {
         const bookId = params.id
         getCoverById(bookId)
-    })
+    },[])
 
     async function getPagesById(id) {
         const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
@@ -92,11 +87,12 @@ function BookDetail() {
         })
         setNumOfPapers(data);
     }
+
     useEffect(() => {
         const bookId = params.id
         getCoverById(bookId)
         getPagesById(bookId)
-    })
+    },[])
 
     return (
         <div className="App">
@@ -129,22 +125,6 @@ function BookDetail() {
                                     <br/>
                                     <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
                                     <div className='button-2'>{item.text}</div>
-                                    {/* <div className="button-2">
-                                        {item.text}
-                                        <button
-                                            className="speak-button"
-                                            onClick={() => {
-                                                setIsPlaying(!isPlaying);
-                                                if (!isPlaying) {
-                                                    speak(item.text);
-                                                } else {
-                                                    synth.cancel();
-                                                }
-                                            }}
-                                        >
-                                            {isPlaying ? "Stop" : "Speak"}
-                                        </button>
-                                    </div> */}
                                 </div>
                                 <div className="back">
                                     <div id={'b' + (index + 1)} className="back-content">

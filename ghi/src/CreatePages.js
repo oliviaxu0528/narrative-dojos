@@ -8,21 +8,25 @@ function CreatePages() {
   let [numOfPapers, setNumOfPapers] = useState([])
   let [coverPaper, setCoverPaper] = useState([])
   let [isModalOpen, setIsModelOpen] = useState(false)
+
   const form = createRef()
   let papers = numOfPapers.map((item, index) => {
     return createRef()
   })
+
   papers.unshift(createRef())
   let maxLocation = numOfPapers.length + 2;
   const preButton = createRef()
   const params = useParams()
   const nextButton = createRef()
   const book = createRef()
+
   const openBook = function () {
     book.current.style.transform = "translateX(50%)";
     preButton.current.style.transform = "translateX(-180px)";
     nextButton.current.style.transform = "translateX(180px)";
   }
+
   const closeBook = function (isAtBeginning) {
     if (isAtBeginning) {
       book.current.style.transform = "translateX(0%)";
@@ -32,6 +36,7 @@ function CreatePages() {
     preButton.current.style.transform = "translateX(0px)";
     nextButton.current.style.transform = "translateX(0px)";
   }
+
   function goNextPage() {
     if (currentLocation < maxLocation) {
       if (currentLocation === 1) {
@@ -45,6 +50,7 @@ function CreatePages() {
       currentLocation++;
     }
   }
+
   function goPrevPage() {
     if (currentLocation > 1) {
       if (currentLocation === 2) {
@@ -61,6 +67,7 @@ function CreatePages() {
 
     }
   }
+
   async function getCoverById(id) {
     const coverUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${id}`;
     const response = await fetch(coverUrl);
@@ -68,6 +75,7 @@ function CreatePages() {
     const data = [obj]
     setCoverPaper(data);
   }
+
   async function getPagesById(id) {
     const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
     const response = await fetch(pagesUrl);
@@ -77,6 +85,7 @@ function CreatePages() {
     })
     setNumOfPapers(data);
   }
+
   useEffect(() => {
     const bookId = params.id
     getCoverById(bookId)
@@ -93,10 +102,12 @@ function CreatePages() {
         nextButton.current.style.transform = "translateX(180px)";
       }
     }
-  })
+  },[])
+
   function addPage() {
     setIsModelOpen(true)
   }
+
   function decreasePage() {
     const arr = [...numOfPapers]
     arr.pop()
@@ -115,13 +126,14 @@ function CreatePages() {
       duration: 1
     })
   }
+
   const onFinish = async (values) => {
     if (values) {
-
       const data = {}
       data.page_image_url = values.page_image_url
       data.text = values.text
       data.coverID = params.id
+
       const url = `${process.env.REACT_APP_ND_API_HOST}/pages`;
       const fetchConfig = {
         method: "post",
@@ -130,6 +142,7 @@ function CreatePages() {
           'Content-Type': 'application/json',
         },
       };
+
       const response = await fetch(url, fetchConfig);
       if (response.ok) {
 
@@ -139,16 +152,19 @@ function CreatePages() {
     form.current.resetFields()
     setIsModelOpen(false)
   }
+
   const handleCancel = () => {
     form.current.resetFields()
     setIsModelOpen(false)
   }
+
   const onFinishFailed = () => {
     message.error({
       content: 'Input cannot be null',
       duration: 1
     })
   }
+
   return (
     <div className="App">
       <div className='setting-container'>
@@ -161,18 +177,19 @@ function CreatePages() {
             </Link>
       </div>
       <div className='book-container'>
+      <div className="buttons">
         <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
           <h1 className='pt'>{'previous'}</h1>
           <h1 className='cm'>{'<'}</h1>
           <i className="fas fa-arrow-circle-left"></i>
         </button>
+      </div>
         <div id="book" className="book" ref={book}>
           {coverPaper.map((item, index) => {
             return (
               <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                 <div className="front">
                   <img src={item.cover_image_url} width="425px" height="680px" alt="cover_image_url"/>
-
                 </div>
                 <div className="back">
                 </div>
@@ -196,11 +213,13 @@ function CreatePages() {
             )
           })}
         </div>
+        <div className="buttons">
         <button id="next-btn" ref={nextButton} onClick={goNextPage}>
           <h1 className='pt'>{'next'}</h1>
           <h1 className='cm'>{'>'}</h1>
           <i className="fas fa-arrow-circle-right"></i>
         </button>
+        </div>
       </div>
       <Modal title="Adding a Page" open={isModalOpen} onCancel={handleCancel} footer={[]}>
         <Form
@@ -227,7 +246,6 @@ function CreatePages() {
           >
             <Input />
           </Form.Item>
-
           <Form.Item
             label="text"
             name="text"
