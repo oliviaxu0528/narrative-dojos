@@ -113,7 +113,7 @@ i {
 .headerMenuEntryImg {
   height: 260px;
   width: 357.5px;
-  background-size: 100%;
+  -size: 100%;
   background-repeat: no-repeat;
   top: 50%;
 
