@@ -5,13 +5,13 @@ import { useToken } from "./Authentication";
 
 const MyBooksList = (props) => {
     const [bookColumns, setBookColumns] = useState([]);
-    const { token } = useToken();
     const [bookDeskColumns, setBookDeskColumns] = useState([]);
+    const { token } = useToken();
     let navigate = useNavigate();
 
     const toBookDetail = (book) => {
-        navigate(`/book/${book.ID}`)
-    }
+        navigate(`/book/${book.ID}`);
+    };
 
     const fetchData = async () => {
         const currentUser = localStorage.getItem("username");
@@ -20,6 +20,8 @@ const MyBooksList = (props) => {
         const data = await response.json();
         let arr = [];
         let columns = []
+
+
         const fn = (data) => {
             data.forEach((item, index) => {
                 arr.push(item);
@@ -37,26 +39,43 @@ const MyBooksList = (props) => {
         fn(data);
         setBookDeskColumns(columns)
         setBookColumns(data);
-    };
+    }
 
     const sort = () => {
         let sortType = document.getElementById("mySelect").value;
+        let bookArr = [...bookColumns]
+        let bookDeskArr = []
+        let columns = []
         if (sortType === "alphabetical") {
-            const titleAlp = [...bookColumns].sort((a, b) =>
-                a.title > b.title ? 1 : -1
+            bookArr = [...bookColumns].sort((a, b) =>
+                a.title > b.title ? 1 : -1,
             );
-            setBookColumns(titleAlp);
         } else if (sortType === "newest") {
-            const newest = [...bookColumns].sort((a, b) =>
+            bookArr = [...bookColumns].sort((a, b) =>
                 a.created_on < b.created_on ? 1 : -1
             );
-            setBookColumns(newest);
+
         } else if (sortType === "oldest") {
-            const oldest = [...bookColumns].sort((a, b) =>
+            bookArr = [...bookColumns].sort((a, b) =>
                 b.created_on < a.created_on ? 1 : -1
             );
-            setBookColumns(oldest);
+
         }
+        const fn = (data) => {
+      data.forEach((item, index) => {
+        bookDeskArr.push(item);
+        if (
+          (index !== 0 && (index + 1) % 3 === 0) ||
+          index === data.length - 1
+        ) {
+          columns.push(bookDeskArr);
+          bookDeskArr = [];
+        }
+      });
+    };
+    fn(bookArr);
+    setBookDeskColumns(columns)
+    setBookColumns([...bookArr]);
     };
 
     const deleteBook = async (book) => {
@@ -105,6 +124,9 @@ const MyBooksList = (props) => {
                     <span>j</span>
                     <span>o</span>
                 </div>
+                {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>
+                    Narrative Dojo
+                </h1> */}
                 <div className="col-lg-6 mx-auto">
                     <p className="lead mb-4" style={{ textAlign: "center" }}>
                         by Narrative Ninjas

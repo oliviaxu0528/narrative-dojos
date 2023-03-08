@@ -24,7 +24,10 @@ const MainPage = (props) => {
   const fetchData = async () => {
     const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
     const response = await fetch(bookUrl);
-    const data = await response.json();
+    let data = await response.json();
+    data = data.sort((a, b) =>
+      a.title > b.title ? 1 : -1,
+    );
     let arr = [];
     let columns = []
     const fn = (data) => {
@@ -46,27 +49,46 @@ const MainPage = (props) => {
 
   const sort = () => {
     let sortType = document.getElementById("mySelect").value;
+    let bookArr = [...bookColumns]
+    let bookDeskArr = []
+    let columns = []
     if (sortType === "alphabetical") {
-      const titleAlp = [...bookColumns].sort((a, b) =>
+      bookArr = [...bookColumns].sort((a, b) =>
         a.title > b.title ? 1 : -1,
       );
-      setBookColumns(titleAlp);
     } else if (sortType === "newest") {
-      const newest = [...bookColumns].sort((a, b) =>
+      bookArr = [...bookColumns].sort((a, b) =>
         a.created_on < b.created_on ? 1 : -1
       );
-      setBookColumns(newest);
+
     } else if (sortType === "oldest") {
-      const oldest = [...bookColumns].sort((a, b) =>
+      bookArr = [...bookColumns].sort((a, b) =>
         b.created_on < a.created_on ? 1 : -1
       );
-      setBookColumns(oldest);
+
     }
+    const fn = (data) => {
+      data.forEach((item, index) => {
+        bookDeskArr.push(item);
+        if (
+          (index !== 0 && (index + 1) % 3 === 0) ||
+          index === data.length - 1
+        ) {
+          columns.push(bookDeskArr);
+          bookDeskArr = [];
+        }
+      });
+    };
+    fn(bookArr);
+    setBookDeskColumns(columns)
+    setBookColumns([...bookArr]);
   }
+
+  
 
   useEffect(() => {
     fetchData();
-  }, [selectedUser]);
+  }, []);
 
   return (
     <>
@@ -96,6 +118,7 @@ const MainPage = (props) => {
           <span>o</span>
         </div>
         <div className="col-lg-6 mx-auto">
+          {/* lead mb-4 */}
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
               <>
@@ -165,6 +188,8 @@ const MainPage = (props) => {
           })}
         </div>
       </div>
+
+
     </>
   )
 }
