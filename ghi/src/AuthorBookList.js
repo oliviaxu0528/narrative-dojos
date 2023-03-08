@@ -62,13 +62,15 @@ const AuthorBookList = () => {
     return (
         <>
             <div>
-                <img
-                    className="bg-white rounded shadow d-block mx-auto mb-4"
-                    src="/pucca.png"
-                    alt=""
-                    width="450"
-                    height="350"
-                />
+                <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
+                    <img
+                        className="rounded d-block mx-auto mb-4"
+                        src="/pucca.png"
+                        alt=""
+                        width="450"
+                        height="350"
+                    />
+                </div>
                 <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
                 <div className="col-lg-6 mx-auto">
                     <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
