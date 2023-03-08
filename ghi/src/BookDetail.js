@@ -64,7 +64,7 @@ function BookDetail() {
     }
 
     async function getCoverById(id) {
-        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${id}`;
+        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/cover/${id}`;
         const response = await fetch(bookUrl);
         const object = await response.json();
         const data = [object]
@@ -74,7 +74,7 @@ function BookDetail() {
     useEffect(() => {
         const bookId = params.id
         getCoverById(bookId)
-    },[params])
+    }, [params])
 
     async function getPagesById(id) {
         const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
@@ -90,17 +90,17 @@ function BookDetail() {
         const bookId = params.id
         getCoverById(bookId)
         getPagesById(bookId)
-    },[params])
+    }, [params])
 
     return (
         <div className="App">
             <div className='book-container'>
                 <div className="buttons">
-                <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
-                    <h1 className='pt'>{'previous'}</h1>
-                    <h1 className='cm'>{'<'}</h1>
-                    <i className="fas fa-arrow-circle-left"></i>
-                </button>
+                    <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
+                        <h1 className='pt'>{'previous'}</h1>
+                        <h1 className='cm'>{'<'}</h1>
+                        <i className="fas fa-arrow-circle-left"></i>
+                    </button>
                 </div>
                 <div id="book" className="book" ref={book}>
                     {coverPaper.map((item, index) => {
@@ -109,7 +109,7 @@ function BookDetail() {
                                 <div className="front">
                                     <div className='text'>
                                     </div>
-                                    <img className='coverImg' src={item.cover_image_url} alt="cover_image_url"/>
+                                    <img className='coverImg' src={item.cover_image_url} alt="cover_image_url" />
                                 </div>
                                 <div className="back">
                                 </div>
@@ -120,8 +120,8 @@ function BookDetail() {
                         return (
                             <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index + 1]}>
                                 <div className="front">
-                                    <br/>
-                                    <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
+                                    <br />
+                                    <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url" /></div>
                                     <div className='button-2'>{item.text}</div>
                                 </div>
                                 <div className="back">
@@ -134,11 +134,11 @@ function BookDetail() {
                     })}
                 </div>
                 <div className="buttons">
-                <button id="next-btn" ref={nextButton} onClick={goNextPage}>
-                    <h1 className='pt'>{'next'}</h1>
-                    <h1 className='cm'>{'>'}</h1>
-                    <i className="fas fa-arrow-circle-right"></i>
-                </button>
+                    <button id="next-btn" ref={nextButton} onClick={goNextPage}>
+                        <h1 className='pt'>{'next'}</h1>
+                        <h1 className='cm'>{'>'}</h1>
+                        <i className="fas fa-arrow-circle-right"></i>
+                    </button>
                 </div>
             </div>
         </div>

@@ -50,28 +50,28 @@ function CreatePages() {
       }
       papers[currentLocation - 1].current.classList.add("flipped");
       papers[currentLocation - 1].current.style.zIndex = currentLocation;
-      if (currentLocation === numOfPapers.lengt + 1) {
+      if (currentLocation === numOfPapers.length + 1) {
         closeBook(false);
       }
       currentLocation++;
     }
   }
 
-    const handleApiCheckboxChange = (event) => {
-      const value = event.target.checked;
-      setUseApi(value);
+  const handleApiCheckboxChange = (event) => {
+    const value = event.target.checked;
+    setUseApi(value);
   };
 
-    const handleApiPromptChange = (event) => {
-        const value = event.target.value
-        setApiPrompt(value)
-    }
+  const handleApiPromptChange = (event) => {
+    const value = event.target.value
+    setApiPrompt(value)
+  }
 
-    const handlePreviewImageSelect = (index) => {
-        setSelectedPreviewImageIndex(index);
-        setPage_image_url(previewImages[index]);
-        console.log(previewImages[index])
-    }
+  const handlePreviewImageSelect = (index) => {
+    setSelectedPreviewImageIndex(index);
+    setPage_image_url(previewImages[index]);
+    console.log(previewImages[index])
+  }
   function goPrevPage() {
     if (currentLocation > 1) {
       if (currentLocation === 2) {
@@ -90,7 +90,7 @@ function CreatePages() {
   }
 
   async function getCoverById(id) {
-    const coverUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${id}`;
+    const coverUrl = `${process.env.REACT_APP_ND_API_HOST}/cover/${id}`;
     const response = await fetch(coverUrl);
     const obj = await response.json();
     const data = [obj]
@@ -107,7 +107,11 @@ function CreatePages() {
     setNumOfPapers(data);
   }
 
-  if (currentLocation > 1) {
+  useEffect(() => {
+    const bookId = params.id
+    getCoverById(bookId)
+    getPagesById(bookId)
+    if (currentLocation > 1) {
     for (let i = 1; i < currentLocation; i++) {
       if (papers[i - 1] && papers[i - 1].current) {
         papers[i - 1].current.style.zIndex = i;
@@ -119,12 +123,7 @@ function CreatePages() {
       nextButton.current.style.transform = "translateX(180px)";
     }
   }
-
-  useEffect(() => {
-    const bookId = params.id
-    getCoverById(bookId)
-    getPagesById(bookId)
-  },[params])
+},[])
 
   function addPage() {
     setIsModelOpen(true)
@@ -152,34 +151,34 @@ function CreatePages() {
   const handleApiPromptSubmit = async (e) => {
     e.preventDefault();
     try {
-        const apiKey = "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";
-        console.log(apiKey)
-        const prompt = apiPrompt;
-        const response = await fetch(`https://api.openai.com/v1/images/generations`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                "model": "image-alpha-001",
-                "prompt": prompt,
-                "n": 3,
-                "size": "256x256",
-                "response_format": "url"
-            })
-        });
-        const data = await response.json();
-        console.log(data)
-        if (data.data && data.data.length > 0) {
-            setPreviewImages(data.data);
-        } else {
-            console.error('Image URL not present in API response:', data);
-        }
+      const apiKey = "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";
+      console.log(apiKey)
+      const prompt = apiPrompt;
+      const response = await fetch(`https://api.openai.com/v1/images/generations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          "model": "image-alpha-001",
+          "prompt": prompt,
+          "n": 3,
+          "size": "256x256",
+          "response_format": "url"
+        })
+      });
+      const data = await response.json();
+      console.log(data)
+      if (data.data && data.data.length > 0) {
+        setPreviewImages(data.data);
+      } else {
+        console.error('Image URL not present in API response:', data);
+      }
     } catch (error) {
-        console.error('Error fetching image from API:', error);
+      console.error('Error fetching image from API:', error);
     }
-};
+  };
 
   const onFinish = async (values) => {
     if (values) {
@@ -189,11 +188,11 @@ function CreatePages() {
       data.coverID = params.id
 
       if (useApi && selectedPreviewImageIndex !== null) {
-          data.page_image_url = previewImages[selectedPreviewImageIndex].url;
-          console.log(data.page_image_url)
+        data.page_image_url = previewImages[selectedPreviewImageIndex].url;
+        console.log(data.page_image_url)
       } else {
-          data.page_image_url = page_image_url;
-        }
+        data.page_image_url = page_image_url;
+      }
 
       const url = `${process.env.REACT_APP_ND_API_HOST}/pages`;
       const fetchConfig = {
@@ -233,24 +232,24 @@ function CreatePages() {
         <Button type='primary' className='btn-secondary' onClick={decreasePage}>Delete current page</Button>
       </div>
       <div className="d-grid gap-2 d-sm-flex justify-content-sm-center" type="primary">
-            <Link to="/accounts/covers" className="btn btn-primary btn-lg px-4 gap-3" >
-              Publish
-            </Link>
+        <Link to="/accounts/covers" className="btn btn-primary btn-lg px-4 gap-3" >
+          Publish
+        </Link>
       </div>
       <div className='book-container'>
-      <div className="buttons">
-        <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
-          <h1 className='pt'>{'previous'}</h1>
-          <h1 className='cm'>{'<'}</h1>
-          <i className="fas fa-arrow-circle-left"></i>
-        </button>
-      </div>
+        <div className="buttons">
+          <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
+            <h1 className='pt'>{'previous'}</h1>
+            <h1 className='cm'>{'<'}</h1>
+            <i className="fas fa-arrow-circle-left"></i>
+          </button>
+        </div>
         <div id="book" className="book" ref={book}>
           {coverPaper.map((item, index) => {
             return (
               <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                 <div className="front">
-                  <img src={item.cover_image_url} width="425px" height="680px" alt="cover_image_url"/>
+                  <img src={item.cover_image_url} width="425px" height="680px" alt="cover_image_url" />
                 </div>
                 <div className="back">
                 </div>
@@ -261,8 +260,8 @@ function CreatePages() {
             return (
               <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index + 1]}>
                 <div className="front">
-                  <br/>
-                  <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
+                  <br />
+                  <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url" /></div>
                   <div className='button-2'>{item.text}</div>
                 </div>
                 <div className="back">
@@ -275,26 +274,26 @@ function CreatePages() {
           })}
         </div>
         <div className="buttons">
-        <button id="next-btn" ref={nextButton} onClick={goNextPage}>
-          <h1 className='pt'>{'next'}</h1>
-          <h1 className='cm'>{'>'}</h1>
-          <i className="fas fa-arrow-circle-right"></i>
-        </button>
+          <button id="next-btn" ref={nextButton} onClick={goNextPage}>
+            <h1 className='pt'>{'next'}</h1>
+            <h1 className='cm'>{'>'}</h1>
+            <i className="fas fa-arrow-circle-right"></i>
+          </button>
         </div>
       </div>
       <Modal title="Adding a Page" open={isModalOpen} onCancel={handleCancel} footer={[]}>
         <div className="form-check mb-3">
           <input
-              className="form-check-input"
-              type="checkbox"
-              id="useApiCheckbox"
-              checked={useApi}
-              onChange={handleApiCheckboxChange}
+            className="form-check-input"
+            type="checkbox"
+            id="useApiCheckbox"
+            checked={useApi}
+            onChange={handleApiCheckboxChange}
           />
           <label className="form-check-label" htmlFor="useApiCheckbox">
-              Use API instead of Image URL
+            Use API instead of Image URL
           </label>
-      </div>
+        </div>
         <Form
           ref={form}
           name="basic"
@@ -306,38 +305,38 @@ function CreatePages() {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
-         {useApi && (
-          <div className="form-floating mb-3">
+          {useApi && (
+            <div className="form-floating mb-3">
               <input
-                  onChange={handleApiPromptChange}
-                  value={apiPrompt}
-                  placeholder="Image prompt"
-                  required
-                  type="text"
-                  name="apiPrompt"
-                  className="form-control"
+                onChange={handleApiPromptChange}
+                value={apiPrompt}
+                placeholder="Image prompt"
+                required
+                type="text"
+                name="apiPrompt"
+                className="form-control"
               />
               <label htmlFor="apiPrompt">Image prompt</label>
               <button className="btn btn-primary mt-2" onClick={handleApiPromptSubmit}>Submit Image Prompt</button>
-          </div>
-      )}
-      {!useApi && (
-        <div className="form-floating mb-3">
-          <Form.Item
-            label="page_image_url"
-            name="page_image_url"
-            rules={[
-              {
-                required: true,
-                message: 'the page_image_url cannot be empty',
-              },
-            ]}
-            className='card-item'
-          >
-            <Input />
-          </Form.Item>
-        </div>
-        )}
+            </div>
+          )}
+          {!useApi && (
+            <div className="form-floating mb-3">
+              <Form.Item
+                label="page_image_url"
+                name="page_image_url"
+                rules={[
+                  {
+                    required: true,
+                    message: 'the page_image_url cannot be empty',
+                  },
+                ]}
+                className='card-item'
+              >
+                <Input />
+              </Form.Item>
+            </div>
+          )}
           <Form.Item
             label="text"
             name="text"
@@ -358,29 +357,29 @@ function CreatePages() {
           </Form.Item>
         </Form>
         {previewImages.length > 0 && (
-            <div className="mb-3">
-                <h4>Choose one of the following preview images:</h4>
-                <div className="d-flex justify-content-between align-items-center" style={{ width: "100%" }}>
-                    {previewImages.map((previewImageUrl, index) => (
-                        <div key={index}>
-                            <img
-                                src={previewImageUrl.url}
-                                alt={`Preview ${index + 1}`}
-                                style={{ width: "100%" }}
-                                onError={(e) => {
-                                    console.log(`Error loading image at URL: ${previewImageUrl}`);
-                                }}
-                            />
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => handlePreviewImageSelect(index)}
-                            >
-                            Choose
-                            </button>
-                        </div>
-                    ))}
+          <div className="mb-3">
+            <h4>Choose one of the following preview images:</h4>
+            <div className="d-flex justify-content-between align-items-center" style={{ width: "100%" }}>
+              {previewImages.map((previewImageUrl, index) => (
+                <div key={index}>
+                  <img
+                    src={previewImageUrl.url}
+                    alt={`Preview ${index + 1}`}
+                    style={{ width: "100%" }}
+                    onError={(e) => {
+                      console.log(`Error loading image at URL: ${previewImageUrl}`);
+                    }}
+                  />
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handlePreviewImageSelect(index)}
+                  >
+                    Choose
+                  </button>
                 </div>
+              ))}
             </div>
+          </div>
         )}
       </Modal>
     </div>
