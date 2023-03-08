@@ -39,7 +39,7 @@ function CreatePages() {
       }
       papers[currentLocation - 1].current.classList.add("flipped");
       papers[currentLocation - 1].current.style.zIndex = currentLocation;
-      if (currentLocation === numOfPapers.lengt + 1) {
+      if (currentLocation === numOfPapers.length + 1) {
         closeBook(false);
       }
       currentLocation++;
@@ -93,7 +93,7 @@ function CreatePages() {
         nextButton.current.style.transform = "translateX(180px)";
       }
     }
-  })
+  }, []);
   function addPage() {
     setIsModelOpen(true)
   }
@@ -156,9 +156,9 @@ function CreatePages() {
         <Button type='primary' className='btn-secondary' onClick={decreasePage}>Delete current page</Button>
       </div>
       <div className="d-grid gap-2 d-sm-flex justify-content-sm-center" type="primary">
-            <Link to="/accounts/covers" className="btn btn-primary btn-lg px-4 gap-3" >
-              Publish
-            </Link>
+        <Link to="/accounts/covers" className="btn btn-primary btn-lg px-4 gap-3" >
+          Publish
+        </Link>
       </div>
       <div className='book-container'>
         <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
@@ -171,7 +171,7 @@ function CreatePages() {
             return (
               <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                 <div className="front">
-                  <img src={item.cover_image_url} width="425px" height="680px" alt="cover_image_url"/>
+                  <img src={item.cover_image_url} width="425px" height="680px" alt="cover_image_url" />
 
                 </div>
                 <div className="back">
@@ -183,8 +183,8 @@ function CreatePages() {
             return (
               <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index + 1]}>
                 <div className="front">
-                  <br/>
-                  <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
+                  <br />
+                  <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url" /></div>
                   <div className='button-2'>{item.text}</div>
                 </div>
                 <div className="back">

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import './App.css'
 
 let currentLocation = 1
-function BookDetail() {
+function BookDetail(props) {
     let [numOfPapers, setNumOfPapers] = useState([])
     let papers = numOfPapers.map((item, index) => {
         return createRef()
@@ -37,7 +37,7 @@ function BookDetail() {
             }
             papers[currentLocation - 1].current.classList.add("flipped");
             papers[currentLocation - 1].current.style.zIndex = currentLocation;
-            if (currentLocation === numOfPapers.length + 1) {
+            if (currentLocation === numOfPapers.length) {
                 closeBook(false);
             }
             currentLocation++;
@@ -50,7 +50,7 @@ function BookDetail() {
             if (currentLocation === 2) {
                 closeBook(true);
             }
-            if (currentLocation === numOfPapers.length + 2) {
+            if (currentLocation === numOfPapers.length + 1) {
                 openBook();
             }
             if (papers[currentLocation - 2] && papers[currentLocation - 2].current) {
@@ -61,6 +61,7 @@ function BookDetail() {
         }
     }
 
+    // get the book by id
     async function getCoverById(id) {
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${id}`;
         const response = await fetch(bookUrl);
@@ -71,7 +72,7 @@ function BookDetail() {
     useEffect(() => {
         const bookId = params.id
         getCoverById(bookId)
-    })
+    }, [])
 
     async function getPagesById(id) {
         const pagesUrl = `${process.env.REACT_APP_ND_API_HOST}/pages`;
@@ -86,17 +87,17 @@ function BookDetail() {
         const bookId = params.id
         getCoverById(bookId)
         getPagesById(bookId)
-    })
+    }, [])
 
     return (
         <div className="App">
             <div className='book-container'>
                 <div className="buttons">
-                <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
-                    <h1 className='pt'>{'previous'}</h1>
-                    <h1 className='cm'>{'<'}</h1>
-                    <i className="fas fa-arrow-circle-left"></i>
-                </button>
+                    <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
+                        <h1 className='pt'>{'previous'}</h1>
+                        <h1 className='cm'>{'<'}</h1>
+                        <i className="fas fa-arrow-circle-left"></i>
+                    </button>
                 </div>
                 <div id="book" className="book" ref={book}>
                     {coverPaper.map((item, index) => {
@@ -104,8 +105,17 @@ function BookDetail() {
                             <div style={{ zIndex: numOfPapers.length - index + 1 }} className="paper" key={item.ID} ref={papers[index]}>
                                 <div className="front">
                                     <div className='text'>
+                                        {/* <h3>
+                                            {item.title}
+                                        </h3> */}
                                     </div>
-                                    <img className='coverImg' src={item.cover_image_url} alt="cover_image_url"/>
+                                    <img className='coverImg' src={item.cover_image_url} />
+                                    {/* <div className='gradient-text'>
+                                        <h4>By {item.username}</h4>
+                                    </div>
+                                    <div className='gradient-text'>
+                                        <h4>{item.created_on}</h4>
+                                    </div> */}
                                 </div>
                                 <div className="back">
                                 </div>
@@ -116,8 +126,8 @@ function BookDetail() {
                         return (
                             <div style={{ zIndex: numOfPapers.length - index }} className="paper" key={index} ref={papers[index + 1]}>
                                 <div className="front">
-                                    <br/>
-                                    <div><img className="headerMenuEntryImg" src={item.page_image_url} alt="page_image_url"/></div>
+                                    <h1></h1>
+                                    <div><img className="headerMenuEntryImg" src={item.page_image_url} /></div>
                                     <div className='button-2'>{item.text}</div>
                                 </div>
                                 <div className="back">
@@ -130,11 +140,11 @@ function BookDetail() {
                     })}
                 </div>
                 <div className="buttons">
-                <button id="next-btn" ref={nextButton} onClick={goNextPage}>
-                    <h1 className='pt'>{'next'}</h1>
-                    <h1 className='cm'>{'>'}</h1>
-                    <i className="fas fa-arrow-circle-right"></i>
-                </button>
+                    <button id="next-btn" ref={nextButton} onClick={goNextPage}>
+                        <h1 className='pt'>{'next'}</h1>
+                        <h1 className='cm'>{'>'}</h1>
+                        <i className="fas fa-arrow-circle-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -142,3 +152,4 @@ function BookDetail() {
 }
 
 export default BookDetail
+

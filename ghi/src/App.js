@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import MainPage from './MainPage';
 import { AuthProvider, useToken } from './Authentication.js'
 import './App.css';
@@ -10,7 +10,6 @@ import MyBooksList from './MyBooksList';
 import CreatePages from './CreatePages';
 import CreateCover from './CreateCover';
 import BookDetail from './BookDetail';
-import './bookDesk.css';
 import AuthorBookList from './AuthorBookList';
 import Footer from "./Footer"
 
@@ -23,7 +22,7 @@ function GetToken() {
 }
 
 function App(props) {
-  const [, setCovers] = useState([])
+  const [covers, setCovers] = useState([])
   const selectedUsername = props.username;
 
   const getCovers = async () => {
@@ -37,7 +36,7 @@ function App(props) {
   }
   useEffect(() => {
     getCovers()
-  })
+  }, [])
 
   return (
     <div>
