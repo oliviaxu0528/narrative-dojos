@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import { useToken } from "./Authentication";
 
-const MainPage = (props) => {
+const MyBooksList = (props) => {
     const [bookColumns, setBookColumns] = useState([]);
     const { token } = useToken();
     const [bookDeskColumns, setBookDeskColumns] = useState([]);
@@ -62,7 +62,6 @@ const MainPage = (props) => {
 
     function BookColumn({ book }) {
         const { token } = useToken();
-
         const deleteBook = async () => {
             var result = window.confirm("Are you sure to delete?");
             if (result) {
@@ -117,9 +116,6 @@ const MainPage = (props) => {
                     <span>j</span>
                     <span>o</span>
                 </div>
-                {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>
-                    Narrative Dojo
-                </h1> */}
                 <div className="col-lg-6 mx-auto">
                     <p className="lead mb-4" style={{ textAlign: "center" }}>
                         by Narrative Ninjas
@@ -198,4 +194,4 @@ const MainPage = (props) => {
         </>
     );
 };
-export default MainPage;
+export default MyBooksList;

@@ -8,12 +8,11 @@ function Signup(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [, setError] = useState('');
 
   if (token) {
     return <Navigate to="/" />;
   }
-  console.log(error)
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {

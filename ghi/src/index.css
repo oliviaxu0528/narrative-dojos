@@ -6,7 +6,6 @@
 
 body {
   height: 100vh;
-
   font-family: sans-serif;
   background-image: url("https://images.unsplash.com/photo-1499198116522-4a6235013d63?auto=format&fit=crop&w=1233&q=80");
 }
@@ -359,8 +358,6 @@ h3 {
   );
 
   text-align: center;
-
-  /* font-family: "Snell Roundhand", cursive; */
 }
 h5 {
   color: rgba(37, 37, 99, 0.834);
@@ -460,7 +457,6 @@ h5 {
       height: 20px;
       border-radius: 5px;
       border:2px solid #eaeaea;
-      /* background-color: rgba(216, 16, 109,0.6); */
       position: absolute;
       left: 5%;
       top: -25px;

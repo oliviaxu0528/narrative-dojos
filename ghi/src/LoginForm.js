@@ -6,7 +6,6 @@ import { useToken } from "./Authentication.js";
 function LoginForm() {
   const navigate = useNavigate();
   const {token, login} = useToken();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState('');
@@ -33,17 +32,13 @@ function LoginForm() {
     } catch (error) {
       console.error(error);
     }
-
   };
-
     if (token) {
     return <Navigate to="/" />;
   }
 
-
   return (
 <>
-
   <meta charSet="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link
