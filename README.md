@@ -96,7 +96,27 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 |Update a page|http://localhost:8000/page/pageID|
 
 
+
 ## Requests
+
+**POST request to /account
+```sh
+[
+	{
+		"username": "string",
+		"password": "string"
+	}
+	{
+		"access_token": "string",
+		"token_type": "Bearer",
+		"account": {
+		"accountID": "string",
+		"username": "string"
+		}
+
+	}
+]
+```
 
 **GET request to /books
 
