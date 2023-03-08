@@ -79,7 +79,7 @@ const MyBooksList = (props) => {
     };
 
     const deleteBook = async (book) => {
-        var result = window.confirm("Are you sure to delete?");
+        var result = window.confirm("Are you sure you want to delete?");
         if (result) {
             const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${book.ID}`;
             const response = await fetch(bookUrl, {
@@ -170,13 +170,14 @@ const MyBooksList = (props) => {
                                     <ul>
                                         {books.map((item) => {
                                             return (
-                                                <li key={item.id}>
+                                                <li key={item.ID}>
                                                     <div className="card mb-3 shadow">
                                                         <img
                                                             src={item.cover_image_url}
                                                             width="200px"
                                                             height="300px"
                                                             className="card-img-top"
+                                                            alt="cover"
                                                         />
                                                         <div className="card-body">
                                                             <h5 className="card-title">{item.title}</h5>

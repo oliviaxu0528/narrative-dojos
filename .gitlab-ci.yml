@@ -26,7 +26,6 @@ build-front-end-job:
   image: node:lts-bullseye
   needs:
     - lint-test-job
-
   variables:
     PUBLIC_URL: https://narrativeninjas.gitlab.io/narrative-dojo/
     REACT_APP_ND_API_HOST: https://nd.nov-pt-1.mod3projects.com
