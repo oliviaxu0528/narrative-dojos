@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import './index.css';
 import { useToken } from './Authentication';
 
-
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -18,33 +17,6 @@ const MainPage = (props) => {
     if (selectedUser !== username) {
       setSelectedUser(username);
     }
-  }
-
-
-  const fetchData = async () => {
-    const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
-    const response = await fetch(bookUrl);
-    let data = await response.json();
-    data = data.sort((a, b) =>
-      a.title > b.title ? 1 : -1,
-    );
-    let arr = [];
-    let columns = []
-    const fn = (data) => {
-      data.forEach((item, index) => {
-        arr.push(item);
-        if (
-          (index !== 0 && (index + 1) % 3 === 0) ||
-          index === data.length - 1
-        ) {
-          columns.push(arr);
-          arr = [];
-        }
-      });
-    };
-    fn(data);
-    setBookDeskColumns(columns)
-    setBookColumns(data);
   }
 
   const sort = () => {
@@ -84,9 +56,31 @@ const MainPage = (props) => {
     setBookColumns([...bookArr]);
   }
 
-  
+
 
   useEffect(() => {
+    const fetchData = async () => {
+      const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
+      const response = await fetch(bookUrl);
+      const data = await response.json();
+      let arr = [];
+      let columns = []
+      const fn = (data) => {
+        data.forEach((item, index) => {
+          arr.push(item);
+          if (
+            (index !== 0 && (index + 1) % 3 === 0) ||
+            index === data.length - 1
+          ) {
+            columns.push(arr);
+            arr = [];
+          }
+        });
+      };
+      fn(data);
+      setBookDeskColumns(columns)
+      setBookColumns(data);
+    }
     fetchData();
   }, []);
 
@@ -118,7 +112,6 @@ const MainPage = (props) => {
           <span>o</span>
         </div>
         <div className="col-lg-6 mx-auto">
-          {/* lead mb-4 */}
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
               <>
@@ -159,12 +152,13 @@ const MainPage = (props) => {
                               width="200px"
                               height="300px"
                               className="card-img-top"
+                              alt="cover"
                             />
                             <div className="card-body">
                               <h5 className="card-title">{item.title}</h5>
                             </div>
                             <Link to={`/accounts/${item.username}/covers`} onClick={() => handleSelectUser(item.username)}>
-                              Read more by: {item.username}
+                              Read more by {item.username}
                             </Link>
 
                             <div className="card-footer">
@@ -188,8 +182,6 @@ const MainPage = (props) => {
           })}
         </div>
       </div>
-
-
     </>
   )
 }
