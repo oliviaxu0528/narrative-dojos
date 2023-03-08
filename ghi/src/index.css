@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'my-font';
+    src: url('./fonts/my-font.otf');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,8 +11,10 @@
 
 body {
   height: 100vh;
-  font-family: sans-serif;
-  background-image: url("https://images.unsplash.com/photo-1499198116522-4a6235013d63?auto=format&fit=crop&w=1233&q=80");
+  font-family: 'my-font';
+  src: url('./fonts/my-font.otf');
+  background-image: url('./background/background2.png');
+  background-size: cover;
 }
 
 .book {

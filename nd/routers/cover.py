@@ -20,7 +20,7 @@ def get_covers(
     return repo.get_all()
 
 
-@router.get("/covers/{ID}", response_model=Union[CoverOut, Error])
+@router.get("/cover/{ID}", response_model=Union[CoverOut, Error])
 def get_cover(
     ID: int,
     response: Response,
@@ -32,7 +32,7 @@ def get_cover(
     return cover
 
 
-@router.delete("/covers/{ID}", response_model=bool)
+@router.delete("/cover/{ID}", response_model=bool)
 def delete_cover(
     ID: int,
     repo: CoverRepository = Depends()
@@ -40,7 +40,7 @@ def delete_cover(
     return repo.delete(ID)
 
 
-@router.put("/covers/{ID}", response_model=Union[CoverOut, Error])
+@router.put("/cover/{ID}", response_model=Union[CoverOut, Error])
 def update_cover(
     ID: int,
     cover: CoverIn,

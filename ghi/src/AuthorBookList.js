@@ -200,31 +200,16 @@ const AuthorBookList = (props) => {
     return (
         <>
             <div>
-                <img
-                    className="bg-white rounded shadow d-block mx-auto mb-4"
-                    src="/pucca.png"
-                    alt=""
-                    width="450"
-                    height="350"
-                />
-                <div className="wrapper">
-                    <span>N</span>
-                    <span>a</span>
-                    <span>r</span>
-                    <span>r</span>
-                    <span>a</span>
-                    <span>t</span>
-                    <span>i</span>
-                    <span>v</span>
-                    <span>e</span>
-                    <span>D</span>
-                    <span>o</span>
-                    <span>j</span>
-                    <span>o</span>
+                <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
+                    <img
+                        className="rounded d-block mx-auto mb-4"
+                        src="/pucca.png"
+                        alt=""
+                        width="450"
+                        height="350"
+                    />
                 </div>
-                {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>
-                    Narrative Dojo
-                </h1> */}
+                <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
                 <div className="col-lg-6 mx-auto">
                     <p className="lead mb-4" style={{ textAlign: "center" }}>
                         by Narrative Ninjas
