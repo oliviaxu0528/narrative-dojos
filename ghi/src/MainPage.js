@@ -84,6 +84,8 @@ const MainPage = (props) => {
     setBookColumns([...bookArr]);
   }
 
+  
+
   useEffect(() => {
     fetchData();
   }, []);

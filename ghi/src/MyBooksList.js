@@ -61,6 +61,21 @@ const MyBooksList = (props) => {
             );
 
         }
+        const fn = (data) => {
+      data.forEach((item, index) => {
+        bookDeskArr.push(item);
+        if (
+          (index !== 0 && (index + 1) % 3 === 0) ||
+          index === data.length - 1
+        ) {
+          columns.push(bookDeskArr);
+          bookDeskArr = [];
+        }
+      });
+    };
+    fn(bookArr);
+    setBookDeskColumns(columns)
+    setBookColumns([...bookArr]);
     };
 
     const deleteBook = async (book) => {
