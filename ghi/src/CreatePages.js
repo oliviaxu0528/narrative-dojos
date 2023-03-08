@@ -85,7 +85,6 @@ function CreatePages() {
         papers[currentLocation - 2].current.style.zIndex = numOfPapers.length - currentLocation + 2;
       }
       currentLocation--;
-
     }
   }
 
@@ -123,7 +122,7 @@ function CreatePages() {
       nextButton.current.style.transform = "translateX(180px)";
     }
   }
-},[])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   function addPage() {
     setIsModelOpen(true)
