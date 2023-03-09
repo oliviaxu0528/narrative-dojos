@@ -22,7 +22,7 @@ const MyBooksList = (props) => {
                 "location": `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers/`
             }
         }
-        const response = await fetch(bookUrl);
+        const response = await fetch(bookUrl, fetchConfig);
         const data = await response.json();
         let arr = [];
         let columns = []
@@ -217,5 +217,3 @@ const MyBooksList = (props) => {
     );
 };
 export default MyBooksList;
-
-
