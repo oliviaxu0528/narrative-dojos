@@ -16,7 +16,6 @@ export default function CreateCover() {
 
     useEffect(() => {
         const username = localStorage.getItem('username')
-        console.log(username)
         setUsername(username)
     }, [])
 

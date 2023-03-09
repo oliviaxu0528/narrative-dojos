@@ -57,6 +57,7 @@ const AuthorBookList = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${username}/covers`;
+            console.log(process.env.REACT_APP_ND_API_HOST)
             const response = await fetch(bookUrl);
             const data = await response.json();
             let arr = [];
@@ -87,7 +88,7 @@ const AuthorBookList = (props) => {
                 <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
                     <img
                         className="rounded d-block mx-auto mb-4"
-                        src="/pucca.png"
+                        src="pucca.png"
                         alt=""
                         width="450"
                         height="350"
@@ -122,7 +123,7 @@ const AuthorBookList = (props) => {
                     </div>
                 </div>
             </div>
-            <h2>Books by: {username}</h2>
+            <h2>Books by {username}</h2>
             <select id="mySelect" onChange={() => sort()}>
                 <option value="alphabetical">Alphabetical</option>
                 <option value="newest">Newest</option>
@@ -137,7 +138,7 @@ const AuthorBookList = (props) => {
                                     <ul>
                                         {books.map((item) => {
                                             return (
-                                                <li key={item.id}>
+                                                <li key={item.ID}>
                                                     <div className="card mb-3 shadow">
                                                         <img
                                                             src={item.cover_image_url}

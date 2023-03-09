@@ -16,6 +16,12 @@ const MyBooksList = (props) => {
     const fetchData = async () => {
         const currentUser = localStorage.getItem("username");
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${currentUser}/covers`;
+        const fetchConfig = {
+            method: "GET",
+            headers: {
+                "location": `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers/`
+            }
+        }
         const response = await fetch(bookUrl);
         const data = await response.json();
         let arr = [];
@@ -103,7 +109,7 @@ const MyBooksList = (props) => {
                 <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
                     <img
                         className="rounded d-block mx-auto mb-4"
-                        src="/pucca.png"
+                        src="pucca.png"
                         alt=""
                         width="450"
                         height="350"
@@ -211,5 +217,3 @@ const MyBooksList = (props) => {
     );
 };
 export default MyBooksList;
-
-
