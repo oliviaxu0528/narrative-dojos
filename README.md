@@ -172,19 +172,19 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 ```sh
 [
 	{
-    "ID": 1,
-    "username": "lyn",
-    "title": "Afterlives",
-    "cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLU86bUk1o7DttxQHAX-_ElAV7yNqPfVCVrg&usqp=CAU",
-    "created_on": "2023-03-03"
-  },
-  {
-    "ID": 55,
-    "username": "floyd",
-    "title": "books",
-    "cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUcC-4jgqjQSCaongEW8CUOFemYNhK-6aeDg&usqp=CAU",
-    "created_on": "2022-09-29"
-  }
+		"ID": 1,
+		"username": "lyn",
+		"title": "Afterlives",
+		"cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLU86bUk1o7DttxQHAX-_ElAV7yNqPfVCVrg&usqp=CAU",
+		"created_on": "2023-03-03"
+	},
+	{
+		"ID": 55,
+		"username": "floyd",
+		"title": "books",
+		"cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUcC-4jgqjQSCaongEW8CUOFemYNhK-6aeDg&usqp=CAU",
+		"created_on": "2022-09-29"
+	}
 ]
 ```
 
