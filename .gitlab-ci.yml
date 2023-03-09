@@ -29,7 +29,7 @@ build-front-end-job:
   # needs:
   #   - lint-test-job
   variables:
-    PUBLIC_URL: https://narrativeninjas.gitlab.io/narrative-dojo/
+    PUBLIC_URL: https://narrativeninjas.gitlab.io/module3-project-gamma
     REACT_APP_ND_API_HOST: https://nd.nov-pt-1.mod3projects.com
   script:
     - cd ghi
