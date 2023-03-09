@@ -19,6 +19,9 @@ api-unit-test-job:
     - cd nd
     - pip install -r requirements.txt
     - python -m pytest
+  variables:
+    DATABASE_URL: postgresql://nd:nd@postgres/nd
+
 
 build-front-end-job:
   stage: build
