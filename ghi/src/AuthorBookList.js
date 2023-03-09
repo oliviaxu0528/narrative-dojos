@@ -56,7 +56,7 @@ const AuthorBookList = (props) => {
     }
     useEffect(() => {
         const fetchData = async () => {
-            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${username}/covers/`;
+            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${username}/covers`;
             const response = await fetch(bookUrl);
             const data = await response.json();
             let arr = [];
