@@ -21,6 +21,7 @@ api-unit-test-job:
     - python -m pytest
   variables:
     DATABASE_URL: postgresql://nd:nd@postgres/nd
+    SIGNING_KEY: lynnoliviafloyd
 
 
 build-front-end-job:
