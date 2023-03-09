@@ -40,7 +40,7 @@ function App(props) {
   },[])
 
   const domain = /https:\/\/[^/]+/;
-  const basename = process.env.narrative-dojo.replace(domain, '');
+  const basename = process.env.narrativedojo.replace(domain, '');
   return (
     <div>
       <div className="my-5 container page-container">
