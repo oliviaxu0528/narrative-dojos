@@ -22,7 +22,11 @@ const MyBooksList = (props) => {
                 "location": `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers/`
             }
         }
+<<<<<<< HEAD
         const response = await fetch(bookUrl,fetchConfig);
+=======
+        const response = await fetch(bookUrl, fetchConfig);
+>>>>>>> 5c911974348933164281d30473a5a095605ae7d3
         const data = await response.json();
         let arr = [];
         let columns = []
