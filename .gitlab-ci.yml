@@ -29,7 +29,7 @@ build-front-end-job:
   # needs:
   #   - lint-test-job
   variables:
-    PUBLIC_URL: https://narrativeninjas.gitlab.io/narrative-dojo/
+    PUBLIC_URL: https://narrativeninjas.gitlab.io/module3-project-gamma
     REACT_APP_ND_API_HOST: https://nd.nov-pt-1.mod3projects.com
   script:
     - cd ghi
@@ -81,3 +81,6 @@ build-nd:
     - docker run caprover/cli-caprover:v2.1.1 caprover deploy --caproverUrl $CAPROVER_URL --caproverPassword $CAPROVER_PASSWORD --caproverApp $CAPROVER_APP --imageName $CONTAINER_FULL_IMAGE_NAME_WITH_TAG
   only:
     - main
+
+
+    
