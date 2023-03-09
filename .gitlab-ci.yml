@@ -13,8 +13,8 @@ stages:
 api-unit-test-job:
   image: python:3-bullseye
   stage: test
-  needs:
-    - lint-test-job
+  # needs:
+    # - lint-test-job
   script:
     - cd nd
     - pip install -r requirements.txt
