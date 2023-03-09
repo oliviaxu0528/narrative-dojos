@@ -13,16 +13,15 @@ class EmptyCoversQueries:
 
 
 def test_pages():
-    # Arrange
+
     app.dependency_overrides[CoverRepository] = EmptyCoversQueries
     response = client.get("/covers")
 
-    # Act
     assert response.status_code == 200
     assert response.json() == []
     app.dependency_overrides = {}
 
 
-# Assert
+
 def test_init():
     assert 1 == 1

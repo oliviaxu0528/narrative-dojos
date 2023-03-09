@@ -9,13 +9,13 @@ class EmptyAccountsQueries:
     def get_all(self):
         return []
 
-def test_get_all_accounts():
 
+def test_get_all_accounts():
 
     app.dependency_overrides[AccountRepository] = EmptyAccountsQueries
     response = client.get("/accounts")
 
-    # Act
+
     assert response.status_code == 200
     assert response.json() == []
     app.dependency_overrides = {}
