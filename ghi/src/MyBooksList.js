@@ -19,14 +19,10 @@ const MyBooksList = (props) => {
         const fetchConfig = {
             method: "GET",
             headers: {
-                "location": `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers/`
+                location: `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers/`
             }
         }
-<<<<<<< HEAD
         const response = await fetch(bookUrl,fetchConfig);
-=======
-        const response = await fetch(bookUrl, fetchConfig);
->>>>>>> 5c911974348933164281d30473a5a095605ae7d3
         const data = await response.json();
         let arr = [];
         let columns = []
@@ -113,7 +109,7 @@ const MyBooksList = (props) => {
                 <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
                     <img
                         className="rounded d-block mx-auto mb-4"
-                        src="pucca.png"
+                        src="/pucca.png"
                         alt=""
                         width="450"
                         height="350"
