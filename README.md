@@ -144,3 +144,88 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 	}
 ]
 ```
+
+
+**POST request to /covers
+```sh
+[
+	{
+
+		"username": "string",
+		"title": "string",
+		"cover_image_url": "string",
+		"created_on": "2023-03-08"
+
+	},
+	{
+		"ID": 54,
+		"username": "string",
+		"title": "string",
+		"cover_image_url": "string",
+		"created_on": "2023-03-08"
+	}
+]
+```
+
+
+**GET request to /covers
+```sh
+[
+	{
+    "ID": 1,
+    "username": "lyn",
+    "title": "Afterlives",
+    "cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLU86bUk1o7DttxQHAX-_ElAV7yNqPfVCVrg&usqp=CAU",
+    "created_on": "2023-03-03"
+  },
+  {
+    "ID": 55,
+    "username": "floyd",
+    "title": "books",
+    "cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUcC-4jgqjQSCaongEW8CUOFemYNhK-6aeDg&usqp=CAU",
+    "created_on": "2022-09-29"
+  }
+]
+```
+
+
+
+**POST request to /pages
+```sh
+[
+	{
+
+		"coverID": 1,
+		"page_image_url": "https://img2.baidu.com/it/u=2399001486,1472426582&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500",
+		"text": "Many cats are playing!"
+
+
+	},
+	{
+
+		"pageID": 22,
+		"coverID": 1,
+		"page_image_url": "https://img2.baidu.com/it/u=2399001486,1472426582&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500",
+		"text": "Many cats are playing!"
+
+	}
+]
+```
+
+**GET request to /pages
+```sh
+[
+	{
+		"pageID": 1,
+		"coverID": 1,
+		"page_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkW2xSMf_wp3Dk2XQhoRK4lN2xUX7-tYSUQ&usqp=CAU",
+		"text": "Story1"
+	},
+	{
+		"pageID": 2,
+		"coverID": 1,
+		"page_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnQ84uFr6eHjb4mOAaNogg_cS5xeY-s0LT8w&usqp=CAU",
+		"text": "Story2"
+	},
+]
+```
