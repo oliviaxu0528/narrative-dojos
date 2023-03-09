@@ -38,12 +38,14 @@ function App(props) {
   useEffect(() => {
     getCovers()
   },[])
-  
+
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.narrative-dojo.replace(domain, '');
   return (
     <div>
       <div className="my-5 container page-container">
         <div className="content-wrap">
-          <BrowserRouter>
+          <BrowserRouter basename={basename}>
             <div>
               <AuthProvider>
                 <GetToken />
