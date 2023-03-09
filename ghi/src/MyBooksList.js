@@ -101,7 +101,7 @@ const MyBooksList = (props) => {
     }
 
     useEffect(() => {
-        fetchData();
+        fetchData(); // eslint-disable-line react-hooks/exhaustive-deps
     }, []);
 
     return (
