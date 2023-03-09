@@ -84,7 +84,7 @@ const MainPage = (props) => {
     setBookColumns([...bookArr]);
   }
 
-  
+
 
   useEffect(() => {
     fetchData();
@@ -137,11 +137,13 @@ const MainPage = (props) => {
         </div>
       </div>
       <h2>New books</h2>
-      <select id="mySelect" onChange={() => sort()}>
-        <option value="alphabetical">Alphabetical</option>
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-      </select>
+      <div className='filter'>
+        <select id="mySelect" onChange={() => sort()}>
+          <option value="alphabetical">Alphabetical</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
+      </div>
       <div className="container">
         <div className="row">
           {bookDeskColumns.map((books, index) => {

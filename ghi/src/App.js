@@ -13,7 +13,7 @@ import BookDetail from './BookDetail';
 import './bookDesk.css';
 import AuthorBookList from './AuthorBookList';
 import Footer from "./Footer"
-
+import Team from './Team.js'
 
 
 
@@ -37,35 +37,31 @@ function App(props) {
   }
   useEffect(() => {
     getCovers()
-  },[])
+  }, [])
 
   return (
     <div>
-      <div className="my-5 container page-container">
-        <div className="content-wrap">
-          <BrowserRouter>
-            <div>
-              <AuthProvider>
-                <GetToken />
-                <div>
-                  <Nav />
-                </div>
-                <Routes>
-                  <Route index element={<MainPage />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route path="/login" element={<LoginForm />} />
-                  <Route path="/accounts/covers" element={<MyBooksList />} />
-                  <Route path="/createpages/:id" element={<CreatePages />} />
-                  <Route path="/createcover" element={<CreateCover />} />
-                  <Route path="/book/:id" element={<BookDetail />} />
-                  <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
-                </Routes>
-              </AuthProvider>
-            </div>
-          </BrowserRouter>
+      <BrowserRouter>
+        <div className="my-5 container page-container content-wrap">
+          <AuthProvider>
+            <GetToken />
+            <Nav />
+            <Routes>
+              <Route index element={<MainPage />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/accounts/covers" element={<MyBooksList />} />
+              <Route path="/createpages/:id" element={<CreatePages />} />
+              <Route path="/createcover" element={<CreateCover />} />
+              <Route path="/book/:id" element={<BookDetail />} />
+              <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
+              <Route path="/createcover" element={<CreateCover />} />
+              <Route path="/team" element={<Team />} />
+            </Routes>
+          </AuthProvider>
         </div>
-      </div>
-      <Footer />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

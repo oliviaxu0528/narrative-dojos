@@ -479,3 +479,8 @@ h5 {
       90% {left: 90%;transform: rotate(2340deg);}
       100% {left: 90%;transform: rotate(2520deg);}
     }
+
+
+.filter{
+  padding-right: 10em;
+}
