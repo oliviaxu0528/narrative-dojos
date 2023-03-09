@@ -53,5 +53,3 @@ services:
       HOST: "0.0.0.0"
       PUBLIC_URL: https://localhost:3000
       REACT_APP_ND_API_HOST: https://localhost:8000
-
-

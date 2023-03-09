@@ -19,7 +19,8 @@ const MyBooksList = (props) => {
         const fetchConfig = {
             method: "GET",
             headers: {
-                location: `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers/`
+                location: `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers/`,
+                Authorization: `Bearer ${token}`
             }
         }
         const response = await fetch(bookUrl,fetchConfig);
