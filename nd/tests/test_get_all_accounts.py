@@ -10,7 +10,8 @@ class EmptyAccountsQueries:
         return []
 
 def test_get_all_accounts():
-    # Arrange
+
+
     app.dependency_overrides[AccountRepository] = EmptyAccountsQueries
     response = client.get("/accounts")
 
