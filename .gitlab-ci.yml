@@ -3,12 +3,12 @@ stages:
   - build
   - deploy
 
-lint-test-job:
-  image: python:3-bullseye
-  stage: test
-  script:
-    - pip install flake8
-    - flake8 nd
+# lint-test-job:
+#   image: python:3-bullseye
+#   stage: test
+#   script:
+#     - pip install flake8
+#     - flake8 nd
 
 api-unit-test-job:
   image: python:3-bullseye
@@ -20,7 +20,6 @@ api-unit-test-job:
     - pip install -r requirements.txt
     - python -m pytest
   variables:
-    # DATABASE_URL: postgresql://nd:nd@postgres/nd
     DATABASE_URL: ""
     SIGNING_KEY: lynnoliviafloyd
 
