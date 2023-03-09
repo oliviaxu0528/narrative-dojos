@@ -90,7 +90,7 @@ const MainPage = (props) => {
         <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
           <img
             className="rounded d-block mx-auto mb-4"
-            src="/pucca.png"
+            src="pucca.png"
             alt=""
             width="450"
             height="350"
@@ -145,7 +145,7 @@ const MainPage = (props) => {
                   <ul>
                     {books.map((item) => {
                       return (
-                        <li key={item.id}>
+                        <li key={item.ID}>
                           <div className="card mb-3 shadow">
                             <img
                               src={item.cover_image_url}
