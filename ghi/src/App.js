@@ -38,6 +38,7 @@ function App(props) {
   useEffect(() => {
     getCovers()
   },[])
+  
   return (
     <div>
       <div className="my-5 container page-container">
