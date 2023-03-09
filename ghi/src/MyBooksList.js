@@ -87,7 +87,7 @@ const MyBooksList = (props) => {
     const deleteBook = async (book) => {
         var result = window.confirm("Are you sure you want to delete?");
         if (result) {
-            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${book.ID}`;
+            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/cover/${book.ID}`;
             const response = await fetch(bookUrl, {
                 method: 'DELETE',
                 headers: {
