@@ -4,6 +4,7 @@ from queries.book import BookRepository
 
 client = TestClient(app)
 
+
 class EmptyBookQueries:
     def get_all(self):
         return []
