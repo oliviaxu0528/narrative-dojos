@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Nav, Card, Carousel } from 'react-bootstrap';
 import './index.css';
@@ -120,11 +121,36 @@ const MainPage = (props) => {
               className="d-block w-100"
               src={image}
               alt={`Slide ${idx}`}
-              style={{ height: "850px", width: "100vw", objectFit: "cover" }}
+              style={{ height: "550px", width: "80px", objectFit: "cover" }}
             />
           </Carousel.Item>
         ))}
       </Carousel>
+      <div className="shadow-lg p-2 mb-5"
+        style={{
+          maxWidth: "6000px",
+          marginTop: "11.5%",
+          marginLeft: "24%",
+          borderRadius: '20px',
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          zIndex: '2'
+        }}>
+        <div className="text-green">
+          <Nav className="justify-content-between mb-2">
+            <Nav.Item className='hover-highlight'>
+              <NavLink to="/login" className="nav-link font-weight-bold mb-1 text-black">Login</NavLink>
+            </Nav.Item>
+            <Nav.Item>
+              <NavLink to="/signup" className="nav-link font-weight-bold mb-1 text-black">Sign Up</NavLink>
+            </Nav.Item>
+          </Nav>
+          <h2 className="text-center font-weight-bold mb-4">Create New Book? </h2>
+          <NavLink to="/signup" className="mx-1 nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><Button variant="dark" size="lg" block>Sign Up</Button></NavLink>
+        </div>
+      </div>
+
       <i className="bi bi-1-square"></i>
       <div>
         {/* <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
@@ -136,7 +162,7 @@ const MainPage = (props) => {
             height="350"
           />
         </div> */}
-        <div className="wrapper">
+        {/* <div className="wrapper">
           <span>N</span>
           <span>a</span>
           <span>r</span>
@@ -150,7 +176,7 @@ const MainPage = (props) => {
           <span>o</span>
           <span>j</span>
           <span>o</span>
-        </div>
+        </div> */}
         <div className="col-lg-6 mx-auto center">
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {token && (
@@ -171,7 +197,7 @@ const MainPage = (props) => {
         </div>
       </div>
       <div className='mx-auto'>
-        <h2>New books</h2>
+        <h2 className>New books</h2>
         <div className='filter'>
           <select id="mySelect" onChange={() => sort()}>
             <option value="alphabetical">Alphabetical</option>

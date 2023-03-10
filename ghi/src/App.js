@@ -49,7 +49,7 @@ function App(props) {
           <div className="mb-5">
             <Nav />
           </div>
-          <div className="mb-5 page-container pt-4">
+          <div className="mb-4 page-container pt-2">
             <Routes>
               <Route index element={<MainPage />} />
               <Route path="/signup" element={<Signup />} />
