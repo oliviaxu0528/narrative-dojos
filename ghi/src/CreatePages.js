@@ -70,7 +70,6 @@ function CreatePages() {
   const handlePreviewImageSelect = (index) => {
     setSelectedPreviewImageIndex(index);
     setPage_image_url(previewImages[index]);
-    console.log(previewImages[index])
   }
   function goPrevPage() {
     if (currentLocation > 1) {
@@ -151,7 +150,6 @@ function CreatePages() {
     e.preventDefault();
     try {
       const apiKey = "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";
-      console.log(apiKey)
       const prompt = apiPrompt;
       const response = await fetch(`https://api.openai.com/v1/images/generations`, {
         method: 'POST',
@@ -168,7 +166,6 @@ function CreatePages() {
         })
       });
       const data = await response.json();
-      console.log(data)
       if (data.data && data.data.length > 0) {
         setPreviewImages(data.data);
       } else {
@@ -188,7 +185,6 @@ function CreatePages() {
 
       if (useApi && selectedPreviewImageIndex !== null) {
         data.page_image_url = previewImages[selectedPreviewImageIndex].url;
-        console.log(data.page_image_url)
       } else {
         data.page_image_url = page_image_url;
       }
@@ -239,7 +235,7 @@ function CreatePages() {
         <div className="buttons">
           <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
             <h1 className='pt'>{'previous'}</h1>
-            <h1 className='cm'>{'<'}</h1>
+            {/* <h1 className='cm'>{'<'}</h1> */}
             <i className="fas fa-arrow-circle-left"></i>
           </button>
         </div>
@@ -275,7 +271,7 @@ function CreatePages() {
         <div className="buttons">
           <button id="next-btn" ref={nextButton} onClick={goNextPage}>
             <h1 className='pt'>{'next'}</h1>
-            <h1 className='cm'>{'>'}</h1>
+            {/* <h1 className='cm'>{'>'}</h1> */}
             <i className="fas fa-arrow-circle-right"></i>
           </button>
         </div>

@@ -10,12 +10,6 @@ app.include_router(authenticator.router)
 app.include_router(book.router)
 app.include_router(cover.router)
 app.include_router(page.router)
-
-origins = [
-    "https://localhost:3000",
-    os.environ.get("CORS_HOST", None),
-]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

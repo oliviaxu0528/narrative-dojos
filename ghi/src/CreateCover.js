@@ -47,14 +47,12 @@ export default function CreateCover() {
     const handlePreviewImageSelect = (index) => {
         setSelectedPreviewImageIndex(index);
         setCover_image_url(previewImages[index]);
-        console.log(previewImages[index])
     }
 
     const handleApiPromptSubmit = async (e) => {
         e.preventDefault();
         try {
             const apiKey = "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";
-            console.log(apiKey)
             const prompt = apiPrompt;
             const response = await fetch(`https://api.openai.com/v1/images/generations`, {
                 method: 'POST',
@@ -71,7 +69,6 @@ export default function CreateCover() {
                 })
             });
             const data = await response.json();
-            console.log(data)
             if (data.data && data.data.length > 0) {
                 setPreviewImages(data.data);
             } else {
@@ -93,7 +90,6 @@ export default function CreateCover() {
 
         if (useApi && selectedPreviewImageIndex !== null) {
             data.cover_image_url = previewImages[selectedPreviewImageIndex].url;
-            console.log(data.cover_image_url)
         } else {
             data.cover_image_url = cover_image_url;
         }
@@ -109,8 +105,6 @@ export default function CreateCover() {
 
         const response = await fetch(url, fetchConfig);
         const msg = await response.json()
-        console.log(fetchConfig)
-        console.log(response)
 
         if (response.ok) {
             setTitle('');

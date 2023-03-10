@@ -27,8 +27,6 @@ const MyBooksList = (props) => {
         const data = await response.json();
         let arr = [];
         let columns = []
-
-
         const fn = (data) => {
             data.forEach((item, index) => {
                 arr.push(item);
@@ -41,8 +39,6 @@ const MyBooksList = (props) => {
                 }
             });
         };
-
-
         fn(data);
         setBookDeskColumns(columns)
         setBookColumns(data);
@@ -163,11 +159,13 @@ const MyBooksList = (props) => {
                 </div>
             </div>
             <h2>My books</h2>
-            <select id="mySelect" onChange={() => sort()}>
-                <option value="alphabetical">Alphabetical</option>
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-            </select>
+            <div className='filter'>
+                <select id="mySelect" onChange={() => sort()}>
+                    <option value="alphabetical">Alphabetical</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
             <div className=".container">
                 <div className="row">
                     {bookDeskColumns.map((books, index) => {

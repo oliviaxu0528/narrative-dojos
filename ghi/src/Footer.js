@@ -1,5 +1,7 @@
 import React from "react";
 import "./Footer.css"
+import { NavLink } from 'react-router-dom';
+
 
 const Footer = () => {
     return (
@@ -7,34 +9,30 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
+                        <h4>About Us</h4>
+                        <p>Narrative Dojo is a platform to create children's book with AI image generator. Our goal is to making books easily and conveniently</p>
+                    </div>
+                    <div className="col">
                         <h4>Contact Us</h4>
                         <ul className="list-unstyled"></ul>
-                        <li>504-999-9999</li>
-                        <li>Seattle，WA</li>
-                        <li>123 Amazon Avenue</li>
+                        <p>Email: business@narrativeninjas.com</p>
+                        <p>Phone: 1-800-NNINJAS</p>
                     </div>
                     <div className="col">
-                        <h4>Content</h4>
+                        <h4 style={{ textAlign: 'center', paddingLeft: '0em' }}>Meet The Team</h4>
                         <ul className="list-unstyled"></ul>
-                        <li>Dank Memes</li>
-                        <li>Good stuff</li>
-                        <li>123 Google Avenue</li>
-                    </div>
-                    <div className="col">
-                        <h4>STUFF</h4>
-                        <ul className="list-unstyled"></ul>
-                        <li>Kevin Durant</li>
-                        <li>MVP</li>
-                        <li>123 Netflix Avenue</li>
+                        <p><NavLink to="/team" style={{ ptextDecoration: 'none', color: 'white', textAlign: 'center' }}>
+                            Narrative Ninjas </NavLink>
+                        </p>
                     </div>
                 </div>
                 <div className="row">
                     <p className="col-sm">
-                        &copy;{new Date().getFullYear()} Narrative Ninjas Inc.| All right reserved | Terms of Service | Privacy
+                        &copy;{new Date().getFullYear()} Narrative Ninjas Inc. All Right Reserved
                     </p>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 export default Footer;
