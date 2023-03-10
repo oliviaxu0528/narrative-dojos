@@ -23,7 +23,7 @@ const MyBooksList = (props) => {
                 Authorization: `Bearer ${token}`
             }
         }
-        const response = await fetch(bookUrl,fetchConfig);
+        const response = await fetch(bookUrl, fetchConfig);
         const data = await response.json();
         let arr = [];
         let columns = []
