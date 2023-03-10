@@ -94,6 +94,7 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 |View a specific page|http://localhost:8000/page/pageID|
 |Delete a page|http://localhost:8000/page/pageID|
 |Update a page|http://localhost:8000/page/pageID|
+|Get API Image Urls|https://api.openai.com/v1/images/generations|
 
 
 
@@ -143,4 +144,29 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 		"text": "cats text"
 	}
 ]
+```
+**POST request to /Dalle-2 API
+```sh
+[
+	{
+		"model": "image-alpha-001",
+		"prompt": "image_prompt",
+		"n": 3,
+		"size": "256x256",
+		"response_format": "url"
+	}
+	{
+		"created": 1589478378,
+		"data": [
+		{
+		"url": "https://..."
+		},
+		{
+		"url": "https://..."
+		}
+		{
+		"url": "https://..."
+		}
+		]
+}
 ```
