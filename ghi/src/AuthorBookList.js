@@ -123,11 +123,13 @@ const AuthorBookList = (props) => {
                 </div>
             </div>
             <h2>Books by {username}</h2>
+            <div className='filter'>
             <select id="mySelect" onChange={() => sort()}>
                 <option value="alphabetical">Alphabetical</option>
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
             </select>
+            </div>
             <div className=".container">
                 <div className="row">
                     {bookDeskColumns.map((books, index) => {

@@ -47,7 +47,6 @@ export default function CreateCover() {
     const handlePreviewImageSelect = (index) => {
         setSelectedPreviewImageIndex(index);
         setCover_image_url(previewImages[index]);
-        console.log(previewImages[index])
     }
 
     const handleApiPromptSubmit = async (e) => {
@@ -70,7 +69,6 @@ export default function CreateCover() {
                 })
             });
             const data = await response.json();
-            console.log(data)
             if (data.data && data.data.length > 0) {
                 setPreviewImages(data.data);
             } else {
@@ -92,7 +90,6 @@ export default function CreateCover() {
 
         if (useApi && selectedPreviewImageIndex !== null) {
             data.cover_image_url = previewImages[selectedPreviewImageIndex].url;
-            console.log(data.cover_image_url)
         } else {
             data.cover_image_url = cover_image_url;
         }
@@ -108,8 +105,6 @@ export default function CreateCover() {
 
         const response = await fetch(url, fetchConfig);
         const msg = await response.json()
-        console.log(fetchConfig)
-        console.log(response)
 
         if (response.ok) {
             setTitle('');
