@@ -12,7 +12,7 @@ function Nav() {
     <nav style={{ position: 'absolute', top: 0, left: 0, right: 0 }} className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <img className='new' src="https://www.clipartmax.com/png/middle/322-3224953_large-dojo-icon-dojo-agile.png" alt="logo" width="30" height="30" />
-        <a className="navbar-brand" href="/">Narrative Dojo</a>
+        <NavLink className="navbar-brand" to="/">Narrative Dojo</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

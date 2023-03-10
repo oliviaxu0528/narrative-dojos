@@ -1,20 +1,20 @@
 from fastapi.testclient import TestClient
 from main import app
-from queries.page import PageRepository
+from queries.cover import CoverRepository
 
 
 client = TestClient(app)
 
 
-class EmptyPagesQueries:
+class EmptyCoversQueries:
     def get_all(self):
         return []
 
 
 def test_pages():
 
-    app.dependency_overrides[PageRepository] = EmptyPagesQueries
-    response = client.get("/pages")
+    app.dependency_overrides[CoverRepository] = EmptyCoversQueries
+    response = client.get("/covers")
 
     assert response.status_code == 200
     assert response.json() == []

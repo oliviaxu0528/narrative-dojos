@@ -16,7 +16,14 @@ const MyBooksList = (props) => {
     const fetchData = async () => {
         const currentUser = localStorage.getItem("username");
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${currentUser}/covers`;
-        const response = await fetch(bookUrl);
+        const fetchConfig = {
+            method: "GET",
+            headers: {
+                location: `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}/covers`,
+                Authorization: `Bearer ${token}`
+            }
+        }
+        const response = await fetch(bookUrl,fetchConfig);
         const data = await response.json();
         let arr = [];
         let columns = []
@@ -79,9 +86,9 @@ const MyBooksList = (props) => {
     };
 
     const deleteBook = async (book) => {
-        var result = window.confirm("Are you sure to delete?");
+        var result = window.confirm("Are you sure you want to delete?");
         if (result) {
-            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers/${book.ID}`;
+            const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/cover/${book.ID}`;
             const response = await fetch(bookUrl, {
                 method: 'DELETE',
                 headers: {
@@ -95,18 +102,20 @@ const MyBooksList = (props) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>
             <div>
-                <img
-                    className="bg-white rounded shadow d-block mx-auto mb-4"
-                    src="/pucca.png"
-                    alt=""
-                    width="450"
-                    height="350"
-                />
+                <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
+                    <img
+                        className="rounded d-block mx-auto mb-4"
+                        src="/pucca.png"
+                        alt=""
+                        width="450"
+                        height="350"
+                    />
+                </div>
                 <div className="wrapper">
                     <span>N</span>
                     <span>a</span>
@@ -170,13 +179,14 @@ const MyBooksList = (props) => {
                                     <ul>
                                         {books.map((item) => {
                                             return (
-                                                <li key={item.id}>
+                                                <li key={item.ID}>
                                                     <div className="card mb-3 shadow">
                                                         <img
                                                             src={item.cover_image_url}
                                                             width="200px"
                                                             height="300px"
                                                             className="card-img-top"
+                                                            alt="cover"
                                                         />
                                                         <div className="card-body">
                                                             <h5 className="card-title">{item.title}</h5>

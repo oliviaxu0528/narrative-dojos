@@ -16,7 +16,6 @@ export default function CreateCover() {
 
     useEffect(() => {
         const username = localStorage.getItem('username')
-        console.log(username)
         setUsername(username)
     }, [])
 
@@ -189,7 +188,7 @@ export default function CreateCover() {
                                     <div key={index}>
                                         <img
                                             src={previewImageUrl.url}
-                                            alt={`Preview Image ${index + 1}`}
+                                            alt={`Preview ${index + 1}`}
                                             style={{ width: "100%" }}
                                             onError={(e) => {
                                                 console.log(`Error loading image at URL: ${previewImageUrl}`);
