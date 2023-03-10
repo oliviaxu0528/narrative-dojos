@@ -13,7 +13,7 @@ import CreateCover from './CreateCover';
 import BookDetail from './BookDetail';
 import AuthorBookList from './AuthorBookList';
 import Footer from "./Footer"
-import Team from './Team.js'
+
 
 
 
@@ -37,33 +37,37 @@ function App(props) {
   }
   useEffect(() => {
     getCovers()
-  }, [])
+  },[])
 
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, '');
   return (
     <div>
-      <BrowserRouter>
-        <div className="my-5 container page-container content-wrap">
-          <AuthProvider>
-            <GetToken />
-            <Nav />
-            <Routes>
-              <Route index element={<MainPage />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/accounts/covers" element={<MyBooksList />} />
-              <Route path="/createpages/:id" element={<CreatePages />} />
-              <Route path="/createcover" element={<CreateCover />} />
-              <Route path="/book/:id" element={<BookDetail />} />
-              <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
-              <Route path="/createcover" element={<CreateCover />} />
-              <Route path="/team" element={<Team />} />
-            </Routes>
-          </AuthProvider>
+      <div className="my-5 container page-container">
+        <div className="content-wrap">
+          <BrowserRouter basename={basename}>
+            <div>
+              <AuthProvider>
+                <GetToken />
+                <div>
+                  <Nav />
+                </div>
+                <Routes>
+                  <Route index element={<MainPage />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<LoginForm />} />
+                  <Route path="/accounts/covers" element={<MyBooksList />} />
+                  <Route path="/createpages/:id" element={<CreatePages />} />
+                  <Route path="/createcover" element={<CreateCover />} />
+                  <Route path="/book/:id" element={<BookDetail />} />
+                  <Route path="/accounts/:username/covers" element={<AuthorBookList username={selectedUsername} />} />
+                </Routes>
+              </AuthProvider>
+            </div>
+          </BrowserRouter>
         </div>
-        <Footer />
-      </BrowserRouter>
+      </div>
+      <Footer />
     </div>
   );
 }
