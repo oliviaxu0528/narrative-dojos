@@ -1,15 +1,15 @@
 .section-white {
 	background: #fff;
-	padding-top: 60px;
+	padding-top: 40px;
     padding-bottom: 0px;
 }
 
 .team-item{
 	background: #f4f5f6;
 	text-align:center;
-	margin:20px 0;
-	padding:20px 40px 20px 40px;
-    height: 550px;
+	margin:10px 0;
+	padding:20px 20px 20px 20px;
+    height: 480px;
 	border-radius: 8px 8px;
 	-webkit-transition: all 0.25s ease-in-out;
 	-moz-transition: all 0.25s ease-in-out;
@@ -19,14 +19,14 @@
 }
 
 .team-item:hover{
-	background: #A3B18A;
+	background: #DC3545;
 	color: white;
 }
 
 .team-item h3{
-	margin:20px 0 1px 0!important;
+	margin:16px 0 1px 0!important;
 	color:#454545;
-	font-size:18px;
+	font-size:16px;
 	font-weight: 700;
 	text-transform:uppercase;
 	transition: all .25s ease-in-out;
@@ -36,11 +36,11 @@
 
 .section-subtitle {
 	white-space: pre-line;
-	padding:50px 40px 40px 40px;
+	padding:20px 20px 20px 20px;
  }
 
 .section-subtitle:hover{
-	background: #A3B18A;
+	background: #DC3545;
 	color: white;
 }
 
@@ -72,8 +72,13 @@
 }
 
 .team-img{
+<<<<<<< HEAD
+	max-width: 110px;
+	padding: 2px 2px;
+=======
 	max-width: 140px;
 	padding: 6px 6px;
+>>>>>>> main
     background-color: #dedede;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
