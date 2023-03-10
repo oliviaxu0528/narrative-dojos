@@ -92,6 +92,7 @@ const MainPage = (props) => {
 
   return (
     <>
+      <i class="bi bi-1-square"></i>
       <div>
         <img
           className="bg-white rounded shadow d-block mx-auto mb-4"
