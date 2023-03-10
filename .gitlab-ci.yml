@@ -1,33 +1,33 @@
 stages:
-  # - test
+  - test
   - build
   - deploy
 
-# lint-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script:
-#     - pip install flake8
-#     - flake8 nd
+lint-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 nd
 
-# api-unit-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   needs:
-#     - lint-test-job
-#   script:
-#     - cd nd
-#     - pip install -r requirements.txt
-#     - python -m pytest
-#   variables:
-#     DATABASE_URL: ""
-#     SIGNING_KEY: lynnoliviafloyd
+api-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  needs:
+    - lint-test-job
+  script:
+    - cd nd
+    - pip install -r requirements.txt
+    - python -m pytest
+  variables:
+    DATABASE_URL: ""
+    SIGNING_KEY: lynnoliviafloyd
 
 build-front-end-job:
   stage: build
   image: node:lts-bullseye
-  # needs:
-  #   - lint-test-job
+  needs:
+    - lint-test-job
   variables:
     PUBLIC_URL: https://narrative-ninjas.gitlab.io/module3-project-gamma
     REACT_APP_ND_API_HOST: https://nd.nov-pt-1.mod3projects.com
@@ -81,6 +81,3 @@ build-nd:
     - docker run caprover/cli-caprover:v2.1.1 caprover deploy --caproverUrl $CAPROVER_URL --caproverPassword $CAPROVER_PASSWORD --caproverApp $CAPROVER_APP --imageName $CONTAINER_FULL_IMAGE_NAME_WITH_TAG
   only:
     - main
-
-
-    
