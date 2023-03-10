@@ -16,19 +16,19 @@ const Footer = () => {
                         <h4>Contact Us</h4>
                         <ul className="list-unstyled"></ul>
                         <p>Email: business@narrativeninjas.com</p>
-                        <p>Phone: 1-800-SWUP</p>
+                        <p>Phone: 1-800-NNINJAS</p>
                     </div>
                     <div className="col">
                         <h4 style={{ textAlign: 'center', paddingLeft: '0em' }}>Meet The Team</h4>
                         <ul className="list-unstyled"></ul>
                         <p><NavLink to="/team" style={{ ptextDecoration: 'none', color: 'white', textAlign: 'center' }}>
-                            Team Narrative Ninjas </NavLink>
+                            Narrative Ninjas </NavLink>
                         </p>
                     </div>
                 </div>
                 <div className="row">
                     <p className="col-sm">
-                        &copy;{new Date().getFullYear()} Narrative Ninjas Inc. All right reserved
+                        &copy;{new Date().getFullYear()} Narrative Ninjas Inc. All Right Reserved
                     </p>
                 </div>
             </div>

@@ -2,14 +2,15 @@
 import React from "react";
 
 function Services () {
-    let message = `"Narrative Dojo"`;
+    let message = `At Narrative Dojo, we're a team of four software engineers on a mission to empower educators, parents, and children to create captivating and personalized children's storybooks using the latest in Dall-E AI technology and intuitive design tools. Our platform provides a safe, supportive, and inclusive community that celebrates diversity and encourages exploration, inspiring creativity and fostering a lifelong love of learning. Join us in revolutionizing the world of children's literature and inspiring the next generation of storytellers.
+`;
     return (
     <section class="section-white">
     <div class="container">
         <div class="row">
                     <div class="col-md-12 text-center">
-                          <h2 class="section-title">The Creator of Narrative</h2>
-                          <p class="section-subtitle">{message}</p>
+                          <h2 class="section-title">The Creator of Narrative Dojos</h2>
+                          <p class="section-subtitle" >{message}</p>
                     </div>
             <div class="col-6">
                 <div class="team-item">
@@ -18,7 +19,7 @@ function Services () {
                       <div class="team-info"><p>Co-Founder</p></div>
                       <p>Tulane University: Master of Accounting 2017 <br/>
                        Tulane University: Master of Mathematical Finance 2018 </p>
-                      <p>Olivia is currently living in Seattle, WA. In her spare time, she enjoys watching NBA, cooking, outdoor activity and reading finace & technology news. <br/>She is a big fan of New Orleans Pelican</p>
+                      <p>Olivia is currently living in Seattle, WA. In her spare time, she enjoys watching NBA, cooking, outdoor activity and reading finace & technology news</p>
                       <ul class="team-icon">
                           <li><a href="https://www.linkedin.com/in/xiangyuxu/" target="_blank" rel="noreferrer" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
                           <li><a href="https://gitlab.com/oliviaxuu" target="_blank" rel="noreferrer" class="gitlab"><i class="fa fa-gitlab"></i></a></li>
@@ -44,8 +45,9 @@ function Services () {
                       <img src="https://media.licdn.com/dms/image/D5603AQHxCWZCIuG0hA/profile-displayphoto-shrink_800_800/0/1675707939645?e=1683763200&v=beta&t=HxX4aORR75rOYumQN9grhOBOJydu9QrkIskkeZy8qbc" class="team-img" alt="pic" />
                       <h3>James Yi</h3>
                       <div class="team-info"><p>Co-Founder</p></div>
-                      <p>California State University, Long Beach 2016: Criminal Justice.</p>
-                      <p>In his sparetime, whether it be through his vlog or through photography, Anthony enjoys improving upon his content creation skills.</p>
+                      <p>California State University, Northridge 2020: BS Kinesiology</p>
+                      <p>James currently resides in Los Angeles, CA. When James isn't busy writing code or solving complex technical problems, you can usually find him dunking on oldheads at LA fit or roaming the hallowed Howling Abyss as a diamond level summoner. He will always protect the Nexus like he protects his endpoints.
+<br/>"I may be a software engineer, but on the court, I'm always calculating my next move, just like I'm always calculating my next line of code."</p>
                       <ul class="team-icon">
                           <li><a href="https://www.linkedin.com/in/jamesyi803/" target="_blank" rel="noreferrer" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
                           <li><a href="https://gitlab.com/jamesyi803" target="_blank" rel="noreferrer" class="gitlab"><i class="fa fa-gitlab"></i></a></li>

@@ -8,7 +8,7 @@
 	background: #f4f5f6;
 	text-align:center;
 	margin:20px 0;
-	padding:50px 20px 40px 20px;
+	padding:20px 40px 20px 40px;
     height: 550px;
 	border-radius: 8px 8px;
 	-webkit-transition: all 0.25s ease-in-out;
@@ -36,7 +36,13 @@
 
 .section-subtitle {
 	white-space: pre-line;
+	padding:50px 40px 40px 40px;
  }
+
+.section-subtitle:hover{
+	background: #A3B18A;
+	color: white;
+}
 
 .team-item:hover h3{
 	color:#ddd;
