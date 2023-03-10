@@ -95,6 +95,16 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 |Delete a page|http://localhost:8000/page/pageID|
 |Update a page|http://localhost:8000/page/pageID|
 |Get API Image Urls|https://api.openai.com/v1/images/generations|
+|Get Token|http://localhost:8100/token|
+|Post Token|http://localhost:8100/token|
+|DELETE Token|http://localhost:8100/token|
+
+---
+### Frontend Endpoints:
+REACT:
+
+http://localhost:3000
+
 
 
 
