@@ -14,7 +14,7 @@ const MyBooksList = (props) => {
     };
 
     const fetchData = async () => {
-        const currentUser = localStorage.getItem("username");
+        // const currentUser = localStorage.getItem("username");
         const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
         const fetchConfig = {
             method: "GET",
