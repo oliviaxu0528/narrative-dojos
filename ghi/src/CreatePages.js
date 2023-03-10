@@ -235,7 +235,6 @@ function CreatePages() {
         <div className="buttons">
           <button id="prev-btn" ref={preButton} onClick={goPrevPage}>
             <h1 className='pt'>{'previous'}</h1>
-            {/* <h1 className='cm'>{'<'}</h1> */}
             <i className="fas fa-arrow-circle-left"></i>
           </button>
         </div>
@@ -271,7 +270,6 @@ function CreatePages() {
         <div className="buttons">
           <button id="next-btn" ref={nextButton} onClick={goNextPage}>
             <h1 className='pt'>{'next'}</h1>
-            {/* <h1 className='cm'>{'>'}</h1> */}
             <i className="fas fa-arrow-circle-right"></i>
           </button>
         </div>

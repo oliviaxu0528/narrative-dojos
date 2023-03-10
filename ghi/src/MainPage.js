@@ -93,8 +93,8 @@ const MainPage = (props) => {
             className="rounded d-block mx-auto mb-4"
             src="/pucca.png"
             alt=""
-            width="450"
-            height="350"
+            width="697"
+            height="400"
           />
         </div>
         <div className="wrapper">
@@ -160,16 +160,19 @@ const MainPage = (props) => {
                             <div className="card-body">
                               <h5 className="card-title">{item.title}</h5>
                             </div>
+                            <div className="card-footer">
                             <Link to={`/accounts/${item.username}/covers`} onClick={() => handleSelectUser(item.username)}>
                               Read more by {item.username}
                             </Link>
-
-                            <div className="card-footer">
+                            <br/>
+                            <br/>
                               <h5
                                 className="card-link"
                                 onClick={() => toBookDetail(item)}
                               >
+                                <Link>
                                 Read {item.title}
+                                </Link>
                               </h5>
                             </div>
                           </div>

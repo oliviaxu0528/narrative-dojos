@@ -108,8 +108,8 @@ const MyBooksList = (props) => {
                         className="rounded d-block mx-auto mb-4"
                         src="/pucca.png"
                         alt=""
-                        width="450"
-                        height="350"
+                        width="697"
+                        height="400"
                     />
                 </div>
                 <div className="wrapper">
@@ -127,9 +127,6 @@ const MyBooksList = (props) => {
                     <span>j</span>
                     <span>o</span>
                 </div>
-                {/* <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>
-                    Narrative Dojo
-                </h1> */}
                 <div className="col-lg-6 mx-auto">
                     <p className="lead mb-4" style={{ textAlign: "center" }}>
                         by Narrative Ninjas
@@ -188,12 +185,14 @@ const MyBooksList = (props) => {
                                                             <h5 className="card-title">{item.title}</h5>
                                                         </div>
                                                         <div className="card-footer">
-                                                            <h5
-                                                                className="card-link"
-                                                                onClick={() => toBookDetail(item)}
-                                                                >
-                                                                Read {item.title}
-                                                            </h5>
+                                                        <h5
+                                                            className="card-link"
+                                                            onClick={() => toBookDetail(item)}
+                                                        >
+                                                            <Link>
+                                                            Read {item.title}
+                                                            </Link>
+                                                        </h5>
                                                             {token && (
                                                                 <button className="btn btn-danger" onClick={() => deleteBook(item)}>Delete</button>
                                                                 )}
