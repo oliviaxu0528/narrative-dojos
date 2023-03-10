@@ -15,6 +15,10 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 # Project Design:
 https://excalidraw.com/#room=7c8cc6885fe2d48175e4,v4E8mYe8ec2PzMlOVjQU5Q
 
+# DALLE-2 API Documentation:
+https://platform.openai.com/docs/api-reference/images/create
+
+
 #### How to run
 * Clone the repo: https://gitlab.com/narrative-ninjas/module3-project-gamma.git
 * Open Docker Desktop
