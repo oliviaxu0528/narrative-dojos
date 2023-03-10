@@ -2,14 +2,14 @@
 import React from "react";
 
 function Services () {
-    let message = `At Narrative Dojo, we're a team of four software engineers on a mission to empower educators, parents, and children to create captivating and personalized children's storybooks using the latest in Dall-E AI technology and intuitive design tools. Our platform provides a safe, supportive, and inclusive community that celebrates diversity and encourages exploration, inspiring creativity and fostering a lifelong love of learning. Join us in revolutionizing the world of children's literature and inspiring the next generation of storytellers.
+    let message = `Narrative Dojo is a team of four software engineers on a mission to empower educators, parents, and children to create captivating and personalized children's storybooks using the latest in Dall-E AI technology and intuitive design tools. Our platform provides a safe, supportive, and inclusive community that celebrates diversity and encourages exploration, inspiring creativity and fostering a lifelong love of learning. Join us in revolutionizing the world of children's literature and inspiring the next generation of storytellers.
 `;
     return (
       <section className="section-white">
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-              <h2 className="section-title">The Creator of Narrative Dojos</h2>
+              <h2 className="section-title">The Creators of Narrative Dojo</h2>
               <p className="section-subtitle">{message}</p>
             </div>
             <div className="col-6">
@@ -28,9 +28,12 @@ function Services () {
                   Tulane University: Master of Mathematical Finance 2018{" "}
                 </p>
                 <p>
-                  Olivia is currently living in Seattle, WA. In her spare time,
-                  she enjoys watching NBA, cooking, outdoor activity and reading
-                  finace & technology news
+                  In her spare time, she enjoys watching the NBA, cooking,
+                  outdoor activity and reading finance & technology news. She
+                  has 4+ years in public accounting as well as being a former
+                  swimming champion in China. Olivia may have traded her
+                  goggles for glasses, but she's still making a splash as a
+                  software engineer.
                 </p>
                 <ul className="team-icon">
                   <li>
@@ -121,12 +124,11 @@ function Services () {
                   When James isn't busy writing code or solving complex
                   technical problems, you can usually find him roaming the
                   hallowed grounds of the Howling Abyss as a platinum level
-                  summoner or dunking on oldheads at LA fit. He will always
-                  protect the rim like he protects his endpoints.
+                  summoner. He also enjoys dunking on your favorite oldheads
+                  at a local LA fit.
                   <br />
-                  "I may be a software engineer, but on the court, I'm always
-                  calculating my next move, just like I'm always calculating my
-                  next line of code."
+                  <br />
+                  "I protect the rim like I protect my endpoints."
                 </p>
                 <ul className="team-icon">
                   <li>
@@ -164,11 +166,25 @@ function Services () {
                   <p>Co-Founder</p>
                 </div>
                 <p>
+<<<<<<< HEAD
+                  University of California, Los Angeles 2022: BS Communication
+                </p>
+                <p>
+                  When she's not busy coding, Lynn enjoys indulging in her
+                  favorite hobbies. She is an avid Netflix watcher and loves to
+                  binge-watch Ginny & Georgia. Additionally, Lynn loves to
+                  explore new places and immerse herself in different cultures.
+                  During the winter months, Lynn heads to the mountains to hit the slopes
+                  on her snowboard. Despite her many interests and hobbies,
+                  Lynn's heart remains firmly in the world of software
+                  engineering.
+=======
                   University of California, Los Angles 2022: BS Communication.
                 </p>
                 <p>
                   In her sparetime, Lynn enjoys snowboarding and watching
                   Netflix.
+>>>>>>> main
                 </p>
                 <ul className="team-icon">
                   <li>
