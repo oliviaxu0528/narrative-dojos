@@ -166,7 +166,6 @@ function Services () {
                   <p>Co-Founder</p>
                 </div>
                 <p>
-<<<<<<< HEAD
                   University of California, Los Angeles 2022: BS Communication
                 </p>
                 <p>
@@ -178,13 +177,6 @@ function Services () {
                   on her snowboard. Despite her many interests and hobbies,
                   Lynn's heart remains firmly in the world of software
                   engineering.
-=======
-                  University of California, Los Angles 2022: BS Communication.
-                </p>
-                <p>
-                  In her sparetime, Lynn enjoys snowboarding and watching
-                  Netflix.
->>>>>>> main
                 </p>
                 <ul className="team-icon">
                   <li>
