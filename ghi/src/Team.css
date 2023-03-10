@@ -19,7 +19,7 @@
 }
 
 .team-item:hover{
-	background: #A3B18A;
+	background:#dc3545;
 	color: white;
 }
 
@@ -40,7 +40,8 @@
  }
 
 .section-subtitle:hover{
-	background: #A3B18A;
+	background:#dc3545;
+;
 	color: white;
 }
 
@@ -54,7 +55,7 @@
 }
 
 .team-info p{
-	color:#A789B0;
+	color:#73238b;
 	font-style:italic;
 }
 

@@ -44,10 +44,12 @@ function App(props) {
   return (
     <div>
       <BrowserRouter basename={basename}>
-        <div className="my-5 container page-container content-wrap">
-          <AuthProvider>
-            <GetToken />
+        <AuthProvider>
+          <GetToken />
+          <div className="mb-5">
             <Nav />
+          </div>
+          <div className="mb-5 page-container pt-4">
             <Routes>
               <Route index element={<MainPage />} />
               <Route path="/signup" element={<Signup />} />
@@ -60,8 +62,8 @@ function App(props) {
               <Route path="/createcover" element={<CreateCover />} />
               <Route path="/team" element={<Team />} />
             </Routes>
-          </AuthProvider>
-        </div>
+          </div>
+        </AuthProvider>
         <Footer />
       </BrowserRouter>
     </div>
