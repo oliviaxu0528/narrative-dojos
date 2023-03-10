@@ -72,8 +72,13 @@
 }
 
 .team-img{
+<<<<<<< HEAD
 	max-width: 110px;
 	padding: 2px 2px;
+=======
+	max-width: 140px;
+	padding: 6px 6px;
+>>>>>>> main
     background-color: #dedede;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;

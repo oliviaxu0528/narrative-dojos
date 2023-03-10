@@ -10,10 +10,17 @@
 ![Home](/images/Home.png)
 
 # Website Summary
-Narrative Dojo is a website to create **children's book** leveraging the **Dalle-2 AI image generator**. Our goal is that customer can easily made creative children's book so the customer can decide what their children would read. Through a short text prompt, for cover and every page, our AI image API would generate pictures so that the customer can chose from there. Once finished and published, the user can manage the books.
+Narrative Dojo is a website to create **children's book** leveraging the **Dalle-2 AI image generator**. Our goal is that customer can easily made creative children's book so the customer can decide what their children would read. Through a short text prompt, for cover and every page, our stable difussion AI image API (DALLE-2) would generate pictures so that the customer can chose from there. Once finished and published, the user can manage the books.
+
+# Project Design:
+https://excalidraw.com/#room=7c8cc6885fe2d48175e4,v4E8mYe8ec2PzMlOVjQU5Q
+
+# DALLE-2 API Documentation:
+https://platform.openai.com/docs/api-reference/images/create
+
 
 #### How to run
-* Clone the repo: `https://gitlab.com/narrative-ninjas/module3-project-gamma.git`
+* Clone the repo: https://gitlab.com/narrative-ninjas/module3-project-gamma.git
 * Open Docker Desktop
 * Within your terminal, run the following:
 * docker volume create postgres-data
@@ -94,6 +101,17 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 |View a specific page|http://localhost:8000/page/pageID|
 |Delete a page|http://localhost:8000/page/pageID|
 |Update a page|http://localhost:8000/page/pageID|
+|Get API Image Urls|https://api.openai.com/v1/images/generations|
+|Get Token|http://localhost:8000/token|
+|Post Token|http://localhost:8000/token|
+|DELETE Token|http://localhost:8000/token|
+
+---
+### Frontend Endpoints:
+REACT:
+
+http://localhost:3000
+
 
 
 
@@ -144,3 +162,112 @@ Narrative Dojo is a website to create **children's book** leveraging the **Dalle
 	}
 ]
 ```
+**POST request to /Dalle-2 API
+```sh
+[
+	{
+		"model": "image-alpha-001",
+		"prompt": "image_prompt",
+		"n": 3,
+		"size": "256x256",
+		"response_format": "url"
+	}
+	{
+		"created": 1589478378,
+		"data": [
+		{
+		"url": "https://..."
+		},
+		{
+		"url": "https://..."
+		}
+		{
+		"url": "https://..."
+		}
+		]
+}
+```
+**POST request to /covers
+```sh
+[
+	{
+
+		"username": "string",
+		"title": "string",
+		"cover_image_url": "string",
+		"created_on": "2023-03-08"
+
+	},
+	{
+		"ID": 54,
+		"username": "string",
+		"title": "string",
+		"cover_image_url": "string",
+		"created_on": "2023-03-08"
+	}
+]
+```
+
+
+**GET request to /covers
+```sh
+[
+	{
+		"ID": 1,
+		"username": "lyn",
+		"title": "Afterlives",
+		"cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLU86bUk1o7DttxQHAX-_ElAV7yNqPfVCVrg&usqp=CAU",
+		"created_on": "2023-03-03"
+	},
+	{
+		"ID": 55,
+		"username": "floyd",
+		"title": "books",
+		"cover_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUcC-4jgqjQSCaongEW8CUOFemYNhK-6aeDg&usqp=CAU",
+		"created_on": "2022-09-29"
+	}
+]
+```
+
+
+
+**POST request to /pages
+```sh
+[
+	{
+
+		"coverID": 1,
+		"page_image_url": "https://img2.baidu.com/it/u=2399001486,1472426582&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500",
+		"text": "Many cats are playing!"
+
+
+	},
+	{
+
+		"pageID": 22,
+		"coverID": 1,
+		"page_image_url": "https://img2.baidu.com/it/u=2399001486,1472426582&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500",
+		"text": "Many cats are playing!"
+
+	}
+]
+```
+
+**GET request to /pages
+```sh
+[
+	{
+		"pageID": 1,
+		"coverID": 1,
+		"page_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkW2xSMf_wp3Dk2XQhoRK4lN2xUX7-tYSUQ&usqp=CAU",
+		"text": "Story1"
+	},
+	{
+		"pageID": 2,
+		"coverID": 1,
+		"page_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnQ84uFr6eHjb4mOAaNogg_cS5xeY-s0LT8w&usqp=CAU",
+		"text": "Story2"
+	},
+]
+```
+
