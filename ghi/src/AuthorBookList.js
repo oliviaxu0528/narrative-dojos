@@ -89,15 +89,12 @@ const AuthorBookList = (props) => {
                         className="rounded d-block mx-auto mb-4"
                         src="/pucca.png"
                         alt=""
-                        width="450"
-                        height="350"
+                        width="697"
+                        height="400"
                     />
                 </div>
                 <h1 className="display-5 fw-bold" style={{ textAlign: "center" }}>Narrative Dojo</h1>
                 <div className="col-lg-6 mx-auto">
-                    <p className="lead mb-4" style={{ textAlign: "center" }}>
-                        by Narrative Ninjas
-                    </p>
                     <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                         {token && (
                             <>
@@ -156,9 +153,10 @@ const AuthorBookList = (props) => {
                                                                 className="card-link"
                                                                 onClick={() => toBookDetail(item)}
                                                             >
-                                                                Read {item.title}
+                                                                <Link>
+                                                                    Read {item.title}
+                                                                </Link>
                                                             </h5>
-
                                                         </div>
                                                     </div>
                                                 </li>
