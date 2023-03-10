@@ -14,12 +14,12 @@ const MyBooksList = (props) => {
     };
 
     const fetchData = async () => {
-        // const currentUser = localStorage.getItem("username");
-        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/covers`;
+        const currentUser = localStorage.getItem("username");
+        const bookUrl = `${process.env.REACT_APP_ND_API_HOST}/accounts/${currentUser}/covers`;
         const fetchConfig = {
             method: "GET",
             headers: {
-                location: `https://nd.nov-pt-1.mod3projects.com/covers/`,
+                location: `https://nd.nov-pt-1.mod3projects.com/accounts/${currentUser}covers/`,
                 Authorization: `Bearer ${token}`
             }
         }
