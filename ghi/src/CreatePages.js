@@ -14,6 +14,7 @@ function CreatePages() {
   const [apiPrompt, setApiPrompt] = useState('')
   const [previewImages, setPreviewImages] = useState([]);
   const [selectedPreviewImageIndex, setSelectedPreviewImageIndex] = useState(null);
+  const [, setText] = useState('')
 
   const form = createRef()
   let papers = numOfPapers.map((item, index) => {
@@ -206,6 +207,9 @@ function CreatePages() {
     }
     form.current.resetFields()
     setIsModelOpen(false)
+    setApiPrompt('')
+    setPreviewImages('')
+    setText('')
   }
 
   const handleCancel = () => {

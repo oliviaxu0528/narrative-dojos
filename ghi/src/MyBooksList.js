@@ -128,9 +128,6 @@ const MyBooksList = (props) => {
                     <span>o</span>
                 </div>
                 <div className="col-lg-6 mx-auto">
-                    <p className="lead mb-4" style={{ textAlign: "center" }}>
-                        by Narrative Ninjas
-                    </p>
                     <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                         {token && (
                             <>
