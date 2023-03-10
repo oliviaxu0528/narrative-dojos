@@ -10,7 +10,8 @@ const Footer = () => {
                 <div className="row">
                     <div className="col">
                         <h4>About Us</h4>
-                        <p>Narrative Dojo is a platform to create children's book with AI image generator. Our goal is to making books easily and conveniently</p>
+                        <p>Narrative Dojo is a platform to create children's books with an AI image generator.
+                        </p>
                     </div>
                     <div className="col">
                         <h4>Contact Us</h4>
@@ -27,7 +28,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <p className="col-sm">
+                    <p className="col">
                         &copy;{new Date().getFullYear()} Narrative Ninjas Inc. All Right Reserved
                     </p>
                 </div>
