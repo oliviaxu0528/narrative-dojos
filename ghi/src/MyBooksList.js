@@ -183,7 +183,7 @@ const MyBooksList = (props) => {
                                                             height="300px"
                                                             className="card-img-top"
                                                             alt="cover"
-                                                        />
+                                                            />
                                                         <div className="card-body">
                                                             <h5 className="card-title">{item.title}</h5>
                                                         </div>
@@ -191,13 +191,12 @@ const MyBooksList = (props) => {
                                                             <h5
                                                                 className="card-link"
                                                                 onClick={() => toBookDetail(item)}
-                                                            >
+                                                                >
                                                                 Read {item.title}
                                                             </h5>
                                                             {token && (
                                                                 <button className="btn btn-danger" onClick={() => deleteBook(item)}>Delete</button>
-                                                            )}
-
+                                                                )}
                                                         </div>
                                                     </div>
                                                 </li>
