@@ -69,20 +69,20 @@ const MyBooksList = (props) => {
 
         }
         const fn = (data) => {
-      data.forEach((item, index) => {
-        bookDeskArr.push(item);
-        if (
-          (index !== 0 && (index + 1) % 3 === 0) ||
-          index === data.length - 1
-        ) {
-          columns.push(bookDeskArr);
-          bookDeskArr = [];
-        }
-      });
-    };
-    fn(bookArr);
-    setBookDeskColumns(columns)
-    setBookColumns([...bookArr]);
+            data.forEach((item, index) => {
+                bookDeskArr.push(item);
+                if (
+                    (index !== 0 && (index + 1) % 3 === 0) ||
+                    index === data.length - 1
+                ) {
+                    columns.push(bookDeskArr);
+                    bookDeskArr = [];
+                }
+            });
+        };
+        fn(bookArr);
+        setBookDeskColumns(columns)
+        setBookColumns([...bookArr]);
     };
 
     const deleteBook = async (book) => {
@@ -163,11 +163,13 @@ const MyBooksList = (props) => {
                 </div>
             </div>
             <h2>My books</h2>
-            <select id="mySelect" onChange={() => sort()}>
-                <option value="alphabetical">Alphabetical</option>
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-            </select>
+            <div className='filter'>
+                <select id="mySelect" onChange={() => sort()}>
+                    <option value="alphabetical">Alphabetical</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
             <div className=".container">
                 <div className="row">
                     {bookDeskColumns.map((books, index) => {
@@ -196,9 +198,9 @@ const MyBooksList = (props) => {
                                                             >
                                                                 Read {item.title}
                                                             </h5>
-                                                        {token && (
+                                                            {token && (
                                                                 <button className="btn btn-danger" onClick={() => deleteBook(item)}>Delete</button>
-                                                        )}
+                                                            )}
 
                                                         </div>
                                                     </div>

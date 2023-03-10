@@ -86,6 +86,7 @@ const MainPage = (props) => {
 
   return (
     <>
+      <i class="bi bi-1-square"></i>
       <div>
         <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
           <img
@@ -131,11 +132,13 @@ const MainPage = (props) => {
         </div>
       </div>
       <h2>New books</h2>
-      <select id="mySelect" onChange={() => sort()}>
-        <option value="alphabetical">Alphabetical</option>
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-      </select>
+      <div className='filter'>
+        <select id="mySelect" onChange={() => sort()}>
+          <option value="alphabetical">Alphabetical</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
+      </div>
       <div className="container">
         <div className="row">
           {bookDeskColumns.map((books, index) => {
