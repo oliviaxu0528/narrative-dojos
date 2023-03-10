@@ -86,7 +86,7 @@ const MainPage = (props) => {
 
   return (
     <>
-      <i class="bi bi-1-square"></i>
+      <i className="bi bi-1-square"></i>
       <div>
         <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
           <img

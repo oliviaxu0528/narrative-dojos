@@ -43,7 +43,7 @@ function App(props) {
   const basename = process.env.PUBLIC_URL.replace(domain, '');
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <div className="my-5 container page-container content-wrap">
           <AuthProvider>
             <GetToken />

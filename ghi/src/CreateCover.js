@@ -54,7 +54,6 @@ export default function CreateCover() {
         e.preventDefault();
         try {
             const apiKey = "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";
-            console.log(apiKey)
             const prompt = apiPrompt;
             const response = await fetch(`https://api.openai.com/v1/images/generations`, {
                 method: 'POST',
