@@ -24,6 +24,7 @@ const MyBooksList = (props) => {
             }
         }
         const response = await fetch(bookUrl,fetchConfig);
+        console.log(response)
         const data = await response.json();
         let arr = [];
         let columns = []
