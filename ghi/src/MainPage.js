@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import './index.css';
 import { useToken } from './Authentication';
+import pucca from "./pucca.png";
 
 const MainPage = (props) => {
   const [bookColumns, setBookColumns] = useState([]);
@@ -91,7 +92,7 @@ const MainPage = (props) => {
         <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
           <img
             className="rounded d-block mx-auto mb-4"
-            src="pucca.png"
+            src={pucca}
             alt="pucca"
             width="697"
             height="400"

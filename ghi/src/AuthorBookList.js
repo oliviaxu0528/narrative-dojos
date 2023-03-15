@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import './index.css';
 import { useToken } from './Authentication';
+import pucca from "./pucca.png";
 
 
 
@@ -87,7 +88,7 @@ const AuthorBookList = (props) => {
                 <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
                     <img
                         className="rounded d-block mx-auto mb-4"
-                        src="bookpile.jfif"
+                        src={pucca}
                         alt="bookpile"
                         width="697"
                         height="400"
