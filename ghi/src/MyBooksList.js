@@ -106,7 +106,7 @@ const MyBooksList = (props) => {
                 <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
                     <img
                         className="rounded d-block mx-auto mb-4"
-                        src="/pucca.png"
+                        src="pucca.png"
                         alt=""
                         width="697"
                         height="400"
