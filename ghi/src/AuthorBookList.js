@@ -87,7 +87,7 @@ const AuthorBookList = (props) => {
                 <div className="image-container" style={{ backgroundColor: "transparent", boxShadow: "none" }}>
                     <img
                         className="rounded d-block mx-auto mb-4"
-                        src="pucca.png"
+                        src="bookpile.jfif"
                         alt=""
                         width="697"
                         height="400"
