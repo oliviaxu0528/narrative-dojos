@@ -157,7 +157,7 @@ function Services () {
             <div className="col-6">
               <div className="team-item">
                 <img
-                  src="https://media.licdn.com/dms/image/D5603AQHFlmSRHp3dmw/profile-displayphoto-shrink_200_200/0/1678391504605?e=1683763200&v=beta&t=-rvfpm-6_55bA--rnywxCJdE9RcDkG3U6lIl8E2BcEc"
+                  src="https://media.licdn.com/dms/image/D5603AQGCW1AJ6K-Ijw/profile-displayphoto-shrink_800_800/0/1678484416563?e=1684368000&v=beta&t=bOO-VyteYXbLkxvkqnQZ-wVnkzUdrM-fbrdNkcUMM10"
                   className="team-img"
                   alt="pic"
                 />
