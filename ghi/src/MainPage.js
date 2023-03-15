@@ -92,7 +92,7 @@ const MainPage = (props) => {
           <img
             className="rounded d-block mx-auto mb-4"
             src="pucca.png"
-            alt=""
+            alt="pucca"
             width="697"
             height="400"
           />

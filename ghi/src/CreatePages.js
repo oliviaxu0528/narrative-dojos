@@ -150,7 +150,7 @@ function CreatePages() {
   const handleApiPromptSubmit = async (e) => {
     e.preventDefault();
     try {
-      const apiKey = "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";
+      const apiKey = "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";
       const prompt = apiPrompt;
       const response = await fetch(`https://api.openai.com/v1/images/generations`, {
         method: 'POST',

@@ -107,7 +107,7 @@ const MyBooksList = (props) => {
                     <img
                         className="rounded d-block mx-auto mb-4"
                         src="Ninja.png"
-                        alt=""
+                        alt="ninja"
                         width="697"
                         height="400"
                     />

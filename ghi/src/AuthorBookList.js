@@ -88,7 +88,7 @@ const AuthorBookList = (props) => {
                     <img
                         className="rounded d-block mx-auto mb-4"
                         src="bookpile.jfif"
-                        alt=""
+                        alt="bookpile"
                         width="697"
                         height="400"
                     />
