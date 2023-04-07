@@ -52,7 +52,7 @@ export default function CreateCover() {
     const handleApiPromptSubmit = async (e) => {
         e.preventDefault();
         try {
-            const apiKey = "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";
+            const apiKey = "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";
             const prompt = apiPrompt;
             const response = await fetch(`https://api.openai.com/v1/images/generations`, {
                 method: 'POST',
@@ -63,7 +63,7 @@ export default function CreateCover() {
                 body: JSON.stringify({
                     "model": "image-alpha-001",
                     "prompt": prompt,
-                    "n": 3,
+                    "n": 4,
                     "size": "256x256",
                     "response_format": "url"
                 })
@@ -192,7 +192,7 @@ export default function CreateCover() {
                                             className="btn btn-primary"
                                             onClick={() => handlePreviewImageSelect(index)}
                                         >
-                                        Choose
+                                            Choose
                                         </button>
                                     </div>
                                 ))}
